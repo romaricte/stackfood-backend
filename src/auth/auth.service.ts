@@ -1,10 +1,11 @@
-import { Injectable, UnauthorizedException, ConflictException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, ConflictException, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 import { TokenResponse } from './interfaces/token-response.interface';
 import { PrismaService } from '../prisma/prisma.service';
 import * as crypto from 'crypto';
+import { User } from '../../generated/prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -97,4 +98,19 @@ export class AuthService {
     const hashedPlainPassword = crypto.scryptSync(plainPassword, salt, 64).toString('hex');
     return hashedPlainPassword === key;
   }
+
+  async getAllUsers(): Promise<User[]> {
+    const users = await this.prisma.user.findMany();
+    return users;
+  }
+  async getUserById(userId: string): Promise<User | null> {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId }
+    });
+    if (!user) {
+      throw new NotFoundException('Utilisateur non trouvé');
+    }
+    return user;
+  }
+
 }
