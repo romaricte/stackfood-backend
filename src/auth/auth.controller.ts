@@ -6,6 +6,7 @@ import { TokenResponse } from './interfaces/token-response.interface';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Public } from './decorators/public.decorator';
 import { CurrentUser } from './decorators/current-user.decorator';
+import { User } from 'generated/prisma/client';
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -41,7 +42,7 @@ export class AuthController {
   }
 
   @Get('profile')
-  @ApiBearerAuth()
+  // @ApiBearerAuth()
   @ApiOperation({ summary: 'Obtenir le profil de l\'utilisateur connecté' })
   @ApiResponse({ 
     status: 200, 
@@ -50,5 +51,16 @@ export class AuthController {
   @ApiResponse({ status: 401, description: 'Non autorisé' })
   getProfile(@CurrentUser() user) {
     return user;
+  }
+
+  @Public()
+  @Get('users')
+  @ApiOperation({ summary: 'Obtenir tous les utilisateurs' })
+  @ApiResponse({ 
+    status: 200, 
+    description: 'Tous les utilisateurs récupérés avec succès'
+  })
+  async getAllUsers(): Promise<User[]> {
+    return this.authService.getAllUsers();
   }
 }

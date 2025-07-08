@@ -121,6 +121,32 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password'
 };
 
+exports.Prisma.FoodScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  lastPrice: 'lastPrice',
+  rating: 'rating',
+  isNew: 'isNew',
+  isPopular: 'isPopular',
+  isBestSeller: 'isBestSeller',
+  description: 'description',
+  nutrition: 'nutrition',
+  allergens: 'allergens',
+  size: 'size',
+  addOns: 'addOns',
+  type: 'type',
+  image: 'image',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -130,10 +156,16 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-
+exports.FoodType = exports.$Enums.FoodType = {
+  NON_VEGETARIAN: 'NON_VEGETARIAN',
+  VEGETARIAN: 'VEGETARIAN',
+  VEGAN: 'VEGAN'
+};
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Food: 'Food',
+  Category: 'Category'
 };
 
 /**
