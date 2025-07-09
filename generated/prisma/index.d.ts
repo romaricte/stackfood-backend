@@ -24,10 +24,25 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type Food = $Result.DefaultSelection<Prisma.$FoodPayload>
 /**
+ * Model Variant
+ * 
+ */
+export type Variant = $Result.DefaultSelection<Prisma.$VariantPayload>
+/**
+ * Model Value
+ * 
+ */
+export type Value = $Result.DefaultSelection<Prisma.$ValuePayload>
+/**
  * Model Category
  * 
  */
 export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
+/**
+ * Model Type
+ * 
+ */
+export type Type = $Result.DefaultSelection<Prisma.$TypePayload>
 
 /**
  * Enums
@@ -160,6 +175,26 @@ export class PrismaClient<
   get food(): Prisma.FoodDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.variant`: Exposes CRUD operations for the **Variant** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Variants
+    * const variants = await prisma.variant.findMany()
+    * ```
+    */
+  get variant(): Prisma.VariantDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.value`: Exposes CRUD operations for the **Value** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Values
+    * const values = await prisma.value.findMany()
+    * ```
+    */
+  get value(): Prisma.ValueDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.category`: Exposes CRUD operations for the **Category** model.
     * Example usage:
     * ```ts
@@ -168,6 +203,16 @@ export class PrismaClient<
     * ```
     */
   get category(): Prisma.CategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.type`: Exposes CRUD operations for the **Type** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Types
+    * const types = await prisma.type.findMany()
+    * ```
+    */
+  get type(): Prisma.TypeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -610,7 +655,10 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Food: 'Food',
-    Category: 'Category'
+    Variant: 'Variant',
+    Value: 'Value',
+    Category: 'Category',
+    Type: 'Type'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -629,7 +677,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "food" | "category"
+      modelProps: "user" | "food" | "variant" | "value" | "category" | "type"
       txIsolationLevel: never
     }
     model: {
@@ -781,6 +829,154 @@ export namespace Prisma {
           }
         }
       }
+      Variant: {
+        payload: Prisma.$VariantPayload<ExtArgs>
+        fields: Prisma.VariantFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VariantFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VariantPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VariantFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VariantPayload>
+          }
+          findFirst: {
+            args: Prisma.VariantFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VariantPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VariantFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VariantPayload>
+          }
+          findMany: {
+            args: Prisma.VariantFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VariantPayload>[]
+          }
+          create: {
+            args: Prisma.VariantCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VariantPayload>
+          }
+          createMany: {
+            args: Prisma.VariantCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.VariantDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VariantPayload>
+          }
+          update: {
+            args: Prisma.VariantUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VariantPayload>
+          }
+          deleteMany: {
+            args: Prisma.VariantDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VariantUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.VariantUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VariantPayload>
+          }
+          aggregate: {
+            args: Prisma.VariantAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVariant>
+          }
+          groupBy: {
+            args: Prisma.VariantGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VariantGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.VariantFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.VariantAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.VariantCountArgs<ExtArgs>
+            result: $Utils.Optional<VariantCountAggregateOutputType> | number
+          }
+        }
+      }
+      Value: {
+        payload: Prisma.$ValuePayload<ExtArgs>
+        fields: Prisma.ValueFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ValueFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ValuePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ValueFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ValuePayload>
+          }
+          findFirst: {
+            args: Prisma.ValueFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ValuePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ValueFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ValuePayload>
+          }
+          findMany: {
+            args: Prisma.ValueFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ValuePayload>[]
+          }
+          create: {
+            args: Prisma.ValueCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ValuePayload>
+          }
+          createMany: {
+            args: Prisma.ValueCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ValueDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ValuePayload>
+          }
+          update: {
+            args: Prisma.ValueUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ValuePayload>
+          }
+          deleteMany: {
+            args: Prisma.ValueDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ValueUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ValueUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ValuePayload>
+          }
+          aggregate: {
+            args: Prisma.ValueAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateValue>
+          }
+          groupBy: {
+            args: Prisma.ValueGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ValueGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.ValueFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.ValueAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.ValueCountArgs<ExtArgs>
+            result: $Utils.Optional<ValueCountAggregateOutputType> | number
+          }
+        }
+      }
       Category: {
         payload: Prisma.$CategoryPayload<ExtArgs>
         fields: Prisma.CategoryFieldRefs
@@ -852,6 +1048,80 @@ export namespace Prisma {
           count: {
             args: Prisma.CategoryCountArgs<ExtArgs>
             result: $Utils.Optional<CategoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      Type: {
+        payload: Prisma.$TypePayload<ExtArgs>
+        fields: Prisma.TypeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TypeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TypePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TypeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TypePayload>
+          }
+          findFirst: {
+            args: Prisma.TypeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TypePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TypeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TypePayload>
+          }
+          findMany: {
+            args: Prisma.TypeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TypePayload>[]
+          }
+          create: {
+            args: Prisma.TypeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TypePayload>
+          }
+          createMany: {
+            args: Prisma.TypeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.TypeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TypePayload>
+          }
+          update: {
+            args: Prisma.TypeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TypePayload>
+          }
+          deleteMany: {
+            args: Prisma.TypeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TypeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.TypeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TypePayload>
+          }
+          aggregate: {
+            args: Prisma.TypeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateType>
+          }
+          groupBy: {
+            args: Prisma.TypeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TypeGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.TypeFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.TypeAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.TypeCountArgs<ExtArgs>
+            result: $Utils.Optional<TypeCountAggregateOutputType> | number
           }
         }
       }
@@ -928,7 +1198,10 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     food?: FoodOmit
+    variant?: VariantOmit
+    value?: ValueOmit
     category?: CategoryOmit
+    type?: TypeOmit
   }
 
   /* Types for Logging */
@@ -1019,14 +1292,78 @@ export namespace Prisma {
 
 
   /**
+   * Count Type FoodCountOutputType
+   */
+
+  export type FoodCountOutputType = {
+    variants: number
+  }
+
+  export type FoodCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    variants?: boolean | FoodCountOutputTypeCountVariantsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FoodCountOutputType without action
+   */
+  export type FoodCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FoodCountOutputType
+     */
+    select?: FoodCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FoodCountOutputType without action
+   */
+  export type FoodCountOutputTypeCountVariantsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VariantWhereInput
+  }
+
+
+  /**
+   * Count Type VariantCountOutputType
+   */
+
+  export type VariantCountOutputType = {
+    values: number
+  }
+
+  export type VariantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    values?: boolean | VariantCountOutputTypeCountValuesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * VariantCountOutputType without action
+   */
+  export type VariantCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VariantCountOutputType
+     */
+    select?: VariantCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * VariantCountOutputType without action
+   */
+  export type VariantCountOutputTypeCountValuesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ValueWhereInput
+  }
+
+
+  /**
    * Count Type CategoryCountOutputType
    */
 
   export type CategoryCountOutputType = {
+    type: number
     foods: number
   }
 
   export type CategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    type?: boolean | CategoryCountOutputTypeCountTypeArgs
     foods?: boolean | CategoryCountOutputTypeCountFoodsArgs
   }
 
@@ -1039,6 +1376,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the CategoryCountOutputType
      */
     select?: CategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeCountTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TypeWhereInput
   }
 
   /**
@@ -1999,26 +2343,38 @@ export namespace Prisma {
 
   export type FoodAvgAggregateOutputType = {
     price: number | null
-    lastPrice: number | null
-    rating: number | null
+    min_delivery_time: number | null
+    max_delivery_time: number | null
+    discount: number | null
+    sell_count: number | null
+    restaurant_discount: number | null
   }
 
   export type FoodSumAggregateOutputType = {
     price: number | null
-    lastPrice: number | null
-    rating: number | null
+    min_delivery_time: number | null
+    max_delivery_time: number | null
+    discount: number | null
+    sell_count: number | null
+    restaurant_discount: number | null
   }
 
   export type FoodMinAggregateOutputType = {
     id: string | null
     name: string | null
-    price: number | null
-    lastPrice: number | null
-    rating: number | null
-    isNew: boolean | null
-    isPopular: boolean | null
-    isBestSeller: boolean | null
     description: string | null
+    price: number | null
+    min_delivery_time: number | null
+    max_delivery_time: number | null
+    free_delivery: boolean | null
+    veg: boolean | null
+    discount: number | null
+    sell_count: number | null
+    restaurant_name: string | null
+    restaurant_status: boolean | null
+    restaurant_discount: number | null
+    restaurant_opening_time: Date | null
+    restaurant_closing_time: Date | null
     type: $Enums.FoodType | null
     image: string | null
     categoryId: string | null
@@ -2029,13 +2385,19 @@ export namespace Prisma {
   export type FoodMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    price: number | null
-    lastPrice: number | null
-    rating: number | null
-    isNew: boolean | null
-    isPopular: boolean | null
-    isBestSeller: boolean | null
     description: string | null
+    price: number | null
+    min_delivery_time: number | null
+    max_delivery_time: number | null
+    free_delivery: boolean | null
+    veg: boolean | null
+    discount: number | null
+    sell_count: number | null
+    restaurant_name: string | null
+    restaurant_status: boolean | null
+    restaurant_discount: number | null
+    restaurant_opening_time: Date | null
+    restaurant_closing_time: Date | null
     type: $Enums.FoodType | null
     image: string | null
     categoryId: string | null
@@ -2046,17 +2408,19 @@ export namespace Prisma {
   export type FoodCountAggregateOutputType = {
     id: number
     name: number
-    price: number
-    lastPrice: number
-    rating: number
-    isNew: number
-    isPopular: number
-    isBestSeller: number
     description: number
-    nutrition: number
-    allergens: number
-    size: number
-    addOns: number
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery: number
+    veg: number
+    discount: number
+    sell_count: number
+    restaurant_name: number
+    restaurant_status: number
+    restaurant_discount: number
+    restaurant_opening_time: number
+    restaurant_closing_time: number
     type: number
     image: number
     categoryId: number
@@ -2068,26 +2432,38 @@ export namespace Prisma {
 
   export type FoodAvgAggregateInputType = {
     price?: true
-    lastPrice?: true
-    rating?: true
+    min_delivery_time?: true
+    max_delivery_time?: true
+    discount?: true
+    sell_count?: true
+    restaurant_discount?: true
   }
 
   export type FoodSumAggregateInputType = {
     price?: true
-    lastPrice?: true
-    rating?: true
+    min_delivery_time?: true
+    max_delivery_time?: true
+    discount?: true
+    sell_count?: true
+    restaurant_discount?: true
   }
 
   export type FoodMinAggregateInputType = {
     id?: true
     name?: true
-    price?: true
-    lastPrice?: true
-    rating?: true
-    isNew?: true
-    isPopular?: true
-    isBestSeller?: true
     description?: true
+    price?: true
+    min_delivery_time?: true
+    max_delivery_time?: true
+    free_delivery?: true
+    veg?: true
+    discount?: true
+    sell_count?: true
+    restaurant_name?: true
+    restaurant_status?: true
+    restaurant_discount?: true
+    restaurant_opening_time?: true
+    restaurant_closing_time?: true
     type?: true
     image?: true
     categoryId?: true
@@ -2098,13 +2474,19 @@ export namespace Prisma {
   export type FoodMaxAggregateInputType = {
     id?: true
     name?: true
-    price?: true
-    lastPrice?: true
-    rating?: true
-    isNew?: true
-    isPopular?: true
-    isBestSeller?: true
     description?: true
+    price?: true
+    min_delivery_time?: true
+    max_delivery_time?: true
+    free_delivery?: true
+    veg?: true
+    discount?: true
+    sell_count?: true
+    restaurant_name?: true
+    restaurant_status?: true
+    restaurant_discount?: true
+    restaurant_opening_time?: true
+    restaurant_closing_time?: true
     type?: true
     image?: true
     categoryId?: true
@@ -2115,17 +2497,19 @@ export namespace Prisma {
   export type FoodCountAggregateInputType = {
     id?: true
     name?: true
-    price?: true
-    lastPrice?: true
-    rating?: true
-    isNew?: true
-    isPopular?: true
-    isBestSeller?: true
     description?: true
-    nutrition?: true
-    allergens?: true
-    size?: true
-    addOns?: true
+    price?: true
+    min_delivery_time?: true
+    max_delivery_time?: true
+    free_delivery?: true
+    veg?: true
+    discount?: true
+    sell_count?: true
+    restaurant_name?: true
+    restaurant_status?: true
+    restaurant_discount?: true
+    restaurant_opening_time?: true
+    restaurant_closing_time?: true
     type?: true
     image?: true
     categoryId?: true
@@ -2223,17 +2607,19 @@ export namespace Prisma {
   export type FoodGroupByOutputType = {
     id: string
     name: string
-    price: number
-    lastPrice: number
-    rating: number
-    isNew: boolean
-    isPopular: boolean
-    isBestSeller: boolean
     description: string
-    nutrition: string[]
-    allergens: string[]
-    size: string[]
-    addOns: string[]
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    restaurant_name: string
+    restaurant_status: boolean
+    restaurant_discount: number
+    restaurant_opening_time: Date
+    restaurant_closing_time: Date
     type: $Enums.FoodType
     image: string
     categoryId: string
@@ -2263,23 +2649,27 @@ export namespace Prisma {
   export type FoodSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    price?: boolean
-    lastPrice?: boolean
-    rating?: boolean
-    isNew?: boolean
-    isPopular?: boolean
-    isBestSeller?: boolean
     description?: boolean
-    nutrition?: boolean
-    allergens?: boolean
-    size?: boolean
-    addOns?: boolean
+    price?: boolean
+    min_delivery_time?: boolean
+    max_delivery_time?: boolean
+    free_delivery?: boolean
+    veg?: boolean
+    discount?: boolean
+    sell_count?: boolean
+    restaurant_name?: boolean
+    restaurant_status?: boolean
+    restaurant_discount?: boolean
+    restaurant_opening_time?: boolean
+    restaurant_closing_time?: boolean
     type?: boolean
     image?: boolean
     categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    variants?: boolean | Food$variantsArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
+    _count?: boolean | FoodCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["food"]>
 
 
@@ -2287,17 +2677,19 @@ export namespace Prisma {
   export type FoodSelectScalar = {
     id?: boolean
     name?: boolean
-    price?: boolean
-    lastPrice?: boolean
-    rating?: boolean
-    isNew?: boolean
-    isPopular?: boolean
-    isBestSeller?: boolean
     description?: boolean
-    nutrition?: boolean
-    allergens?: boolean
-    size?: boolean
-    addOns?: boolean
+    price?: boolean
+    min_delivery_time?: boolean
+    max_delivery_time?: boolean
+    free_delivery?: boolean
+    veg?: boolean
+    discount?: boolean
+    sell_count?: boolean
+    restaurant_name?: boolean
+    restaurant_status?: boolean
+    restaurant_discount?: boolean
+    restaurant_opening_time?: boolean
+    restaurant_closing_time?: boolean
     type?: boolean
     image?: boolean
     categoryId?: boolean
@@ -2305,30 +2697,35 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type FoodOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "price" | "lastPrice" | "rating" | "isNew" | "isPopular" | "isBestSeller" | "description" | "nutrition" | "allergens" | "size" | "addOns" | "type" | "image" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["food"]>
+  export type FoodOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "price" | "min_delivery_time" | "max_delivery_time" | "free_delivery" | "veg" | "discount" | "sell_count" | "restaurant_name" | "restaurant_status" | "restaurant_discount" | "restaurant_opening_time" | "restaurant_closing_time" | "type" | "image" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["food"]>
   export type FoodInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    variants?: boolean | Food$variantsArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
+    _count?: boolean | FoodCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $FoodPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Food"
     objects: {
+      variants: Prisma.$VariantPayload<ExtArgs>[]
       category: Prisma.$CategoryPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      price: number
-      lastPrice: number
-      rating: number
-      isNew: boolean
-      isPopular: boolean
-      isBestSeller: boolean
       description: string
-      nutrition: string[]
-      allergens: string[]
-      size: string[]
-      addOns: string[]
+      price: number
+      min_delivery_time: number
+      max_delivery_time: number
+      free_delivery: boolean
+      veg: boolean
+      discount: number
+      sell_count: number
+      restaurant_name: string
+      restaurant_status: boolean
+      restaurant_discount: number
+      restaurant_opening_time: Date
+      restaurant_closing_time: Date
       type: $Enums.FoodType
       image: string
       categoryId: string
@@ -2697,6 +3094,7 @@ export namespace Prisma {
    */
   export interface Prisma__FoodClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    variants<T extends Food$variantsArgs<ExtArgs> = {}>(args?: Subset<T, Food$variantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2729,17 +3127,19 @@ export namespace Prisma {
   interface FoodFieldRefs {
     readonly id: FieldRef<"Food", 'String'>
     readonly name: FieldRef<"Food", 'String'>
-    readonly price: FieldRef<"Food", 'Float'>
-    readonly lastPrice: FieldRef<"Food", 'Float'>
-    readonly rating: FieldRef<"Food", 'Float'>
-    readonly isNew: FieldRef<"Food", 'Boolean'>
-    readonly isPopular: FieldRef<"Food", 'Boolean'>
-    readonly isBestSeller: FieldRef<"Food", 'Boolean'>
     readonly description: FieldRef<"Food", 'String'>
-    readonly nutrition: FieldRef<"Food", 'String[]'>
-    readonly allergens: FieldRef<"Food", 'String[]'>
-    readonly size: FieldRef<"Food", 'String[]'>
-    readonly addOns: FieldRef<"Food", 'String[]'>
+    readonly price: FieldRef<"Food", 'Float'>
+    readonly min_delivery_time: FieldRef<"Food", 'Int'>
+    readonly max_delivery_time: FieldRef<"Food", 'Int'>
+    readonly free_delivery: FieldRef<"Food", 'Boolean'>
+    readonly veg: FieldRef<"Food", 'Boolean'>
+    readonly discount: FieldRef<"Food", 'Float'>
+    readonly sell_count: FieldRef<"Food", 'Int'>
+    readonly restaurant_name: FieldRef<"Food", 'String'>
+    readonly restaurant_status: FieldRef<"Food", 'Boolean'>
+    readonly restaurant_discount: FieldRef<"Food", 'Float'>
+    readonly restaurant_opening_time: FieldRef<"Food", 'DateTime'>
+    readonly restaurant_closing_time: FieldRef<"Food", 'DateTime'>
     readonly type: FieldRef<"Food", 'FoodType'>
     readonly image: FieldRef<"Food", 'String'>
     readonly categoryId: FieldRef<"Food", 'String'>
@@ -3115,6 +3515,30 @@ export namespace Prisma {
   }
 
   /**
+   * Food.variants
+   */
+  export type Food$variantsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+    where?: VariantWhereInput
+    orderBy?: VariantOrderByWithRelationInput | VariantOrderByWithRelationInput[]
+    cursor?: VariantWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VariantScalarFieldEnum | VariantScalarFieldEnum[]
+  }
+
+  /**
    * Food without action
    */
   export type FoodDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3134,45 +3558,2209 @@ export namespace Prisma {
 
 
   /**
+   * Model Variant
+   */
+
+  export type AggregateVariant = {
+    _count: VariantCountAggregateOutputType | null
+    _min: VariantMinAggregateOutputType | null
+    _max: VariantMaxAggregateOutputType | null
+  }
+
+  export type VariantMinAggregateOutputType = {
+    variantId: string | null
+    name: string | null
+    type: string | null
+    min: string | null
+    max: string | null
+    required: boolean | null
+    foodId: string | null
+  }
+
+  export type VariantMaxAggregateOutputType = {
+    variantId: string | null
+    name: string | null
+    type: string | null
+    min: string | null
+    max: string | null
+    required: boolean | null
+    foodId: string | null
+  }
+
+  export type VariantCountAggregateOutputType = {
+    variantId: number
+    name: number
+    type: number
+    min: number
+    max: number
+    required: number
+    foodId: number
+    _all: number
+  }
+
+
+  export type VariantMinAggregateInputType = {
+    variantId?: true
+    name?: true
+    type?: true
+    min?: true
+    max?: true
+    required?: true
+    foodId?: true
+  }
+
+  export type VariantMaxAggregateInputType = {
+    variantId?: true
+    name?: true
+    type?: true
+    min?: true
+    max?: true
+    required?: true
+    foodId?: true
+  }
+
+  export type VariantCountAggregateInputType = {
+    variantId?: true
+    name?: true
+    type?: true
+    min?: true
+    max?: true
+    required?: true
+    foodId?: true
+    _all?: true
+  }
+
+  export type VariantAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Variant to aggregate.
+     */
+    where?: VariantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Variants to fetch.
+     */
+    orderBy?: VariantOrderByWithRelationInput | VariantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VariantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Variants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Variants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Variants
+    **/
+    _count?: true | VariantCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VariantMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VariantMaxAggregateInputType
+  }
+
+  export type GetVariantAggregateType<T extends VariantAggregateArgs> = {
+        [P in keyof T & keyof AggregateVariant]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVariant[P]>
+      : GetScalarType<T[P], AggregateVariant[P]>
+  }
+
+
+
+
+  export type VariantGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VariantWhereInput
+    orderBy?: VariantOrderByWithAggregationInput | VariantOrderByWithAggregationInput[]
+    by: VariantScalarFieldEnum[] | VariantScalarFieldEnum
+    having?: VariantScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VariantCountAggregateInputType | true
+    _min?: VariantMinAggregateInputType
+    _max?: VariantMaxAggregateInputType
+  }
+
+  export type VariantGroupByOutputType = {
+    variantId: string
+    name: string
+    type: string
+    min: string
+    max: string
+    required: boolean
+    foodId: string
+    _count: VariantCountAggregateOutputType | null
+    _min: VariantMinAggregateOutputType | null
+    _max: VariantMaxAggregateOutputType | null
+  }
+
+  type GetVariantGroupByPayload<T extends VariantGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VariantGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VariantGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VariantGroupByOutputType[P]>
+            : GetScalarType<T[P], VariantGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VariantSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    variantId?: boolean
+    name?: boolean
+    type?: boolean
+    min?: boolean
+    max?: boolean
+    required?: boolean
+    foodId?: boolean
+    food?: boolean | FoodDefaultArgs<ExtArgs>
+    values?: boolean | Variant$valuesArgs<ExtArgs>
+    _count?: boolean | VariantCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["variant"]>
+
+
+
+  export type VariantSelectScalar = {
+    variantId?: boolean
+    name?: boolean
+    type?: boolean
+    min?: boolean
+    max?: boolean
+    required?: boolean
+    foodId?: boolean
+  }
+
+  export type VariantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"variantId" | "name" | "type" | "min" | "max" | "required" | "foodId", ExtArgs["result"]["variant"]>
+  export type VariantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    food?: boolean | FoodDefaultArgs<ExtArgs>
+    values?: boolean | Variant$valuesArgs<ExtArgs>
+    _count?: boolean | VariantCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $VariantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Variant"
+    objects: {
+      food: Prisma.$FoodPayload<ExtArgs>
+      values: Prisma.$ValuePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      variantId: string
+      name: string
+      type: string
+      min: string
+      max: string
+      required: boolean
+      foodId: string
+    }, ExtArgs["result"]["variant"]>
+    composites: {}
+  }
+
+  type VariantGetPayload<S extends boolean | null | undefined | VariantDefaultArgs> = $Result.GetResult<Prisma.$VariantPayload, S>
+
+  type VariantCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VariantFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VariantCountAggregateInputType | true
+    }
+
+  export interface VariantDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Variant'], meta: { name: 'Variant' } }
+    /**
+     * Find zero or one Variant that matches the filter.
+     * @param {VariantFindUniqueArgs} args - Arguments to find a Variant
+     * @example
+     * // Get one Variant
+     * const variant = await prisma.variant.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VariantFindUniqueArgs>(args: SelectSubset<T, VariantFindUniqueArgs<ExtArgs>>): Prisma__VariantClient<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Variant that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VariantFindUniqueOrThrowArgs} args - Arguments to find a Variant
+     * @example
+     * // Get one Variant
+     * const variant = await prisma.variant.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VariantFindUniqueOrThrowArgs>(args: SelectSubset<T, VariantFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VariantClient<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Variant that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VariantFindFirstArgs} args - Arguments to find a Variant
+     * @example
+     * // Get one Variant
+     * const variant = await prisma.variant.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VariantFindFirstArgs>(args?: SelectSubset<T, VariantFindFirstArgs<ExtArgs>>): Prisma__VariantClient<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Variant that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VariantFindFirstOrThrowArgs} args - Arguments to find a Variant
+     * @example
+     * // Get one Variant
+     * const variant = await prisma.variant.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VariantFindFirstOrThrowArgs>(args?: SelectSubset<T, VariantFindFirstOrThrowArgs<ExtArgs>>): Prisma__VariantClient<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Variants that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VariantFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Variants
+     * const variants = await prisma.variant.findMany()
+     * 
+     * // Get first 10 Variants
+     * const variants = await prisma.variant.findMany({ take: 10 })
+     * 
+     * // Only select the `variantId`
+     * const variantWithVariantIdOnly = await prisma.variant.findMany({ select: { variantId: true } })
+     * 
+     */
+    findMany<T extends VariantFindManyArgs>(args?: SelectSubset<T, VariantFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Variant.
+     * @param {VariantCreateArgs} args - Arguments to create a Variant.
+     * @example
+     * // Create one Variant
+     * const Variant = await prisma.variant.create({
+     *   data: {
+     *     // ... data to create a Variant
+     *   }
+     * })
+     * 
+     */
+    create<T extends VariantCreateArgs>(args: SelectSubset<T, VariantCreateArgs<ExtArgs>>): Prisma__VariantClient<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Variants.
+     * @param {VariantCreateManyArgs} args - Arguments to create many Variants.
+     * @example
+     * // Create many Variants
+     * const variant = await prisma.variant.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VariantCreateManyArgs>(args?: SelectSubset<T, VariantCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Variant.
+     * @param {VariantDeleteArgs} args - Arguments to delete one Variant.
+     * @example
+     * // Delete one Variant
+     * const Variant = await prisma.variant.delete({
+     *   where: {
+     *     // ... filter to delete one Variant
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VariantDeleteArgs>(args: SelectSubset<T, VariantDeleteArgs<ExtArgs>>): Prisma__VariantClient<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Variant.
+     * @param {VariantUpdateArgs} args - Arguments to update one Variant.
+     * @example
+     * // Update one Variant
+     * const variant = await prisma.variant.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VariantUpdateArgs>(args: SelectSubset<T, VariantUpdateArgs<ExtArgs>>): Prisma__VariantClient<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Variants.
+     * @param {VariantDeleteManyArgs} args - Arguments to filter Variants to delete.
+     * @example
+     * // Delete a few Variants
+     * const { count } = await prisma.variant.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VariantDeleteManyArgs>(args?: SelectSubset<T, VariantDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Variants.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VariantUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Variants
+     * const variant = await prisma.variant.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VariantUpdateManyArgs>(args: SelectSubset<T, VariantUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Variant.
+     * @param {VariantUpsertArgs} args - Arguments to update or create a Variant.
+     * @example
+     * // Update or create a Variant
+     * const variant = await prisma.variant.upsert({
+     *   create: {
+     *     // ... data to create a Variant
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Variant we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VariantUpsertArgs>(args: SelectSubset<T, VariantUpsertArgs<ExtArgs>>): Prisma__VariantClient<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Variants that matches the filter.
+     * @param {VariantFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const variant = await prisma.variant.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: VariantFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Variant.
+     * @param {VariantAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const variant = await prisma.variant.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: VariantAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Variants.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VariantCountArgs} args - Arguments to filter Variants to count.
+     * @example
+     * // Count the number of Variants
+     * const count = await prisma.variant.count({
+     *   where: {
+     *     // ... the filter for the Variants we want to count
+     *   }
+     * })
+    **/
+    count<T extends VariantCountArgs>(
+      args?: Subset<T, VariantCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VariantCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Variant.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VariantAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VariantAggregateArgs>(args: Subset<T, VariantAggregateArgs>): Prisma.PrismaPromise<GetVariantAggregateType<T>>
+
+    /**
+     * Group by Variant.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VariantGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VariantGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VariantGroupByArgs['orderBy'] }
+        : { orderBy?: VariantGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VariantGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVariantGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Variant model
+   */
+  readonly fields: VariantFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Variant.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VariantClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    food<T extends FoodDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FoodDefaultArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    values<T extends Variant$valuesArgs<ExtArgs> = {}>(args?: Subset<T, Variant$valuesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ValuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Variant model
+   */
+  interface VariantFieldRefs {
+    readonly variantId: FieldRef<"Variant", 'String'>
+    readonly name: FieldRef<"Variant", 'String'>
+    readonly type: FieldRef<"Variant", 'String'>
+    readonly min: FieldRef<"Variant", 'String'>
+    readonly max: FieldRef<"Variant", 'String'>
+    readonly required: FieldRef<"Variant", 'Boolean'>
+    readonly foodId: FieldRef<"Variant", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Variant findUnique
+   */
+  export type VariantFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+    /**
+     * Filter, which Variant to fetch.
+     */
+    where: VariantWhereUniqueInput
+  }
+
+  /**
+   * Variant findUniqueOrThrow
+   */
+  export type VariantFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+    /**
+     * Filter, which Variant to fetch.
+     */
+    where: VariantWhereUniqueInput
+  }
+
+  /**
+   * Variant findFirst
+   */
+  export type VariantFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+    /**
+     * Filter, which Variant to fetch.
+     */
+    where?: VariantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Variants to fetch.
+     */
+    orderBy?: VariantOrderByWithRelationInput | VariantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Variants.
+     */
+    cursor?: VariantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Variants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Variants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Variants.
+     */
+    distinct?: VariantScalarFieldEnum | VariantScalarFieldEnum[]
+  }
+
+  /**
+   * Variant findFirstOrThrow
+   */
+  export type VariantFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+    /**
+     * Filter, which Variant to fetch.
+     */
+    where?: VariantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Variants to fetch.
+     */
+    orderBy?: VariantOrderByWithRelationInput | VariantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Variants.
+     */
+    cursor?: VariantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Variants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Variants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Variants.
+     */
+    distinct?: VariantScalarFieldEnum | VariantScalarFieldEnum[]
+  }
+
+  /**
+   * Variant findMany
+   */
+  export type VariantFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+    /**
+     * Filter, which Variants to fetch.
+     */
+    where?: VariantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Variants to fetch.
+     */
+    orderBy?: VariantOrderByWithRelationInput | VariantOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Variants.
+     */
+    cursor?: VariantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Variants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Variants.
+     */
+    skip?: number
+    distinct?: VariantScalarFieldEnum | VariantScalarFieldEnum[]
+  }
+
+  /**
+   * Variant create
+   */
+  export type VariantCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Variant.
+     */
+    data: XOR<VariantCreateInput, VariantUncheckedCreateInput>
+  }
+
+  /**
+   * Variant createMany
+   */
+  export type VariantCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Variants.
+     */
+    data: VariantCreateManyInput | VariantCreateManyInput[]
+  }
+
+  /**
+   * Variant update
+   */
+  export type VariantUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Variant.
+     */
+    data: XOR<VariantUpdateInput, VariantUncheckedUpdateInput>
+    /**
+     * Choose, which Variant to update.
+     */
+    where: VariantWhereUniqueInput
+  }
+
+  /**
+   * Variant updateMany
+   */
+  export type VariantUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Variants.
+     */
+    data: XOR<VariantUpdateManyMutationInput, VariantUncheckedUpdateManyInput>
+    /**
+     * Filter which Variants to update
+     */
+    where?: VariantWhereInput
+    /**
+     * Limit how many Variants to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Variant upsert
+   */
+  export type VariantUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Variant to update in case it exists.
+     */
+    where: VariantWhereUniqueInput
+    /**
+     * In case the Variant found by the `where` argument doesn't exist, create a new Variant with this data.
+     */
+    create: XOR<VariantCreateInput, VariantUncheckedCreateInput>
+    /**
+     * In case the Variant was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VariantUpdateInput, VariantUncheckedUpdateInput>
+  }
+
+  /**
+   * Variant delete
+   */
+  export type VariantDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+    /**
+     * Filter which Variant to delete.
+     */
+    where: VariantWhereUniqueInput
+  }
+
+  /**
+   * Variant deleteMany
+   */
+  export type VariantDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Variants to delete
+     */
+    where?: VariantWhereInput
+    /**
+     * Limit how many Variants to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Variant findRaw
+   */
+  export type VariantFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Variant aggregateRaw
+   */
+  export type VariantAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Variant.values
+   */
+  export type Variant$valuesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Value
+     */
+    select?: ValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Value
+     */
+    omit?: ValueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ValueInclude<ExtArgs> | null
+    where?: ValueWhereInput
+    orderBy?: ValueOrderByWithRelationInput | ValueOrderByWithRelationInput[]
+    cursor?: ValueWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ValueScalarFieldEnum | ValueScalarFieldEnum[]
+  }
+
+  /**
+   * Variant without action
+   */
+  export type VariantDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Value
+   */
+
+  export type AggregateValue = {
+    _count: ValueCountAggregateOutputType | null
+    _avg: ValueAvgAggregateOutputType | null
+    _sum: ValueSumAggregateOutputType | null
+    _min: ValueMinAggregateOutputType | null
+    _max: ValueMaxAggregateOutputType | null
+  }
+
+  export type ValueAvgAggregateOutputType = {
+    optionPrice: number | null
+    option_id: number | null
+    current_stock: number | null
+  }
+
+  export type ValueSumAggregateOutputType = {
+    optionPrice: number | null
+    option_id: number | null
+    current_stock: number | null
+  }
+
+  export type ValueMinAggregateOutputType = {
+    valueId: string | null
+    label: string | null
+    optionPrice: number | null
+    stock: string | null
+    stock_type: string | null
+    sell_count: string | null
+    option_id: number | null
+    current_stock: number | null
+    variantId: string | null
+  }
+
+  export type ValueMaxAggregateOutputType = {
+    valueId: string | null
+    label: string | null
+    optionPrice: number | null
+    stock: string | null
+    stock_type: string | null
+    sell_count: string | null
+    option_id: number | null
+    current_stock: number | null
+    variantId: string | null
+  }
+
+  export type ValueCountAggregateOutputType = {
+    valueId: number
+    label: number
+    optionPrice: number
+    stock: number
+    stock_type: number
+    sell_count: number
+    option_id: number
+    current_stock: number
+    variantId: number
+    _all: number
+  }
+
+
+  export type ValueAvgAggregateInputType = {
+    optionPrice?: true
+    option_id?: true
+    current_stock?: true
+  }
+
+  export type ValueSumAggregateInputType = {
+    optionPrice?: true
+    option_id?: true
+    current_stock?: true
+  }
+
+  export type ValueMinAggregateInputType = {
+    valueId?: true
+    label?: true
+    optionPrice?: true
+    stock?: true
+    stock_type?: true
+    sell_count?: true
+    option_id?: true
+    current_stock?: true
+    variantId?: true
+  }
+
+  export type ValueMaxAggregateInputType = {
+    valueId?: true
+    label?: true
+    optionPrice?: true
+    stock?: true
+    stock_type?: true
+    sell_count?: true
+    option_id?: true
+    current_stock?: true
+    variantId?: true
+  }
+
+  export type ValueCountAggregateInputType = {
+    valueId?: true
+    label?: true
+    optionPrice?: true
+    stock?: true
+    stock_type?: true
+    sell_count?: true
+    option_id?: true
+    current_stock?: true
+    variantId?: true
+    _all?: true
+  }
+
+  export type ValueAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Value to aggregate.
+     */
+    where?: ValueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Values to fetch.
+     */
+    orderBy?: ValueOrderByWithRelationInput | ValueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ValueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Values from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Values.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Values
+    **/
+    _count?: true | ValueCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ValueAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ValueSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ValueMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ValueMaxAggregateInputType
+  }
+
+  export type GetValueAggregateType<T extends ValueAggregateArgs> = {
+        [P in keyof T & keyof AggregateValue]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateValue[P]>
+      : GetScalarType<T[P], AggregateValue[P]>
+  }
+
+
+
+
+  export type ValueGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ValueWhereInput
+    orderBy?: ValueOrderByWithAggregationInput | ValueOrderByWithAggregationInput[]
+    by: ValueScalarFieldEnum[] | ValueScalarFieldEnum
+    having?: ValueScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ValueCountAggregateInputType | true
+    _avg?: ValueAvgAggregateInputType
+    _sum?: ValueSumAggregateInputType
+    _min?: ValueMinAggregateInputType
+    _max?: ValueMaxAggregateInputType
+  }
+
+  export type ValueGroupByOutputType = {
+    valueId: string
+    label: string
+    optionPrice: number
+    stock: string
+    stock_type: string
+    sell_count: string
+    option_id: number
+    current_stock: number
+    variantId: string
+    _count: ValueCountAggregateOutputType | null
+    _avg: ValueAvgAggregateOutputType | null
+    _sum: ValueSumAggregateOutputType | null
+    _min: ValueMinAggregateOutputType | null
+    _max: ValueMaxAggregateOutputType | null
+  }
+
+  type GetValueGroupByPayload<T extends ValueGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ValueGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ValueGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ValueGroupByOutputType[P]>
+            : GetScalarType<T[P], ValueGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ValueSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    valueId?: boolean
+    label?: boolean
+    optionPrice?: boolean
+    stock?: boolean
+    stock_type?: boolean
+    sell_count?: boolean
+    option_id?: boolean
+    current_stock?: boolean
+    variantId?: boolean
+    variant?: boolean | VariantDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["value"]>
+
+
+
+  export type ValueSelectScalar = {
+    valueId?: boolean
+    label?: boolean
+    optionPrice?: boolean
+    stock?: boolean
+    stock_type?: boolean
+    sell_count?: boolean
+    option_id?: boolean
+    current_stock?: boolean
+    variantId?: boolean
+  }
+
+  export type ValueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"valueId" | "label" | "optionPrice" | "stock" | "stock_type" | "sell_count" | "option_id" | "current_stock" | "variantId", ExtArgs["result"]["value"]>
+  export type ValueInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    variant?: boolean | VariantDefaultArgs<ExtArgs>
+  }
+
+  export type $ValuePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Value"
+    objects: {
+      variant: Prisma.$VariantPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      valueId: string
+      label: string
+      optionPrice: number
+      stock: string
+      stock_type: string
+      sell_count: string
+      option_id: number
+      current_stock: number
+      variantId: string
+    }, ExtArgs["result"]["value"]>
+    composites: {}
+  }
+
+  type ValueGetPayload<S extends boolean | null | undefined | ValueDefaultArgs> = $Result.GetResult<Prisma.$ValuePayload, S>
+
+  type ValueCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ValueFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ValueCountAggregateInputType | true
+    }
+
+  export interface ValueDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Value'], meta: { name: 'Value' } }
+    /**
+     * Find zero or one Value that matches the filter.
+     * @param {ValueFindUniqueArgs} args - Arguments to find a Value
+     * @example
+     * // Get one Value
+     * const value = await prisma.value.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ValueFindUniqueArgs>(args: SelectSubset<T, ValueFindUniqueArgs<ExtArgs>>): Prisma__ValueClient<$Result.GetResult<Prisma.$ValuePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Value that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ValueFindUniqueOrThrowArgs} args - Arguments to find a Value
+     * @example
+     * // Get one Value
+     * const value = await prisma.value.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ValueFindUniqueOrThrowArgs>(args: SelectSubset<T, ValueFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ValueClient<$Result.GetResult<Prisma.$ValuePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Value that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValueFindFirstArgs} args - Arguments to find a Value
+     * @example
+     * // Get one Value
+     * const value = await prisma.value.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ValueFindFirstArgs>(args?: SelectSubset<T, ValueFindFirstArgs<ExtArgs>>): Prisma__ValueClient<$Result.GetResult<Prisma.$ValuePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Value that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValueFindFirstOrThrowArgs} args - Arguments to find a Value
+     * @example
+     * // Get one Value
+     * const value = await prisma.value.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ValueFindFirstOrThrowArgs>(args?: SelectSubset<T, ValueFindFirstOrThrowArgs<ExtArgs>>): Prisma__ValueClient<$Result.GetResult<Prisma.$ValuePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Values that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValueFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Values
+     * const values = await prisma.value.findMany()
+     * 
+     * // Get first 10 Values
+     * const values = await prisma.value.findMany({ take: 10 })
+     * 
+     * // Only select the `valueId`
+     * const valueWithValueIdOnly = await prisma.value.findMany({ select: { valueId: true } })
+     * 
+     */
+    findMany<T extends ValueFindManyArgs>(args?: SelectSubset<T, ValueFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ValuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Value.
+     * @param {ValueCreateArgs} args - Arguments to create a Value.
+     * @example
+     * // Create one Value
+     * const Value = await prisma.value.create({
+     *   data: {
+     *     // ... data to create a Value
+     *   }
+     * })
+     * 
+     */
+    create<T extends ValueCreateArgs>(args: SelectSubset<T, ValueCreateArgs<ExtArgs>>): Prisma__ValueClient<$Result.GetResult<Prisma.$ValuePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Values.
+     * @param {ValueCreateManyArgs} args - Arguments to create many Values.
+     * @example
+     * // Create many Values
+     * const value = await prisma.value.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ValueCreateManyArgs>(args?: SelectSubset<T, ValueCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Value.
+     * @param {ValueDeleteArgs} args - Arguments to delete one Value.
+     * @example
+     * // Delete one Value
+     * const Value = await prisma.value.delete({
+     *   where: {
+     *     // ... filter to delete one Value
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ValueDeleteArgs>(args: SelectSubset<T, ValueDeleteArgs<ExtArgs>>): Prisma__ValueClient<$Result.GetResult<Prisma.$ValuePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Value.
+     * @param {ValueUpdateArgs} args - Arguments to update one Value.
+     * @example
+     * // Update one Value
+     * const value = await prisma.value.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ValueUpdateArgs>(args: SelectSubset<T, ValueUpdateArgs<ExtArgs>>): Prisma__ValueClient<$Result.GetResult<Prisma.$ValuePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Values.
+     * @param {ValueDeleteManyArgs} args - Arguments to filter Values to delete.
+     * @example
+     * // Delete a few Values
+     * const { count } = await prisma.value.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ValueDeleteManyArgs>(args?: SelectSubset<T, ValueDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Values.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValueUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Values
+     * const value = await prisma.value.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ValueUpdateManyArgs>(args: SelectSubset<T, ValueUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Value.
+     * @param {ValueUpsertArgs} args - Arguments to update or create a Value.
+     * @example
+     * // Update or create a Value
+     * const value = await prisma.value.upsert({
+     *   create: {
+     *     // ... data to create a Value
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Value we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ValueUpsertArgs>(args: SelectSubset<T, ValueUpsertArgs<ExtArgs>>): Prisma__ValueClient<$Result.GetResult<Prisma.$ValuePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Values that matches the filter.
+     * @param {ValueFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const value = await prisma.value.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: ValueFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Value.
+     * @param {ValueAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const value = await prisma.value.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: ValueAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Values.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValueCountArgs} args - Arguments to filter Values to count.
+     * @example
+     * // Count the number of Values
+     * const count = await prisma.value.count({
+     *   where: {
+     *     // ... the filter for the Values we want to count
+     *   }
+     * })
+    **/
+    count<T extends ValueCountArgs>(
+      args?: Subset<T, ValueCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ValueCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Value.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValueAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ValueAggregateArgs>(args: Subset<T, ValueAggregateArgs>): Prisma.PrismaPromise<GetValueAggregateType<T>>
+
+    /**
+     * Group by Value.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ValueGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ValueGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ValueGroupByArgs['orderBy'] }
+        : { orderBy?: ValueGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ValueGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetValueGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Value model
+   */
+  readonly fields: ValueFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Value.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ValueClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    variant<T extends VariantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VariantDefaultArgs<ExtArgs>>): Prisma__VariantClient<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Value model
+   */
+  interface ValueFieldRefs {
+    readonly valueId: FieldRef<"Value", 'String'>
+    readonly label: FieldRef<"Value", 'String'>
+    readonly optionPrice: FieldRef<"Value", 'Float'>
+    readonly stock: FieldRef<"Value", 'String'>
+    readonly stock_type: FieldRef<"Value", 'String'>
+    readonly sell_count: FieldRef<"Value", 'String'>
+    readonly option_id: FieldRef<"Value", 'Int'>
+    readonly current_stock: FieldRef<"Value", 'Int'>
+    readonly variantId: FieldRef<"Value", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Value findUnique
+   */
+  export type ValueFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Value
+     */
+    select?: ValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Value
+     */
+    omit?: ValueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ValueInclude<ExtArgs> | null
+    /**
+     * Filter, which Value to fetch.
+     */
+    where: ValueWhereUniqueInput
+  }
+
+  /**
+   * Value findUniqueOrThrow
+   */
+  export type ValueFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Value
+     */
+    select?: ValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Value
+     */
+    omit?: ValueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ValueInclude<ExtArgs> | null
+    /**
+     * Filter, which Value to fetch.
+     */
+    where: ValueWhereUniqueInput
+  }
+
+  /**
+   * Value findFirst
+   */
+  export type ValueFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Value
+     */
+    select?: ValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Value
+     */
+    omit?: ValueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ValueInclude<ExtArgs> | null
+    /**
+     * Filter, which Value to fetch.
+     */
+    where?: ValueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Values to fetch.
+     */
+    orderBy?: ValueOrderByWithRelationInput | ValueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Values.
+     */
+    cursor?: ValueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Values from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Values.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Values.
+     */
+    distinct?: ValueScalarFieldEnum | ValueScalarFieldEnum[]
+  }
+
+  /**
+   * Value findFirstOrThrow
+   */
+  export type ValueFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Value
+     */
+    select?: ValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Value
+     */
+    omit?: ValueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ValueInclude<ExtArgs> | null
+    /**
+     * Filter, which Value to fetch.
+     */
+    where?: ValueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Values to fetch.
+     */
+    orderBy?: ValueOrderByWithRelationInput | ValueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Values.
+     */
+    cursor?: ValueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Values from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Values.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Values.
+     */
+    distinct?: ValueScalarFieldEnum | ValueScalarFieldEnum[]
+  }
+
+  /**
+   * Value findMany
+   */
+  export type ValueFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Value
+     */
+    select?: ValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Value
+     */
+    omit?: ValueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ValueInclude<ExtArgs> | null
+    /**
+     * Filter, which Values to fetch.
+     */
+    where?: ValueWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Values to fetch.
+     */
+    orderBy?: ValueOrderByWithRelationInput | ValueOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Values.
+     */
+    cursor?: ValueWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Values from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Values.
+     */
+    skip?: number
+    distinct?: ValueScalarFieldEnum | ValueScalarFieldEnum[]
+  }
+
+  /**
+   * Value create
+   */
+  export type ValueCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Value
+     */
+    select?: ValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Value
+     */
+    omit?: ValueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ValueInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Value.
+     */
+    data: XOR<ValueCreateInput, ValueUncheckedCreateInput>
+  }
+
+  /**
+   * Value createMany
+   */
+  export type ValueCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Values.
+     */
+    data: ValueCreateManyInput | ValueCreateManyInput[]
+  }
+
+  /**
+   * Value update
+   */
+  export type ValueUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Value
+     */
+    select?: ValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Value
+     */
+    omit?: ValueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ValueInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Value.
+     */
+    data: XOR<ValueUpdateInput, ValueUncheckedUpdateInput>
+    /**
+     * Choose, which Value to update.
+     */
+    where: ValueWhereUniqueInput
+  }
+
+  /**
+   * Value updateMany
+   */
+  export type ValueUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Values.
+     */
+    data: XOR<ValueUpdateManyMutationInput, ValueUncheckedUpdateManyInput>
+    /**
+     * Filter which Values to update
+     */
+    where?: ValueWhereInput
+    /**
+     * Limit how many Values to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Value upsert
+   */
+  export type ValueUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Value
+     */
+    select?: ValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Value
+     */
+    omit?: ValueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ValueInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Value to update in case it exists.
+     */
+    where: ValueWhereUniqueInput
+    /**
+     * In case the Value found by the `where` argument doesn't exist, create a new Value with this data.
+     */
+    create: XOR<ValueCreateInput, ValueUncheckedCreateInput>
+    /**
+     * In case the Value was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ValueUpdateInput, ValueUncheckedUpdateInput>
+  }
+
+  /**
+   * Value delete
+   */
+  export type ValueDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Value
+     */
+    select?: ValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Value
+     */
+    omit?: ValueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ValueInclude<ExtArgs> | null
+    /**
+     * Filter which Value to delete.
+     */
+    where: ValueWhereUniqueInput
+  }
+
+  /**
+   * Value deleteMany
+   */
+  export type ValueDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Values to delete
+     */
+    where?: ValueWhereInput
+    /**
+     * Limit how many Values to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Value findRaw
+   */
+  export type ValueFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Value aggregateRaw
+   */
+  export type ValueAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Value without action
+   */
+  export type ValueDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Value
+     */
+    select?: ValueSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Value
+     */
+    omit?: ValueOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ValueInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Category
    */
 
   export type AggregateCategory = {
     _count: CategoryCountAggregateOutputType | null
+    _avg: CategoryAvgAggregateOutputType | null
+    _sum: CategorySumAggregateOutputType | null
     _min: CategoryMinAggregateOutputType | null
     _max: CategoryMaxAggregateOutputType | null
+  }
+
+  export type CategoryAvgAggregateOutputType = {
+    products_count: number | null
+    type_count: number | null
+    order_count: number | null
+  }
+
+  export type CategorySumAggregateOutputType = {
+    products_count: number | null
+    type_count: number | null
+    order_count: number | null
   }
 
   export type CategoryMinAggregateOutputType = {
     id: string | null
     name: string | null
+    image: string | null
+    products_count: number | null
+    type_count: number | null
+    status: boolean | null
+    order_count: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type CategoryMaxAggregateOutputType = {
     id: string | null
     name: string | null
+    image: string | null
+    products_count: number | null
+    type_count: number | null
+    status: boolean | null
+    order_count: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type CategoryCountAggregateOutputType = {
     id: number
     name: number
+    image: number
+    products_count: number
+    type_count: number
+    status: number
+    order_count: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
+  export type CategoryAvgAggregateInputType = {
+    products_count?: true
+    type_count?: true
+    order_count?: true
+  }
+
+  export type CategorySumAggregateInputType = {
+    products_count?: true
+    type_count?: true
+    order_count?: true
+  }
+
   export type CategoryMinAggregateInputType = {
     id?: true
     name?: true
+    image?: true
+    products_count?: true
+    type_count?: true
+    status?: true
+    order_count?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type CategoryMaxAggregateInputType = {
     id?: true
     name?: true
+    image?: true
+    products_count?: true
+    type_count?: true
+    status?: true
+    order_count?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type CategoryCountAggregateInputType = {
     id?: true
     name?: true
+    image?: true
+    products_count?: true
+    type_count?: true
+    status?: true
+    order_count?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -3214,6 +5802,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: CategoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CategorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: CategoryMinAggregateInputType
@@ -3244,6 +5844,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: CategoryCountAggregateInputType | true
+    _avg?: CategoryAvgAggregateInputType
+    _sum?: CategorySumAggregateInputType
     _min?: CategoryMinAggregateInputType
     _max?: CategoryMaxAggregateInputType
   }
@@ -3251,7 +5853,16 @@ export namespace Prisma {
   export type CategoryGroupByOutputType = {
     id: string
     name: string
+    image: string
+    products_count: number
+    type_count: number
+    status: boolean
+    order_count: number
+    createdAt: Date
+    updatedAt: Date
     _count: CategoryCountAggregateOutputType | null
+    _avg: CategoryAvgAggregateOutputType | null
+    _sum: CategorySumAggregateOutputType | null
     _min: CategoryMinAggregateOutputType | null
     _max: CategoryMaxAggregateOutputType | null
   }
@@ -3273,6 +5884,14 @@ export namespace Prisma {
   export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    image?: boolean
+    products_count?: boolean
+    type_count?: boolean
+    status?: boolean
+    order_count?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    type?: boolean | Category$typeArgs<ExtArgs>
     foods?: boolean | Category$foodsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
@@ -3282,10 +5901,18 @@ export namespace Prisma {
   export type CategorySelectScalar = {
     id?: boolean
     name?: boolean
+    image?: boolean
+    products_count?: boolean
+    type_count?: boolean
+    status?: boolean
+    order_count?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "image" | "products_count" | "type_count" | "status" | "order_count" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    type?: boolean | Category$typeArgs<ExtArgs>
     foods?: boolean | Category$foodsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -3293,11 +5920,19 @@ export namespace Prisma {
   export type $CategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Category"
     objects: {
+      type: Prisma.$TypePayload<ExtArgs>[]
       foods: Prisma.$FoodPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
+      image: string
+      products_count: number
+      type_count: number
+      status: boolean
+      order_count: number
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["category"]>
     composites: {}
   }
@@ -3661,6 +6296,7 @@ export namespace Prisma {
    */
   export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    type<T extends Category$typeArgs<ExtArgs> = {}>(args?: Subset<T, Category$typeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     foods<T extends Category$foodsArgs<ExtArgs> = {}>(args?: Subset<T, Category$foodsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3693,6 +6329,13 @@ export namespace Prisma {
   interface CategoryFieldRefs {
     readonly id: FieldRef<"Category", 'String'>
     readonly name: FieldRef<"Category", 'String'>
+    readonly image: FieldRef<"Category", 'String'>
+    readonly products_count: FieldRef<"Category", 'Int'>
+    readonly type_count: FieldRef<"Category", 'Int'>
+    readonly status: FieldRef<"Category", 'Boolean'>
+    readonly order_count: FieldRef<"Category", 'Int'>
+    readonly createdAt: FieldRef<"Category", 'DateTime'>
+    readonly updatedAt: FieldRef<"Category", 'DateTime'>
   }
     
 
@@ -4063,6 +6706,30 @@ export namespace Prisma {
   }
 
   /**
+   * Category.type
+   */
+  export type Category$typeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    where?: TypeWhereInput
+    orderBy?: TypeOrderByWithRelationInput | TypeOrderByWithRelationInput[]
+    cursor?: TypeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TypeScalarFieldEnum | TypeScalarFieldEnum[]
+  }
+
+  /**
    * Category.foods
    */
   export type Category$foodsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4106,6 +6773,996 @@ export namespace Prisma {
 
 
   /**
+   * Model Type
+   */
+
+  export type AggregateType = {
+    _count: TypeCountAggregateOutputType | null
+    _min: TypeMinAggregateOutputType | null
+    _max: TypeMaxAggregateOutputType | null
+  }
+
+  export type TypeMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    status: boolean | null
+    categoryId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TypeMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    status: boolean | null
+    categoryId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TypeCountAggregateOutputType = {
+    id: number
+    name: number
+    status: number
+    categoryId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TypeMinAggregateInputType = {
+    id?: true
+    name?: true
+    status?: true
+    categoryId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TypeMaxAggregateInputType = {
+    id?: true
+    name?: true
+    status?: true
+    categoryId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TypeCountAggregateInputType = {
+    id?: true
+    name?: true
+    status?: true
+    categoryId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TypeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Type to aggregate.
+     */
+    where?: TypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Types to fetch.
+     */
+    orderBy?: TypeOrderByWithRelationInput | TypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Types from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Types.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Types
+    **/
+    _count?: true | TypeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TypeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TypeMaxAggregateInputType
+  }
+
+  export type GetTypeAggregateType<T extends TypeAggregateArgs> = {
+        [P in keyof T & keyof AggregateType]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateType[P]>
+      : GetScalarType<T[P], AggregateType[P]>
+  }
+
+
+
+
+  export type TypeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TypeWhereInput
+    orderBy?: TypeOrderByWithAggregationInput | TypeOrderByWithAggregationInput[]
+    by: TypeScalarFieldEnum[] | TypeScalarFieldEnum
+    having?: TypeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TypeCountAggregateInputType | true
+    _min?: TypeMinAggregateInputType
+    _max?: TypeMaxAggregateInputType
+  }
+
+  export type TypeGroupByOutputType = {
+    id: string
+    name: string
+    status: boolean
+    categoryId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: TypeCountAggregateOutputType | null
+    _min: TypeMinAggregateOutputType | null
+    _max: TypeMaxAggregateOutputType | null
+  }
+
+  type GetTypeGroupByPayload<T extends TypeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TypeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TypeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TypeGroupByOutputType[P]>
+            : GetScalarType<T[P], TypeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    status?: boolean
+    categoryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["type"]>
+
+
+
+  export type TypeSelectScalar = {
+    id?: boolean
+    name?: boolean
+    status?: boolean
+    categoryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "status" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["type"]>
+  export type TypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+  }
+
+  export type $TypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Type"
+    objects: {
+      category: Prisma.$CategoryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      status: boolean
+      categoryId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["type"]>
+    composites: {}
+  }
+
+  type TypeGetPayload<S extends boolean | null | undefined | TypeDefaultArgs> = $Result.GetResult<Prisma.$TypePayload, S>
+
+  type TypeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TypeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TypeCountAggregateInputType | true
+    }
+
+  export interface TypeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Type'], meta: { name: 'Type' } }
+    /**
+     * Find zero or one Type that matches the filter.
+     * @param {TypeFindUniqueArgs} args - Arguments to find a Type
+     * @example
+     * // Get one Type
+     * const type = await prisma.type.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TypeFindUniqueArgs>(args: SelectSubset<T, TypeFindUniqueArgs<ExtArgs>>): Prisma__TypeClient<$Result.GetResult<Prisma.$TypePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Type that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TypeFindUniqueOrThrowArgs} args - Arguments to find a Type
+     * @example
+     * // Get one Type
+     * const type = await prisma.type.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TypeFindUniqueOrThrowArgs>(args: SelectSubset<T, TypeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TypeClient<$Result.GetResult<Prisma.$TypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Type that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TypeFindFirstArgs} args - Arguments to find a Type
+     * @example
+     * // Get one Type
+     * const type = await prisma.type.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TypeFindFirstArgs>(args?: SelectSubset<T, TypeFindFirstArgs<ExtArgs>>): Prisma__TypeClient<$Result.GetResult<Prisma.$TypePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Type that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TypeFindFirstOrThrowArgs} args - Arguments to find a Type
+     * @example
+     * // Get one Type
+     * const type = await prisma.type.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TypeFindFirstOrThrowArgs>(args?: SelectSubset<T, TypeFindFirstOrThrowArgs<ExtArgs>>): Prisma__TypeClient<$Result.GetResult<Prisma.$TypePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Types that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TypeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Types
+     * const types = await prisma.type.findMany()
+     * 
+     * // Get first 10 Types
+     * const types = await prisma.type.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const typeWithIdOnly = await prisma.type.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TypeFindManyArgs>(args?: SelectSubset<T, TypeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Type.
+     * @param {TypeCreateArgs} args - Arguments to create a Type.
+     * @example
+     * // Create one Type
+     * const Type = await prisma.type.create({
+     *   data: {
+     *     // ... data to create a Type
+     *   }
+     * })
+     * 
+     */
+    create<T extends TypeCreateArgs>(args: SelectSubset<T, TypeCreateArgs<ExtArgs>>): Prisma__TypeClient<$Result.GetResult<Prisma.$TypePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Types.
+     * @param {TypeCreateManyArgs} args - Arguments to create many Types.
+     * @example
+     * // Create many Types
+     * const type = await prisma.type.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TypeCreateManyArgs>(args?: SelectSubset<T, TypeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Type.
+     * @param {TypeDeleteArgs} args - Arguments to delete one Type.
+     * @example
+     * // Delete one Type
+     * const Type = await prisma.type.delete({
+     *   where: {
+     *     // ... filter to delete one Type
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TypeDeleteArgs>(args: SelectSubset<T, TypeDeleteArgs<ExtArgs>>): Prisma__TypeClient<$Result.GetResult<Prisma.$TypePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Type.
+     * @param {TypeUpdateArgs} args - Arguments to update one Type.
+     * @example
+     * // Update one Type
+     * const type = await prisma.type.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TypeUpdateArgs>(args: SelectSubset<T, TypeUpdateArgs<ExtArgs>>): Prisma__TypeClient<$Result.GetResult<Prisma.$TypePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Types.
+     * @param {TypeDeleteManyArgs} args - Arguments to filter Types to delete.
+     * @example
+     * // Delete a few Types
+     * const { count } = await prisma.type.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TypeDeleteManyArgs>(args?: SelectSubset<T, TypeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Types.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TypeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Types
+     * const type = await prisma.type.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TypeUpdateManyArgs>(args: SelectSubset<T, TypeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Type.
+     * @param {TypeUpsertArgs} args - Arguments to update or create a Type.
+     * @example
+     * // Update or create a Type
+     * const type = await prisma.type.upsert({
+     *   create: {
+     *     // ... data to create a Type
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Type we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TypeUpsertArgs>(args: SelectSubset<T, TypeUpsertArgs<ExtArgs>>): Prisma__TypeClient<$Result.GetResult<Prisma.$TypePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Types that matches the filter.
+     * @param {TypeFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const type = await prisma.type.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: TypeFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Type.
+     * @param {TypeAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const type = await prisma.type.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: TypeAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Types.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TypeCountArgs} args - Arguments to filter Types to count.
+     * @example
+     * // Count the number of Types
+     * const count = await prisma.type.count({
+     *   where: {
+     *     // ... the filter for the Types we want to count
+     *   }
+     * })
+    **/
+    count<T extends TypeCountArgs>(
+      args?: Subset<T, TypeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TypeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Type.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TypeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TypeAggregateArgs>(args: Subset<T, TypeAggregateArgs>): Prisma.PrismaPromise<GetTypeAggregateType<T>>
+
+    /**
+     * Group by Type.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TypeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TypeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TypeGroupByArgs['orderBy'] }
+        : { orderBy?: TypeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TypeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTypeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Type model
+   */
+  readonly fields: TypeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Type.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Type model
+   */
+  interface TypeFieldRefs {
+    readonly id: FieldRef<"Type", 'String'>
+    readonly name: FieldRef<"Type", 'String'>
+    readonly status: FieldRef<"Type", 'Boolean'>
+    readonly categoryId: FieldRef<"Type", 'String'>
+    readonly createdAt: FieldRef<"Type", 'DateTime'>
+    readonly updatedAt: FieldRef<"Type", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Type findUnique
+   */
+  export type TypeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
+     * Filter, which Type to fetch.
+     */
+    where: TypeWhereUniqueInput
+  }
+
+  /**
+   * Type findUniqueOrThrow
+   */
+  export type TypeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
+     * Filter, which Type to fetch.
+     */
+    where: TypeWhereUniqueInput
+  }
+
+  /**
+   * Type findFirst
+   */
+  export type TypeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
+     * Filter, which Type to fetch.
+     */
+    where?: TypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Types to fetch.
+     */
+    orderBy?: TypeOrderByWithRelationInput | TypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Types.
+     */
+    cursor?: TypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Types from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Types.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Types.
+     */
+    distinct?: TypeScalarFieldEnum | TypeScalarFieldEnum[]
+  }
+
+  /**
+   * Type findFirstOrThrow
+   */
+  export type TypeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
+     * Filter, which Type to fetch.
+     */
+    where?: TypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Types to fetch.
+     */
+    orderBy?: TypeOrderByWithRelationInput | TypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Types.
+     */
+    cursor?: TypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Types from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Types.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Types.
+     */
+    distinct?: TypeScalarFieldEnum | TypeScalarFieldEnum[]
+  }
+
+  /**
+   * Type findMany
+   */
+  export type TypeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
+     * Filter, which Types to fetch.
+     */
+    where?: TypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Types to fetch.
+     */
+    orderBy?: TypeOrderByWithRelationInput | TypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Types.
+     */
+    cursor?: TypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Types from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Types.
+     */
+    skip?: number
+    distinct?: TypeScalarFieldEnum | TypeScalarFieldEnum[]
+  }
+
+  /**
+   * Type create
+   */
+  export type TypeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Type.
+     */
+    data: XOR<TypeCreateInput, TypeUncheckedCreateInput>
+  }
+
+  /**
+   * Type createMany
+   */
+  export type TypeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Types.
+     */
+    data: TypeCreateManyInput | TypeCreateManyInput[]
+  }
+
+  /**
+   * Type update
+   */
+  export type TypeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Type.
+     */
+    data: XOR<TypeUpdateInput, TypeUncheckedUpdateInput>
+    /**
+     * Choose, which Type to update.
+     */
+    where: TypeWhereUniqueInput
+  }
+
+  /**
+   * Type updateMany
+   */
+  export type TypeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Types.
+     */
+    data: XOR<TypeUpdateManyMutationInput, TypeUncheckedUpdateManyInput>
+    /**
+     * Filter which Types to update
+     */
+    where?: TypeWhereInput
+    /**
+     * Limit how many Types to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Type upsert
+   */
+  export type TypeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Type to update in case it exists.
+     */
+    where: TypeWhereUniqueInput
+    /**
+     * In case the Type found by the `where` argument doesn't exist, create a new Type with this data.
+     */
+    create: XOR<TypeCreateInput, TypeUncheckedCreateInput>
+    /**
+     * In case the Type was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TypeUpdateInput, TypeUncheckedUpdateInput>
+  }
+
+  /**
+   * Type delete
+   */
+  export type TypeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
+     * Filter which Type to delete.
+     */
+    where: TypeWhereUniqueInput
+  }
+
+  /**
+   * Type deleteMany
+   */
+  export type TypeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Types to delete
+     */
+    where?: TypeWhereInput
+    /**
+     * Limit how many Types to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Type findRaw
+   */
+  export type TypeFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Type aggregateRaw
+   */
+  export type TypeAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Type without action
+   */
+  export type TypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4123,17 +7780,19 @@ export namespace Prisma {
   export const FoodScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    price: 'price',
-    lastPrice: 'lastPrice',
-    rating: 'rating',
-    isNew: 'isNew',
-    isPopular: 'isPopular',
-    isBestSeller: 'isBestSeller',
     description: 'description',
-    nutrition: 'nutrition',
-    allergens: 'allergens',
-    size: 'size',
-    addOns: 'addOns',
+    price: 'price',
+    min_delivery_time: 'min_delivery_time',
+    max_delivery_time: 'max_delivery_time',
+    free_delivery: 'free_delivery',
+    veg: 'veg',
+    discount: 'discount',
+    sell_count: 'sell_count',
+    restaurant_name: 'restaurant_name',
+    restaurant_status: 'restaurant_status',
+    restaurant_discount: 'restaurant_discount',
+    restaurant_opening_time: 'restaurant_opening_time',
+    restaurant_closing_time: 'restaurant_closing_time',
     type: 'type',
     image: 'image',
     categoryId: 'categoryId',
@@ -4144,12 +7803,59 @@ export namespace Prisma {
   export type FoodScalarFieldEnum = (typeof FoodScalarFieldEnum)[keyof typeof FoodScalarFieldEnum]
 
 
+  export const VariantScalarFieldEnum: {
+    variantId: 'variantId',
+    name: 'name',
+    type: 'type',
+    min: 'min',
+    max: 'max',
+    required: 'required',
+    foodId: 'foodId'
+  };
+
+  export type VariantScalarFieldEnum = (typeof VariantScalarFieldEnum)[keyof typeof VariantScalarFieldEnum]
+
+
+  export const ValueScalarFieldEnum: {
+    valueId: 'valueId',
+    label: 'label',
+    optionPrice: 'optionPrice',
+    stock: 'stock',
+    stock_type: 'stock_type',
+    sell_count: 'sell_count',
+    option_id: 'option_id',
+    current_stock: 'current_stock',
+    variantId: 'variantId'
+  };
+
+  export type ValueScalarFieldEnum = (typeof ValueScalarFieldEnum)[keyof typeof ValueScalarFieldEnum]
+
+
   export const CategoryScalarFieldEnum: {
     id: 'id',
-    name: 'name'
+    name: 'name',
+    image: 'image',
+    products_count: 'products_count',
+    type_count: 'type_count',
+    status: 'status',
+    order_count: 'order_count',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+  export const TypeScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    status: 'status',
+    categoryId: 'categoryId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TypeScalarFieldEnum = (typeof TypeScalarFieldEnum)[keyof typeof TypeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4202,23 +7908,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
-   * Reference to a field of type 'FoodType'
-   */
-  export type EnumFoodTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FoodType'>
-    
-
-
-  /**
-   * Reference to a field of type 'FoodType[]'
-   */
-  export type ListEnumFoodTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FoodType[]'>
     
 
 
@@ -4237,16 +7943,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'FoodType'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type EnumFoodTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FoodType'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'FoodType[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListEnumFoodTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FoodType[]'>
     
   /**
    * Deep Input Types
@@ -4311,44 +8017,50 @@ export namespace Prisma {
     NOT?: FoodWhereInput | FoodWhereInput[]
     id?: StringFilter<"Food"> | string
     name?: StringFilter<"Food"> | string
-    price?: FloatFilter<"Food"> | number
-    lastPrice?: FloatFilter<"Food"> | number
-    rating?: FloatFilter<"Food"> | number
-    isNew?: BoolFilter<"Food"> | boolean
-    isPopular?: BoolFilter<"Food"> | boolean
-    isBestSeller?: BoolFilter<"Food"> | boolean
     description?: StringFilter<"Food"> | string
-    nutrition?: StringNullableListFilter<"Food">
-    allergens?: StringNullableListFilter<"Food">
-    size?: StringNullableListFilter<"Food">
-    addOns?: StringNullableListFilter<"Food">
+    price?: FloatFilter<"Food"> | number
+    min_delivery_time?: IntFilter<"Food"> | number
+    max_delivery_time?: IntFilter<"Food"> | number
+    free_delivery?: BoolFilter<"Food"> | boolean
+    veg?: BoolFilter<"Food"> | boolean
+    discount?: FloatFilter<"Food"> | number
+    sell_count?: IntFilter<"Food"> | number
+    restaurant_name?: StringFilter<"Food"> | string
+    restaurant_status?: BoolFilter<"Food"> | boolean
+    restaurant_discount?: FloatFilter<"Food"> | number
+    restaurant_opening_time?: DateTimeFilter<"Food"> | Date | string
+    restaurant_closing_time?: DateTimeFilter<"Food"> | Date | string
     type?: EnumFoodTypeFilter<"Food"> | $Enums.FoodType
     image?: StringFilter<"Food"> | string
     categoryId?: StringFilter<"Food"> | string
     createdAt?: DateTimeFilter<"Food"> | Date | string
     updatedAt?: DateTimeFilter<"Food"> | Date | string
+    variants?: VariantListRelationFilter
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
   }
 
   export type FoodOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    price?: SortOrder
-    lastPrice?: SortOrder
-    rating?: SortOrder
-    isNew?: SortOrder
-    isPopular?: SortOrder
-    isBestSeller?: SortOrder
     description?: SortOrder
-    nutrition?: SortOrder
-    allergens?: SortOrder
-    size?: SortOrder
-    addOns?: SortOrder
+    price?: SortOrder
+    min_delivery_time?: SortOrder
+    max_delivery_time?: SortOrder
+    free_delivery?: SortOrder
+    veg?: SortOrder
+    discount?: SortOrder
+    sell_count?: SortOrder
+    restaurant_name?: SortOrder
+    restaurant_status?: SortOrder
+    restaurant_discount?: SortOrder
+    restaurant_opening_time?: SortOrder
+    restaurant_closing_time?: SortOrder
     type?: SortOrder
     image?: SortOrder
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    variants?: VariantOrderByRelationAggregateInput
     category?: CategoryOrderByWithRelationInput
   }
 
@@ -4358,39 +8070,44 @@ export namespace Prisma {
     OR?: FoodWhereInput[]
     NOT?: FoodWhereInput | FoodWhereInput[]
     name?: StringFilter<"Food"> | string
-    price?: FloatFilter<"Food"> | number
-    lastPrice?: FloatFilter<"Food"> | number
-    rating?: FloatFilter<"Food"> | number
-    isNew?: BoolFilter<"Food"> | boolean
-    isPopular?: BoolFilter<"Food"> | boolean
-    isBestSeller?: BoolFilter<"Food"> | boolean
     description?: StringFilter<"Food"> | string
-    nutrition?: StringNullableListFilter<"Food">
-    allergens?: StringNullableListFilter<"Food">
-    size?: StringNullableListFilter<"Food">
-    addOns?: StringNullableListFilter<"Food">
+    price?: FloatFilter<"Food"> | number
+    min_delivery_time?: IntFilter<"Food"> | number
+    max_delivery_time?: IntFilter<"Food"> | number
+    free_delivery?: BoolFilter<"Food"> | boolean
+    veg?: BoolFilter<"Food"> | boolean
+    discount?: FloatFilter<"Food"> | number
+    sell_count?: IntFilter<"Food"> | number
+    restaurant_name?: StringFilter<"Food"> | string
+    restaurant_status?: BoolFilter<"Food"> | boolean
+    restaurant_discount?: FloatFilter<"Food"> | number
+    restaurant_opening_time?: DateTimeFilter<"Food"> | Date | string
+    restaurant_closing_time?: DateTimeFilter<"Food"> | Date | string
     type?: EnumFoodTypeFilter<"Food"> | $Enums.FoodType
     image?: StringFilter<"Food"> | string
     categoryId?: StringFilter<"Food"> | string
     createdAt?: DateTimeFilter<"Food"> | Date | string
     updatedAt?: DateTimeFilter<"Food"> | Date | string
+    variants?: VariantListRelationFilter
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
   }, "id">
 
   export type FoodOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    price?: SortOrder
-    lastPrice?: SortOrder
-    rating?: SortOrder
-    isNew?: SortOrder
-    isPopular?: SortOrder
-    isBestSeller?: SortOrder
     description?: SortOrder
-    nutrition?: SortOrder
-    allergens?: SortOrder
-    size?: SortOrder
-    addOns?: SortOrder
+    price?: SortOrder
+    min_delivery_time?: SortOrder
+    max_delivery_time?: SortOrder
+    free_delivery?: SortOrder
+    veg?: SortOrder
+    discount?: SortOrder
+    sell_count?: SortOrder
+    restaurant_name?: SortOrder
+    restaurant_status?: SortOrder
+    restaurant_discount?: SortOrder
+    restaurant_opening_time?: SortOrder
+    restaurant_closing_time?: SortOrder
     type?: SortOrder
     image?: SortOrder
     categoryId?: SortOrder
@@ -4409,22 +8126,169 @@ export namespace Prisma {
     NOT?: FoodScalarWhereWithAggregatesInput | FoodScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Food"> | string
     name?: StringWithAggregatesFilter<"Food"> | string
-    price?: FloatWithAggregatesFilter<"Food"> | number
-    lastPrice?: FloatWithAggregatesFilter<"Food"> | number
-    rating?: FloatWithAggregatesFilter<"Food"> | number
-    isNew?: BoolWithAggregatesFilter<"Food"> | boolean
-    isPopular?: BoolWithAggregatesFilter<"Food"> | boolean
-    isBestSeller?: BoolWithAggregatesFilter<"Food"> | boolean
     description?: StringWithAggregatesFilter<"Food"> | string
-    nutrition?: StringNullableListFilter<"Food">
-    allergens?: StringNullableListFilter<"Food">
-    size?: StringNullableListFilter<"Food">
-    addOns?: StringNullableListFilter<"Food">
+    price?: FloatWithAggregatesFilter<"Food"> | number
+    min_delivery_time?: IntWithAggregatesFilter<"Food"> | number
+    max_delivery_time?: IntWithAggregatesFilter<"Food"> | number
+    free_delivery?: BoolWithAggregatesFilter<"Food"> | boolean
+    veg?: BoolWithAggregatesFilter<"Food"> | boolean
+    discount?: FloatWithAggregatesFilter<"Food"> | number
+    sell_count?: IntWithAggregatesFilter<"Food"> | number
+    restaurant_name?: StringWithAggregatesFilter<"Food"> | string
+    restaurant_status?: BoolWithAggregatesFilter<"Food"> | boolean
+    restaurant_discount?: FloatWithAggregatesFilter<"Food"> | number
+    restaurant_opening_time?: DateTimeWithAggregatesFilter<"Food"> | Date | string
+    restaurant_closing_time?: DateTimeWithAggregatesFilter<"Food"> | Date | string
     type?: EnumFoodTypeWithAggregatesFilter<"Food"> | $Enums.FoodType
     image?: StringWithAggregatesFilter<"Food"> | string
     categoryId?: StringWithAggregatesFilter<"Food"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Food"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Food"> | Date | string
+  }
+
+  export type VariantWhereInput = {
+    AND?: VariantWhereInput | VariantWhereInput[]
+    OR?: VariantWhereInput[]
+    NOT?: VariantWhereInput | VariantWhereInput[]
+    variantId?: StringFilter<"Variant"> | string
+    name?: StringFilter<"Variant"> | string
+    type?: StringFilter<"Variant"> | string
+    min?: StringFilter<"Variant"> | string
+    max?: StringFilter<"Variant"> | string
+    required?: BoolFilter<"Variant"> | boolean
+    foodId?: StringFilter<"Variant"> | string
+    food?: XOR<FoodScalarRelationFilter, FoodWhereInput>
+    values?: ValueListRelationFilter
+  }
+
+  export type VariantOrderByWithRelationInput = {
+    variantId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    min?: SortOrder
+    max?: SortOrder
+    required?: SortOrder
+    foodId?: SortOrder
+    food?: FoodOrderByWithRelationInput
+    values?: ValueOrderByRelationAggregateInput
+  }
+
+  export type VariantWhereUniqueInput = Prisma.AtLeast<{
+    variantId?: string
+    AND?: VariantWhereInput | VariantWhereInput[]
+    OR?: VariantWhereInput[]
+    NOT?: VariantWhereInput | VariantWhereInput[]
+    name?: StringFilter<"Variant"> | string
+    type?: StringFilter<"Variant"> | string
+    min?: StringFilter<"Variant"> | string
+    max?: StringFilter<"Variant"> | string
+    required?: BoolFilter<"Variant"> | boolean
+    foodId?: StringFilter<"Variant"> | string
+    food?: XOR<FoodScalarRelationFilter, FoodWhereInput>
+    values?: ValueListRelationFilter
+  }, "variantId">
+
+  export type VariantOrderByWithAggregationInput = {
+    variantId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    min?: SortOrder
+    max?: SortOrder
+    required?: SortOrder
+    foodId?: SortOrder
+    _count?: VariantCountOrderByAggregateInput
+    _max?: VariantMaxOrderByAggregateInput
+    _min?: VariantMinOrderByAggregateInput
+  }
+
+  export type VariantScalarWhereWithAggregatesInput = {
+    AND?: VariantScalarWhereWithAggregatesInput | VariantScalarWhereWithAggregatesInput[]
+    OR?: VariantScalarWhereWithAggregatesInput[]
+    NOT?: VariantScalarWhereWithAggregatesInput | VariantScalarWhereWithAggregatesInput[]
+    variantId?: StringWithAggregatesFilter<"Variant"> | string
+    name?: StringWithAggregatesFilter<"Variant"> | string
+    type?: StringWithAggregatesFilter<"Variant"> | string
+    min?: StringWithAggregatesFilter<"Variant"> | string
+    max?: StringWithAggregatesFilter<"Variant"> | string
+    required?: BoolWithAggregatesFilter<"Variant"> | boolean
+    foodId?: StringWithAggregatesFilter<"Variant"> | string
+  }
+
+  export type ValueWhereInput = {
+    AND?: ValueWhereInput | ValueWhereInput[]
+    OR?: ValueWhereInput[]
+    NOT?: ValueWhereInput | ValueWhereInput[]
+    valueId?: StringFilter<"Value"> | string
+    label?: StringFilter<"Value"> | string
+    optionPrice?: FloatFilter<"Value"> | number
+    stock?: StringFilter<"Value"> | string
+    stock_type?: StringFilter<"Value"> | string
+    sell_count?: StringFilter<"Value"> | string
+    option_id?: IntFilter<"Value"> | number
+    current_stock?: IntFilter<"Value"> | number
+    variantId?: StringFilter<"Value"> | string
+    variant?: XOR<VariantScalarRelationFilter, VariantWhereInput>
+  }
+
+  export type ValueOrderByWithRelationInput = {
+    valueId?: SortOrder
+    label?: SortOrder
+    optionPrice?: SortOrder
+    stock?: SortOrder
+    stock_type?: SortOrder
+    sell_count?: SortOrder
+    option_id?: SortOrder
+    current_stock?: SortOrder
+    variantId?: SortOrder
+    variant?: VariantOrderByWithRelationInput
+  }
+
+  export type ValueWhereUniqueInput = Prisma.AtLeast<{
+    valueId?: string
+    AND?: ValueWhereInput | ValueWhereInput[]
+    OR?: ValueWhereInput[]
+    NOT?: ValueWhereInput | ValueWhereInput[]
+    label?: StringFilter<"Value"> | string
+    optionPrice?: FloatFilter<"Value"> | number
+    stock?: StringFilter<"Value"> | string
+    stock_type?: StringFilter<"Value"> | string
+    sell_count?: StringFilter<"Value"> | string
+    option_id?: IntFilter<"Value"> | number
+    current_stock?: IntFilter<"Value"> | number
+    variantId?: StringFilter<"Value"> | string
+    variant?: XOR<VariantScalarRelationFilter, VariantWhereInput>
+  }, "valueId">
+
+  export type ValueOrderByWithAggregationInput = {
+    valueId?: SortOrder
+    label?: SortOrder
+    optionPrice?: SortOrder
+    stock?: SortOrder
+    stock_type?: SortOrder
+    sell_count?: SortOrder
+    option_id?: SortOrder
+    current_stock?: SortOrder
+    variantId?: SortOrder
+    _count?: ValueCountOrderByAggregateInput
+    _avg?: ValueAvgOrderByAggregateInput
+    _max?: ValueMaxOrderByAggregateInput
+    _min?: ValueMinOrderByAggregateInput
+    _sum?: ValueSumOrderByAggregateInput
+  }
+
+  export type ValueScalarWhereWithAggregatesInput = {
+    AND?: ValueScalarWhereWithAggregatesInput | ValueScalarWhereWithAggregatesInput[]
+    OR?: ValueScalarWhereWithAggregatesInput[]
+    NOT?: ValueScalarWhereWithAggregatesInput | ValueScalarWhereWithAggregatesInput[]
+    valueId?: StringWithAggregatesFilter<"Value"> | string
+    label?: StringWithAggregatesFilter<"Value"> | string
+    optionPrice?: FloatWithAggregatesFilter<"Value"> | number
+    stock?: StringWithAggregatesFilter<"Value"> | string
+    stock_type?: StringWithAggregatesFilter<"Value"> | string
+    sell_count?: StringWithAggregatesFilter<"Value"> | string
+    option_id?: IntWithAggregatesFilter<"Value"> | number
+    current_stock?: IntWithAggregatesFilter<"Value"> | number
+    variantId?: StringWithAggregatesFilter<"Value"> | string
   }
 
   export type CategoryWhereInput = {
@@ -4433,12 +8297,28 @@ export namespace Prisma {
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     id?: StringFilter<"Category"> | string
     name?: StringFilter<"Category"> | string
+    image?: StringFilter<"Category"> | string
+    products_count?: IntFilter<"Category"> | number
+    type_count?: IntFilter<"Category"> | number
+    status?: BoolFilter<"Category"> | boolean
+    order_count?: IntFilter<"Category"> | number
+    createdAt?: DateTimeFilter<"Category"> | Date | string
+    updatedAt?: DateTimeFilter<"Category"> | Date | string
+    type?: TypeListRelationFilter
     foods?: FoodListRelationFilter
   }
 
   export type CategoryOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    image?: SortOrder
+    products_count?: SortOrder
+    type_count?: SortOrder
+    status?: SortOrder
+    order_count?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    type?: TypeOrderByRelationAggregateInput
     foods?: FoodOrderByRelationAggregateInput
   }
 
@@ -4448,15 +8328,32 @@ export namespace Prisma {
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     name?: StringFilter<"Category"> | string
+    image?: StringFilter<"Category"> | string
+    products_count?: IntFilter<"Category"> | number
+    type_count?: IntFilter<"Category"> | number
+    status?: BoolFilter<"Category"> | boolean
+    order_count?: IntFilter<"Category"> | number
+    createdAt?: DateTimeFilter<"Category"> | Date | string
+    updatedAt?: DateTimeFilter<"Category"> | Date | string
+    type?: TypeListRelationFilter
     foods?: FoodListRelationFilter
   }, "id">
 
   export type CategoryOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    image?: SortOrder
+    products_count?: SortOrder
+    type_count?: SortOrder
+    status?: SortOrder
+    order_count?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
+    _avg?: CategoryAvgOrderByAggregateInput
     _max?: CategoryMaxOrderByAggregateInput
     _min?: CategoryMinOrderByAggregateInput
+    _sum?: CategorySumOrderByAggregateInput
   }
 
   export type CategoryScalarWhereWithAggregatesInput = {
@@ -4465,6 +8362,73 @@ export namespace Prisma {
     NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Category"> | string
     name?: StringWithAggregatesFilter<"Category"> | string
+    image?: StringWithAggregatesFilter<"Category"> | string
+    products_count?: IntWithAggregatesFilter<"Category"> | number
+    type_count?: IntWithAggregatesFilter<"Category"> | number
+    status?: BoolWithAggregatesFilter<"Category"> | boolean
+    order_count?: IntWithAggregatesFilter<"Category"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
+  }
+
+  export type TypeWhereInput = {
+    AND?: TypeWhereInput | TypeWhereInput[]
+    OR?: TypeWhereInput[]
+    NOT?: TypeWhereInput | TypeWhereInput[]
+    id?: StringFilter<"Type"> | string
+    name?: StringFilter<"Type"> | string
+    status?: BoolFilter<"Type"> | boolean
+    categoryId?: StringFilter<"Type"> | string
+    createdAt?: DateTimeFilter<"Type"> | Date | string
+    updatedAt?: DateTimeFilter<"Type"> | Date | string
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+  }
+
+  export type TypeOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    category?: CategoryOrderByWithRelationInput
+  }
+
+  export type TypeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TypeWhereInput | TypeWhereInput[]
+    OR?: TypeWhereInput[]
+    NOT?: TypeWhereInput | TypeWhereInput[]
+    name?: StringFilter<"Type"> | string
+    status?: BoolFilter<"Type"> | boolean
+    categoryId?: StringFilter<"Type"> | string
+    createdAt?: DateTimeFilter<"Type"> | Date | string
+    updatedAt?: DateTimeFilter<"Type"> | Date | string
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+  }, "id">
+
+  export type TypeOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TypeCountOrderByAggregateInput
+    _max?: TypeMaxOrderByAggregateInput
+    _min?: TypeMinOrderByAggregateInput
+  }
+
+  export type TypeScalarWhereWithAggregatesInput = {
+    AND?: TypeScalarWhereWithAggregatesInput | TypeScalarWhereWithAggregatesInput[]
+    OR?: TypeScalarWhereWithAggregatesInput[]
+    NOT?: TypeScalarWhereWithAggregatesInput | TypeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Type"> | string
+    name?: StringWithAggregatesFilter<"Type"> | string
+    status?: BoolWithAggregatesFilter<"Type"> | boolean
+    categoryId?: StringWithAggregatesFilter<"Type"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Type"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Type"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -4522,99 +8486,113 @@ export namespace Prisma {
   export type FoodCreateInput = {
     id?: string
     name: string
-    price: number
-    lastPrice: number
-    rating: number
-    isNew: boolean
-    isPopular: boolean
-    isBestSeller: boolean
     description: string
-    nutrition?: FoodCreatenutritionInput | string[]
-    allergens?: FoodCreateallergensInput | string[]
-    size?: FoodCreatesizeInput | string[]
-    addOns?: FoodCreateaddOnsInput | string[]
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery?: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    restaurant_name: string
+    restaurant_status: boolean
+    restaurant_discount: number
+    restaurant_opening_time: Date | string
+    restaurant_closing_time: Date | string
     type: $Enums.FoodType
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    variants?: VariantCreateNestedManyWithoutFoodInput
     category: CategoryCreateNestedOneWithoutFoodsInput
   }
 
   export type FoodUncheckedCreateInput = {
     id?: string
     name: string
-    price: number
-    lastPrice: number
-    rating: number
-    isNew: boolean
-    isPopular: boolean
-    isBestSeller: boolean
     description: string
-    nutrition?: FoodCreatenutritionInput | string[]
-    allergens?: FoodCreateallergensInput | string[]
-    size?: FoodCreatesizeInput | string[]
-    addOns?: FoodCreateaddOnsInput | string[]
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery?: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    restaurant_name: string
+    restaurant_status: boolean
+    restaurant_discount: number
+    restaurant_opening_time: Date | string
+    restaurant_closing_time: Date | string
     type: $Enums.FoodType
     image: string
     categoryId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    variants?: VariantUncheckedCreateNestedManyWithoutFoodInput
   }
 
   export type FoodUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    lastPrice?: FloatFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    isPopular?: BoolFieldUpdateOperationsInput | boolean
-    isBestSeller?: BoolFieldUpdateOperationsInput | boolean
     description?: StringFieldUpdateOperationsInput | string
-    nutrition?: FoodUpdatenutritionInput | string[]
-    allergens?: FoodUpdateallergensInput | string[]
-    size?: FoodUpdatesizeInput | string[]
-    addOns?: FoodUpdateaddOnsInput | string[]
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    restaurant_name?: StringFieldUpdateOperationsInput | string
+    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
+    restaurant_discount?: FloatFieldUpdateOperationsInput | number
+    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumFoodTypeFieldUpdateOperationsInput | $Enums.FoodType
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    variants?: VariantUpdateManyWithoutFoodNestedInput
     category?: CategoryUpdateOneRequiredWithoutFoodsNestedInput
   }
 
   export type FoodUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    lastPrice?: FloatFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    isPopular?: BoolFieldUpdateOperationsInput | boolean
-    isBestSeller?: BoolFieldUpdateOperationsInput | boolean
     description?: StringFieldUpdateOperationsInput | string
-    nutrition?: FoodUpdatenutritionInput | string[]
-    allergens?: FoodUpdateallergensInput | string[]
-    size?: FoodUpdatesizeInput | string[]
-    addOns?: FoodUpdateaddOnsInput | string[]
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    restaurant_name?: StringFieldUpdateOperationsInput | string
+    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
+    restaurant_discount?: FloatFieldUpdateOperationsInput | number
+    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumFoodTypeFieldUpdateOperationsInput | $Enums.FoodType
     image?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    variants?: VariantUncheckedUpdateManyWithoutFoodNestedInput
   }
 
   export type FoodCreateManyInput = {
     id?: string
     name: string
-    price: number
-    lastPrice: number
-    rating: number
-    isNew: boolean
-    isPopular: boolean
-    isBestSeller: boolean
     description: string
-    nutrition?: FoodCreatenutritionInput | string[]
-    allergens?: FoodCreateallergensInput | string[]
-    size?: FoodCreatesizeInput | string[]
-    addOns?: FoodCreateaddOnsInput | string[]
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery?: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    restaurant_name: string
+    restaurant_status: boolean
+    restaurant_discount: number
+    restaurant_opening_time: Date | string
+    restaurant_closing_time: Date | string
     type: $Enums.FoodType
     image: string
     categoryId: string
@@ -4624,17 +8602,19 @@ export namespace Prisma {
 
   export type FoodUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    lastPrice?: FloatFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    isPopular?: BoolFieldUpdateOperationsInput | boolean
-    isBestSeller?: BoolFieldUpdateOperationsInput | boolean
     description?: StringFieldUpdateOperationsInput | string
-    nutrition?: FoodUpdatenutritionInput | string[]
-    allergens?: FoodUpdateallergensInput | string[]
-    size?: FoodUpdatesizeInput | string[]
-    addOns?: FoodUpdateaddOnsInput | string[]
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    restaurant_name?: StringFieldUpdateOperationsInput | string
+    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
+    restaurant_discount?: FloatFieldUpdateOperationsInput | number
+    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumFoodTypeFieldUpdateOperationsInput | $Enums.FoodType
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4643,17 +8623,19 @@ export namespace Prisma {
 
   export type FoodUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    lastPrice?: FloatFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    isPopular?: BoolFieldUpdateOperationsInput | boolean
-    isBestSeller?: BoolFieldUpdateOperationsInput | boolean
     description?: StringFieldUpdateOperationsInput | string
-    nutrition?: FoodUpdatenutritionInput | string[]
-    allergens?: FoodUpdateallergensInput | string[]
-    size?: FoodUpdatesizeInput | string[]
-    addOns?: FoodUpdateaddOnsInput | string[]
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    restaurant_name?: StringFieldUpdateOperationsInput | string
+    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
+    restaurant_discount?: FloatFieldUpdateOperationsInput | number
+    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumFoodTypeFieldUpdateOperationsInput | $Enums.FoodType
     image?: StringFieldUpdateOperationsInput | string
     categoryId?: StringFieldUpdateOperationsInput | string
@@ -4661,39 +8643,298 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type VariantCreateInput = {
+    variantId?: string
+    name: string
+    type: string
+    min: string
+    max: string
+    required: boolean
+    food: FoodCreateNestedOneWithoutVariantsInput
+    values?: ValueCreateNestedManyWithoutVariantInput
+  }
+
+  export type VariantUncheckedCreateInput = {
+    variantId?: string
+    name: string
+    type: string
+    min: string
+    max: string
+    required: boolean
+    foodId: string
+    values?: ValueUncheckedCreateNestedManyWithoutVariantInput
+  }
+
+  export type VariantUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    min?: StringFieldUpdateOperationsInput | string
+    max?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    food?: FoodUpdateOneRequiredWithoutVariantsNestedInput
+    values?: ValueUpdateManyWithoutVariantNestedInput
+  }
+
+  export type VariantUncheckedUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    min?: StringFieldUpdateOperationsInput | string
+    max?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    foodId?: StringFieldUpdateOperationsInput | string
+    values?: ValueUncheckedUpdateManyWithoutVariantNestedInput
+  }
+
+  export type VariantCreateManyInput = {
+    variantId?: string
+    name: string
+    type: string
+    min: string
+    max: string
+    required: boolean
+    foodId: string
+  }
+
+  export type VariantUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    min?: StringFieldUpdateOperationsInput | string
+    max?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type VariantUncheckedUpdateManyInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    min?: StringFieldUpdateOperationsInput | string
+    max?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    foodId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ValueCreateInput = {
+    valueId?: string
+    label: string
+    optionPrice: number
+    stock: string
+    stock_type: string
+    sell_count: string
+    option_id: number
+    current_stock: number
+    variant: VariantCreateNestedOneWithoutValuesInput
+  }
+
+  export type ValueUncheckedCreateInput = {
+    valueId?: string
+    label: string
+    optionPrice: number
+    stock: string
+    stock_type: string
+    sell_count: string
+    option_id: number
+    current_stock: number
+    variantId: string
+  }
+
+  export type ValueUpdateInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    optionPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: StringFieldUpdateOperationsInput | string
+    stock_type?: StringFieldUpdateOperationsInput | string
+    sell_count?: StringFieldUpdateOperationsInput | string
+    option_id?: IntFieldUpdateOperationsInput | number
+    current_stock?: IntFieldUpdateOperationsInput | number
+    variant?: VariantUpdateOneRequiredWithoutValuesNestedInput
+  }
+
+  export type ValueUncheckedUpdateInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    optionPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: StringFieldUpdateOperationsInput | string
+    stock_type?: StringFieldUpdateOperationsInput | string
+    sell_count?: StringFieldUpdateOperationsInput | string
+    option_id?: IntFieldUpdateOperationsInput | number
+    current_stock?: IntFieldUpdateOperationsInput | number
+    variantId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ValueCreateManyInput = {
+    valueId?: string
+    label: string
+    optionPrice: number
+    stock: string
+    stock_type: string
+    sell_count: string
+    option_id: number
+    current_stock: number
+    variantId: string
+  }
+
+  export type ValueUpdateManyMutationInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    optionPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: StringFieldUpdateOperationsInput | string
+    stock_type?: StringFieldUpdateOperationsInput | string
+    sell_count?: StringFieldUpdateOperationsInput | string
+    option_id?: IntFieldUpdateOperationsInput | number
+    current_stock?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ValueUncheckedUpdateManyInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    optionPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: StringFieldUpdateOperationsInput | string
+    stock_type?: StringFieldUpdateOperationsInput | string
+    sell_count?: StringFieldUpdateOperationsInput | string
+    option_id?: IntFieldUpdateOperationsInput | number
+    current_stock?: IntFieldUpdateOperationsInput | number
+    variantId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type CategoryCreateInput = {
     id?: string
     name: string
+    image: string
+    products_count?: number
+    type_count?: number
+    status?: boolean
+    order_count?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type?: TypeCreateNestedManyWithoutCategoryInput
     foods?: FoodCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUncheckedCreateInput = {
     id?: string
     name: string
+    image: string
+    products_count?: number
+    type_count?: number
+    status?: boolean
+    order_count?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type?: TypeUncheckedCreateNestedManyWithoutCategoryInput
     foods?: FoodUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    products_count?: IntFieldUpdateOperationsInput | number
+    type_count?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    order_count?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: TypeUpdateManyWithoutCategoryNestedInput
     foods?: FoodUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    products_count?: IntFieldUpdateOperationsInput | number
+    type_count?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    order_count?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: TypeUncheckedUpdateManyWithoutCategoryNestedInput
     foods?: FoodUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryCreateManyInput = {
     id?: string
     name: string
+    image: string
+    products_count?: number
+    type_count?: number
+    status?: boolean
+    order_count?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type CategoryUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    products_count?: IntFieldUpdateOperationsInput | number
+    type_count?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    order_count?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CategoryUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    products_count?: IntFieldUpdateOperationsInput | number
+    type_count?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    order_count?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TypeCreateInput = {
+    id?: string
+    name: string
+    status?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: CategoryCreateNestedOneWithoutTypeInput
+  }
+
+  export type TypeUncheckedCreateInput = {
+    id?: string
+    name: string
+    status?: boolean
+    categoryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TypeUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneRequiredWithoutTypeNestedInput
+  }
+
+  export type TypeUncheckedUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TypeCreateManyInput = {
+    id?: string
+    name: string
+    status?: boolean
+    categoryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TypeUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TypeUncheckedUpdateManyInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4799,24 +9040,20 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
-  }
-
-  export type EnumFoodTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.FoodType | EnumFoodTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumFoodTypeFilter<$PrismaModel> | $Enums.FoodType
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -4830,25 +9067,44 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type EnumFoodTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.FoodType | EnumFoodTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFoodTypeFilter<$PrismaModel> | $Enums.FoodType
+  }
+
+  export type VariantListRelationFilter = {
+    every?: VariantWhereInput
+    some?: VariantWhereInput
+    none?: VariantWhereInput
+  }
+
   export type CategoryScalarRelationFilter = {
     is?: CategoryWhereInput
     isNot?: CategoryWhereInput
   }
 
+  export type VariantOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type FoodCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    price?: SortOrder
-    lastPrice?: SortOrder
-    rating?: SortOrder
-    isNew?: SortOrder
-    isPopular?: SortOrder
-    isBestSeller?: SortOrder
     description?: SortOrder
-    nutrition?: SortOrder
-    allergens?: SortOrder
-    size?: SortOrder
-    addOns?: SortOrder
+    price?: SortOrder
+    min_delivery_time?: SortOrder
+    max_delivery_time?: SortOrder
+    free_delivery?: SortOrder
+    veg?: SortOrder
+    discount?: SortOrder
+    sell_count?: SortOrder
+    restaurant_name?: SortOrder
+    restaurant_status?: SortOrder
+    restaurant_discount?: SortOrder
+    restaurant_opening_time?: SortOrder
+    restaurant_closing_time?: SortOrder
     type?: SortOrder
     image?: SortOrder
     categoryId?: SortOrder
@@ -4858,20 +9114,29 @@ export namespace Prisma {
 
   export type FoodAvgOrderByAggregateInput = {
     price?: SortOrder
-    lastPrice?: SortOrder
-    rating?: SortOrder
+    min_delivery_time?: SortOrder
+    max_delivery_time?: SortOrder
+    discount?: SortOrder
+    sell_count?: SortOrder
+    restaurant_discount?: SortOrder
   }
 
   export type FoodMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    price?: SortOrder
-    lastPrice?: SortOrder
-    rating?: SortOrder
-    isNew?: SortOrder
-    isPopular?: SortOrder
-    isBestSeller?: SortOrder
     description?: SortOrder
+    price?: SortOrder
+    min_delivery_time?: SortOrder
+    max_delivery_time?: SortOrder
+    free_delivery?: SortOrder
+    veg?: SortOrder
+    discount?: SortOrder
+    sell_count?: SortOrder
+    restaurant_name?: SortOrder
+    restaurant_status?: SortOrder
+    restaurant_discount?: SortOrder
+    restaurant_opening_time?: SortOrder
+    restaurant_closing_time?: SortOrder
     type?: SortOrder
     image?: SortOrder
     categoryId?: SortOrder
@@ -4882,13 +9147,19 @@ export namespace Prisma {
   export type FoodMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    price?: SortOrder
-    lastPrice?: SortOrder
-    rating?: SortOrder
-    isNew?: SortOrder
-    isPopular?: SortOrder
-    isBestSeller?: SortOrder
     description?: SortOrder
+    price?: SortOrder
+    min_delivery_time?: SortOrder
+    max_delivery_time?: SortOrder
+    free_delivery?: SortOrder
+    veg?: SortOrder
+    discount?: SortOrder
+    sell_count?: SortOrder
+    restaurant_name?: SortOrder
+    restaurant_status?: SortOrder
+    restaurant_discount?: SortOrder
+    restaurant_opening_time?: SortOrder
+    restaurant_closing_time?: SortOrder
     type?: SortOrder
     image?: SortOrder
     categoryId?: SortOrder
@@ -4898,8 +9169,11 @@ export namespace Prisma {
 
   export type FoodSumOrderByAggregateInput = {
     price?: SortOrder
-    lastPrice?: SortOrder
-    rating?: SortOrder
+    min_delivery_time?: SortOrder
+    max_delivery_time?: SortOrder
+    discount?: SortOrder
+    sell_count?: SortOrder
+    restaurant_discount?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -4918,22 +9192,28 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type EnumFoodTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.FoodType | EnumFoodTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumFoodTypeWithAggregatesFilter<$PrismaModel> | $Enums.FoodType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumFoodTypeFilter<$PrismaModel>
-    _max?: NestedEnumFoodTypeFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -4950,10 +9230,128 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type EnumFoodTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FoodType | EnumFoodTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFoodTypeWithAggregatesFilter<$PrismaModel> | $Enums.FoodType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFoodTypeFilter<$PrismaModel>
+    _max?: NestedEnumFoodTypeFilter<$PrismaModel>
+  }
+
+  export type FoodScalarRelationFilter = {
+    is?: FoodWhereInput
+    isNot?: FoodWhereInput
+  }
+
+  export type ValueListRelationFilter = {
+    every?: ValueWhereInput
+    some?: ValueWhereInput
+    none?: ValueWhereInput
+  }
+
+  export type ValueOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type VariantCountOrderByAggregateInput = {
+    variantId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    min?: SortOrder
+    max?: SortOrder
+    required?: SortOrder
+    foodId?: SortOrder
+  }
+
+  export type VariantMaxOrderByAggregateInput = {
+    variantId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    min?: SortOrder
+    max?: SortOrder
+    required?: SortOrder
+    foodId?: SortOrder
+  }
+
+  export type VariantMinOrderByAggregateInput = {
+    variantId?: SortOrder
+    name?: SortOrder
+    type?: SortOrder
+    min?: SortOrder
+    max?: SortOrder
+    required?: SortOrder
+    foodId?: SortOrder
+  }
+
+  export type VariantScalarRelationFilter = {
+    is?: VariantWhereInput
+    isNot?: VariantWhereInput
+  }
+
+  export type ValueCountOrderByAggregateInput = {
+    valueId?: SortOrder
+    label?: SortOrder
+    optionPrice?: SortOrder
+    stock?: SortOrder
+    stock_type?: SortOrder
+    sell_count?: SortOrder
+    option_id?: SortOrder
+    current_stock?: SortOrder
+    variantId?: SortOrder
+  }
+
+  export type ValueAvgOrderByAggregateInput = {
+    optionPrice?: SortOrder
+    option_id?: SortOrder
+    current_stock?: SortOrder
+  }
+
+  export type ValueMaxOrderByAggregateInput = {
+    valueId?: SortOrder
+    label?: SortOrder
+    optionPrice?: SortOrder
+    stock?: SortOrder
+    stock_type?: SortOrder
+    sell_count?: SortOrder
+    option_id?: SortOrder
+    current_stock?: SortOrder
+    variantId?: SortOrder
+  }
+
+  export type ValueMinOrderByAggregateInput = {
+    valueId?: SortOrder
+    label?: SortOrder
+    optionPrice?: SortOrder
+    stock?: SortOrder
+    stock_type?: SortOrder
+    sell_count?: SortOrder
+    option_id?: SortOrder
+    current_stock?: SortOrder
+    variantId?: SortOrder
+  }
+
+  export type ValueSumOrderByAggregateInput = {
+    optionPrice?: SortOrder
+    option_id?: SortOrder
+    current_stock?: SortOrder
+  }
+
+  export type TypeListRelationFilter = {
+    every?: TypeWhereInput
+    some?: TypeWhereInput
+    none?: TypeWhereInput
+  }
+
   export type FoodListRelationFilter = {
     every?: FoodWhereInput
     some?: FoodWhereInput
     none?: FoodWhereInput
+  }
+
+  export type TypeOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type FoodOrderByRelationAggregateInput = {
@@ -4963,16 +9361,76 @@ export namespace Prisma {
   export type CategoryCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    image?: SortOrder
+    products_count?: SortOrder
+    type_count?: SortOrder
+    status?: SortOrder
+    order_count?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CategoryAvgOrderByAggregateInput = {
+    products_count?: SortOrder
+    type_count?: SortOrder
+    order_count?: SortOrder
   }
 
   export type CategoryMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    image?: SortOrder
+    products_count?: SortOrder
+    type_count?: SortOrder
+    status?: SortOrder
+    order_count?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type CategoryMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    image?: SortOrder
+    products_count?: SortOrder
+    type_count?: SortOrder
+    status?: SortOrder
+    order_count?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CategorySumOrderByAggregateInput = {
+    products_count?: SortOrder
+    type_count?: SortOrder
+    order_count?: SortOrder
+  }
+
+  export type TypeCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TypeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TypeMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    status?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -4984,20 +9442,11 @@ export namespace Prisma {
     unset?: boolean
   }
 
-  export type FoodCreatenutritionInput = {
-    set: string[]
-  }
-
-  export type FoodCreateallergensInput = {
-    set: string[]
-  }
-
-  export type FoodCreatesizeInput = {
-    set: string[]
-  }
-
-  export type FoodCreateaddOnsInput = {
-    set: string[]
+  export type VariantCreateNestedManyWithoutFoodInput = {
+    create?: XOR<VariantCreateWithoutFoodInput, VariantUncheckedCreateWithoutFoodInput> | VariantCreateWithoutFoodInput[] | VariantUncheckedCreateWithoutFoodInput[]
+    connectOrCreate?: VariantCreateOrConnectWithoutFoodInput | VariantCreateOrConnectWithoutFoodInput[]
+    createMany?: VariantCreateManyFoodInputEnvelope
+    connect?: VariantWhereUniqueInput | VariantWhereUniqueInput[]
   }
 
   export type CategoryCreateNestedOneWithoutFoodsInput = {
@@ -5006,7 +9455,22 @@ export namespace Prisma {
     connect?: CategoryWhereUniqueInput
   }
 
+  export type VariantUncheckedCreateNestedManyWithoutFoodInput = {
+    create?: XOR<VariantCreateWithoutFoodInput, VariantUncheckedCreateWithoutFoodInput> | VariantCreateWithoutFoodInput[] | VariantUncheckedCreateWithoutFoodInput[]
+    connectOrCreate?: VariantCreateOrConnectWithoutFoodInput | VariantCreateOrConnectWithoutFoodInput[]
+    createMany?: VariantCreateManyFoodInputEnvelope
+    connect?: VariantWhereUniqueInput | VariantWhereUniqueInput[]
+  }
+
   export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
@@ -5018,32 +9482,26 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type FoodUpdatenutritionInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type FoodUpdateallergensInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type FoodUpdatesizeInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type FoodUpdateaddOnsInput = {
-    set?: string[]
-    push?: string | string[]
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type EnumFoodTypeFieldUpdateOperationsInput = {
     set?: $Enums.FoodType
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type VariantUpdateManyWithoutFoodNestedInput = {
+    create?: XOR<VariantCreateWithoutFoodInput, VariantUncheckedCreateWithoutFoodInput> | VariantCreateWithoutFoodInput[] | VariantUncheckedCreateWithoutFoodInput[]
+    connectOrCreate?: VariantCreateOrConnectWithoutFoodInput | VariantCreateOrConnectWithoutFoodInput[]
+    upsert?: VariantUpsertWithWhereUniqueWithoutFoodInput | VariantUpsertWithWhereUniqueWithoutFoodInput[]
+    createMany?: VariantCreateManyFoodInputEnvelope
+    set?: VariantWhereUniqueInput | VariantWhereUniqueInput[]
+    disconnect?: VariantWhereUniqueInput | VariantWhereUniqueInput[]
+    delete?: VariantWhereUniqueInput | VariantWhereUniqueInput[]
+    connect?: VariantWhereUniqueInput | VariantWhereUniqueInput[]
+    update?: VariantUpdateWithWhereUniqueWithoutFoodInput | VariantUpdateWithWhereUniqueWithoutFoodInput[]
+    updateMany?: VariantUpdateManyWithWhereWithoutFoodInput | VariantUpdateManyWithWhereWithoutFoodInput[]
+    deleteMany?: VariantScalarWhereInput | VariantScalarWhereInput[]
   }
 
   export type CategoryUpdateOneRequiredWithoutFoodsNestedInput = {
@@ -5054,6 +9512,97 @@ export namespace Prisma {
     update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutFoodsInput, CategoryUpdateWithoutFoodsInput>, CategoryUncheckedUpdateWithoutFoodsInput>
   }
 
+  export type VariantUncheckedUpdateManyWithoutFoodNestedInput = {
+    create?: XOR<VariantCreateWithoutFoodInput, VariantUncheckedCreateWithoutFoodInput> | VariantCreateWithoutFoodInput[] | VariantUncheckedCreateWithoutFoodInput[]
+    connectOrCreate?: VariantCreateOrConnectWithoutFoodInput | VariantCreateOrConnectWithoutFoodInput[]
+    upsert?: VariantUpsertWithWhereUniqueWithoutFoodInput | VariantUpsertWithWhereUniqueWithoutFoodInput[]
+    createMany?: VariantCreateManyFoodInputEnvelope
+    set?: VariantWhereUniqueInput | VariantWhereUniqueInput[]
+    disconnect?: VariantWhereUniqueInput | VariantWhereUniqueInput[]
+    delete?: VariantWhereUniqueInput | VariantWhereUniqueInput[]
+    connect?: VariantWhereUniqueInput | VariantWhereUniqueInput[]
+    update?: VariantUpdateWithWhereUniqueWithoutFoodInput | VariantUpdateWithWhereUniqueWithoutFoodInput[]
+    updateMany?: VariantUpdateManyWithWhereWithoutFoodInput | VariantUpdateManyWithWhereWithoutFoodInput[]
+    deleteMany?: VariantScalarWhereInput | VariantScalarWhereInput[]
+  }
+
+  export type FoodCreateNestedOneWithoutVariantsInput = {
+    create?: XOR<FoodCreateWithoutVariantsInput, FoodUncheckedCreateWithoutVariantsInput>
+    connectOrCreate?: FoodCreateOrConnectWithoutVariantsInput
+    connect?: FoodWhereUniqueInput
+  }
+
+  export type ValueCreateNestedManyWithoutVariantInput = {
+    create?: XOR<ValueCreateWithoutVariantInput, ValueUncheckedCreateWithoutVariantInput> | ValueCreateWithoutVariantInput[] | ValueUncheckedCreateWithoutVariantInput[]
+    connectOrCreate?: ValueCreateOrConnectWithoutVariantInput | ValueCreateOrConnectWithoutVariantInput[]
+    createMany?: ValueCreateManyVariantInputEnvelope
+    connect?: ValueWhereUniqueInput | ValueWhereUniqueInput[]
+  }
+
+  export type ValueUncheckedCreateNestedManyWithoutVariantInput = {
+    create?: XOR<ValueCreateWithoutVariantInput, ValueUncheckedCreateWithoutVariantInput> | ValueCreateWithoutVariantInput[] | ValueUncheckedCreateWithoutVariantInput[]
+    connectOrCreate?: ValueCreateOrConnectWithoutVariantInput | ValueCreateOrConnectWithoutVariantInput[]
+    createMany?: ValueCreateManyVariantInputEnvelope
+    connect?: ValueWhereUniqueInput | ValueWhereUniqueInput[]
+  }
+
+  export type FoodUpdateOneRequiredWithoutVariantsNestedInput = {
+    create?: XOR<FoodCreateWithoutVariantsInput, FoodUncheckedCreateWithoutVariantsInput>
+    connectOrCreate?: FoodCreateOrConnectWithoutVariantsInput
+    upsert?: FoodUpsertWithoutVariantsInput
+    connect?: FoodWhereUniqueInput
+    update?: XOR<XOR<FoodUpdateToOneWithWhereWithoutVariantsInput, FoodUpdateWithoutVariantsInput>, FoodUncheckedUpdateWithoutVariantsInput>
+  }
+
+  export type ValueUpdateManyWithoutVariantNestedInput = {
+    create?: XOR<ValueCreateWithoutVariantInput, ValueUncheckedCreateWithoutVariantInput> | ValueCreateWithoutVariantInput[] | ValueUncheckedCreateWithoutVariantInput[]
+    connectOrCreate?: ValueCreateOrConnectWithoutVariantInput | ValueCreateOrConnectWithoutVariantInput[]
+    upsert?: ValueUpsertWithWhereUniqueWithoutVariantInput | ValueUpsertWithWhereUniqueWithoutVariantInput[]
+    createMany?: ValueCreateManyVariantInputEnvelope
+    set?: ValueWhereUniqueInput | ValueWhereUniqueInput[]
+    disconnect?: ValueWhereUniqueInput | ValueWhereUniqueInput[]
+    delete?: ValueWhereUniqueInput | ValueWhereUniqueInput[]
+    connect?: ValueWhereUniqueInput | ValueWhereUniqueInput[]
+    update?: ValueUpdateWithWhereUniqueWithoutVariantInput | ValueUpdateWithWhereUniqueWithoutVariantInput[]
+    updateMany?: ValueUpdateManyWithWhereWithoutVariantInput | ValueUpdateManyWithWhereWithoutVariantInput[]
+    deleteMany?: ValueScalarWhereInput | ValueScalarWhereInput[]
+  }
+
+  export type ValueUncheckedUpdateManyWithoutVariantNestedInput = {
+    create?: XOR<ValueCreateWithoutVariantInput, ValueUncheckedCreateWithoutVariantInput> | ValueCreateWithoutVariantInput[] | ValueUncheckedCreateWithoutVariantInput[]
+    connectOrCreate?: ValueCreateOrConnectWithoutVariantInput | ValueCreateOrConnectWithoutVariantInput[]
+    upsert?: ValueUpsertWithWhereUniqueWithoutVariantInput | ValueUpsertWithWhereUniqueWithoutVariantInput[]
+    createMany?: ValueCreateManyVariantInputEnvelope
+    set?: ValueWhereUniqueInput | ValueWhereUniqueInput[]
+    disconnect?: ValueWhereUniqueInput | ValueWhereUniqueInput[]
+    delete?: ValueWhereUniqueInput | ValueWhereUniqueInput[]
+    connect?: ValueWhereUniqueInput | ValueWhereUniqueInput[]
+    update?: ValueUpdateWithWhereUniqueWithoutVariantInput | ValueUpdateWithWhereUniqueWithoutVariantInput[]
+    updateMany?: ValueUpdateManyWithWhereWithoutVariantInput | ValueUpdateManyWithWhereWithoutVariantInput[]
+    deleteMany?: ValueScalarWhereInput | ValueScalarWhereInput[]
+  }
+
+  export type VariantCreateNestedOneWithoutValuesInput = {
+    create?: XOR<VariantCreateWithoutValuesInput, VariantUncheckedCreateWithoutValuesInput>
+    connectOrCreate?: VariantCreateOrConnectWithoutValuesInput
+    connect?: VariantWhereUniqueInput
+  }
+
+  export type VariantUpdateOneRequiredWithoutValuesNestedInput = {
+    create?: XOR<VariantCreateWithoutValuesInput, VariantUncheckedCreateWithoutValuesInput>
+    connectOrCreate?: VariantCreateOrConnectWithoutValuesInput
+    upsert?: VariantUpsertWithoutValuesInput
+    connect?: VariantWhereUniqueInput
+    update?: XOR<XOR<VariantUpdateToOneWithWhereWithoutValuesInput, VariantUpdateWithoutValuesInput>, VariantUncheckedUpdateWithoutValuesInput>
+  }
+
+  export type TypeCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput> | TypeCreateWithoutCategoryInput[] | TypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TypeCreateOrConnectWithoutCategoryInput | TypeCreateOrConnectWithoutCategoryInput[]
+    createMany?: TypeCreateManyCategoryInputEnvelope
+    connect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+  }
+
   export type FoodCreateNestedManyWithoutCategoryInput = {
     create?: XOR<FoodCreateWithoutCategoryInput, FoodUncheckedCreateWithoutCategoryInput> | FoodCreateWithoutCategoryInput[] | FoodUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: FoodCreateOrConnectWithoutCategoryInput | FoodCreateOrConnectWithoutCategoryInput[]
@@ -5061,11 +9610,32 @@ export namespace Prisma {
     connect?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
   }
 
+  export type TypeUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput> | TypeCreateWithoutCategoryInput[] | TypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TypeCreateOrConnectWithoutCategoryInput | TypeCreateOrConnectWithoutCategoryInput[]
+    createMany?: TypeCreateManyCategoryInputEnvelope
+    connect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+  }
+
   export type FoodUncheckedCreateNestedManyWithoutCategoryInput = {
     create?: XOR<FoodCreateWithoutCategoryInput, FoodUncheckedCreateWithoutCategoryInput> | FoodCreateWithoutCategoryInput[] | FoodUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: FoodCreateOrConnectWithoutCategoryInput | FoodCreateOrConnectWithoutCategoryInput[]
     createMany?: FoodCreateManyCategoryInputEnvelope
     connect?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
+  }
+
+  export type TypeUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput> | TypeCreateWithoutCategoryInput[] | TypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TypeCreateOrConnectWithoutCategoryInput | TypeCreateOrConnectWithoutCategoryInput[]
+    upsert?: TypeUpsertWithWhereUniqueWithoutCategoryInput | TypeUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: TypeCreateManyCategoryInputEnvelope
+    set?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    disconnect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    delete?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    connect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    update?: TypeUpdateWithWhereUniqueWithoutCategoryInput | TypeUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: TypeUpdateManyWithWhereWithoutCategoryInput | TypeUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: TypeScalarWhereInput | TypeScalarWhereInput[]
   }
 
   export type FoodUpdateManyWithoutCategoryNestedInput = {
@@ -5082,6 +9652,20 @@ export namespace Prisma {
     deleteMany?: FoodScalarWhereInput | FoodScalarWhereInput[]
   }
 
+  export type TypeUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput> | TypeCreateWithoutCategoryInput[] | TypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TypeCreateOrConnectWithoutCategoryInput | TypeCreateOrConnectWithoutCategoryInput[]
+    upsert?: TypeUpsertWithWhereUniqueWithoutCategoryInput | TypeUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: TypeCreateManyCategoryInputEnvelope
+    set?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    disconnect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    delete?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    connect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    update?: TypeUpdateWithWhereUniqueWithoutCategoryInput | TypeUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: TypeUpdateManyWithWhereWithoutCategoryInput | TypeUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: TypeScalarWhereInput | TypeScalarWhereInput[]
+  }
+
   export type FoodUncheckedUpdateManyWithoutCategoryNestedInput = {
     create?: XOR<FoodCreateWithoutCategoryInput, FoodUncheckedCreateWithoutCategoryInput> | FoodCreateWithoutCategoryInput[] | FoodUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: FoodCreateOrConnectWithoutCategoryInput | FoodCreateOrConnectWithoutCategoryInput[]
@@ -5094,6 +9678,20 @@ export namespace Prisma {
     update?: FoodUpdateWithWhereUniqueWithoutCategoryInput | FoodUpdateWithWhereUniqueWithoutCategoryInput[]
     updateMany?: FoodUpdateManyWithWhereWithoutCategoryInput | FoodUpdateManyWithWhereWithoutCategoryInput[]
     deleteMany?: FoodScalarWhereInput | FoodScalarWhereInput[]
+  }
+
+  export type CategoryCreateNestedOneWithoutTypeInput = {
+    create?: XOR<CategoryCreateWithoutTypeInput, CategoryUncheckedCreateWithoutTypeInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutTypeInput
+    connect?: CategoryWhereUniqueInput
+  }
+
+  export type CategoryUpdateOneRequiredWithoutTypeNestedInput = {
+    create?: XOR<CategoryCreateWithoutTypeInput, CategoryUncheckedCreateWithoutTypeInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutTypeInput
+    upsert?: CategoryUpsertWithoutTypeInput
+    connect?: CategoryWhereUniqueInput
+    update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutTypeInput, CategoryUpdateWithoutTypeInput>, CategoryUncheckedUpdateWithoutTypeInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5199,13 +9797,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type NestedEnumFoodTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.FoodType | EnumFoodTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumFoodTypeFilter<$PrismaModel> | $Enums.FoodType
-  }
-
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -5215,6 +9806,13 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedEnumFoodTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.FoodType | EnumFoodTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFoodTypeFilter<$PrismaModel> | $Enums.FoodType
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -5233,22 +9831,28 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedEnumFoodTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.FoodType | EnumFoodTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumFoodTypeWithAggregatesFilter<$PrismaModel> | $Enums.FoodType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumFoodTypeFilter<$PrismaModel>
-    _max?: NestedEnumFoodTypeFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5265,19 +9869,103 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumFoodTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FoodType | EnumFoodTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FoodType[] | ListEnumFoodTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFoodTypeWithAggregatesFilter<$PrismaModel> | $Enums.FoodType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFoodTypeFilter<$PrismaModel>
+    _max?: NestedEnumFoodTypeFilter<$PrismaModel>
+  }
+
+  export type VariantCreateWithoutFoodInput = {
+    variantId?: string
+    name: string
+    type: string
+    min: string
+    max: string
+    required: boolean
+    values?: ValueCreateNestedManyWithoutVariantInput
+  }
+
+  export type VariantUncheckedCreateWithoutFoodInput = {
+    variantId?: string
+    name: string
+    type: string
+    min: string
+    max: string
+    required: boolean
+    values?: ValueUncheckedCreateNestedManyWithoutVariantInput
+  }
+
+  export type VariantCreateOrConnectWithoutFoodInput = {
+    where: VariantWhereUniqueInput
+    create: XOR<VariantCreateWithoutFoodInput, VariantUncheckedCreateWithoutFoodInput>
+  }
+
+  export type VariantCreateManyFoodInputEnvelope = {
+    data: VariantCreateManyFoodInput | VariantCreateManyFoodInput[]
+  }
+
   export type CategoryCreateWithoutFoodsInput = {
     id?: string
     name: string
+    image: string
+    products_count?: number
+    type_count?: number
+    status?: boolean
+    order_count?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type?: TypeCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUncheckedCreateWithoutFoodsInput = {
     id?: string
     name: string
+    image: string
+    products_count?: number
+    type_count?: number
+    status?: boolean
+    order_count?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    type?: TypeUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryCreateOrConnectWithoutFoodsInput = {
     where: CategoryWhereUniqueInput
     create: XOR<CategoryCreateWithoutFoodsInput, CategoryUncheckedCreateWithoutFoodsInput>
+  }
+
+  export type VariantUpsertWithWhereUniqueWithoutFoodInput = {
+    where: VariantWhereUniqueInput
+    update: XOR<VariantUpdateWithoutFoodInput, VariantUncheckedUpdateWithoutFoodInput>
+    create: XOR<VariantCreateWithoutFoodInput, VariantUncheckedCreateWithoutFoodInput>
+  }
+
+  export type VariantUpdateWithWhereUniqueWithoutFoodInput = {
+    where: VariantWhereUniqueInput
+    data: XOR<VariantUpdateWithoutFoodInput, VariantUncheckedUpdateWithoutFoodInput>
+  }
+
+  export type VariantUpdateManyWithWhereWithoutFoodInput = {
+    where: VariantScalarWhereInput
+    data: XOR<VariantUpdateManyMutationInput, VariantUncheckedUpdateManyWithoutFoodInput>
+  }
+
+  export type VariantScalarWhereInput = {
+    AND?: VariantScalarWhereInput | VariantScalarWhereInput[]
+    OR?: VariantScalarWhereInput[]
+    NOT?: VariantScalarWhereInput | VariantScalarWhereInput[]
+    variantId?: StringFilter<"Variant"> | string
+    name?: StringFilter<"Variant"> | string
+    type?: StringFilter<"Variant"> | string
+    min?: StringFilter<"Variant"> | string
+    max?: StringFilter<"Variant"> | string
+    required?: BoolFilter<"Variant"> | boolean
+    foodId?: StringFilter<"Variant"> | string
   }
 
   export type CategoryUpsertWithoutFoodsInput = {
@@ -5293,50 +9981,319 @@ export namespace Prisma {
 
   export type CategoryUpdateWithoutFoodsInput = {
     name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    products_count?: IntFieldUpdateOperationsInput | number
+    type_count?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    order_count?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: TypeUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryUncheckedUpdateWithoutFoodsInput = {
     name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    products_count?: IntFieldUpdateOperationsInput | number
+    type_count?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    order_count?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: TypeUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type FoodCreateWithoutVariantsInput = {
+    id?: string
+    name: string
+    description: string
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery?: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    restaurant_name: string
+    restaurant_status: boolean
+    restaurant_discount: number
+    restaurant_opening_time: Date | string
+    restaurant_closing_time: Date | string
+    type: $Enums.FoodType
+    image: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: CategoryCreateNestedOneWithoutFoodsInput
+  }
+
+  export type FoodUncheckedCreateWithoutVariantsInput = {
+    id?: string
+    name: string
+    description: string
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery?: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    restaurant_name: string
+    restaurant_status: boolean
+    restaurant_discount: number
+    restaurant_opening_time: Date | string
+    restaurant_closing_time: Date | string
+    type: $Enums.FoodType
+    image: string
+    categoryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FoodCreateOrConnectWithoutVariantsInput = {
+    where: FoodWhereUniqueInput
+    create: XOR<FoodCreateWithoutVariantsInput, FoodUncheckedCreateWithoutVariantsInput>
+  }
+
+  export type ValueCreateWithoutVariantInput = {
+    valueId?: string
+    label: string
+    optionPrice: number
+    stock: string
+    stock_type: string
+    sell_count: string
+    option_id: number
+    current_stock: number
+  }
+
+  export type ValueUncheckedCreateWithoutVariantInput = {
+    valueId?: string
+    label: string
+    optionPrice: number
+    stock: string
+    stock_type: string
+    sell_count: string
+    option_id: number
+    current_stock: number
+  }
+
+  export type ValueCreateOrConnectWithoutVariantInput = {
+    where: ValueWhereUniqueInput
+    create: XOR<ValueCreateWithoutVariantInput, ValueUncheckedCreateWithoutVariantInput>
+  }
+
+  export type ValueCreateManyVariantInputEnvelope = {
+    data: ValueCreateManyVariantInput | ValueCreateManyVariantInput[]
+  }
+
+  export type FoodUpsertWithoutVariantsInput = {
+    update: XOR<FoodUpdateWithoutVariantsInput, FoodUncheckedUpdateWithoutVariantsInput>
+    create: XOR<FoodCreateWithoutVariantsInput, FoodUncheckedCreateWithoutVariantsInput>
+    where?: FoodWhereInput
+  }
+
+  export type FoodUpdateToOneWithWhereWithoutVariantsInput = {
+    where?: FoodWhereInput
+    data: XOR<FoodUpdateWithoutVariantsInput, FoodUncheckedUpdateWithoutVariantsInput>
+  }
+
+  export type FoodUpdateWithoutVariantsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    restaurant_name?: StringFieldUpdateOperationsInput | string
+    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
+    restaurant_discount?: FloatFieldUpdateOperationsInput | number
+    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumFoodTypeFieldUpdateOperationsInput | $Enums.FoodType
+    image?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneRequiredWithoutFoodsNestedInput
+  }
+
+  export type FoodUncheckedUpdateWithoutVariantsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    restaurant_name?: StringFieldUpdateOperationsInput | string
+    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
+    restaurant_discount?: FloatFieldUpdateOperationsInput | number
+    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: EnumFoodTypeFieldUpdateOperationsInput | $Enums.FoodType
+    image?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ValueUpsertWithWhereUniqueWithoutVariantInput = {
+    where: ValueWhereUniqueInput
+    update: XOR<ValueUpdateWithoutVariantInput, ValueUncheckedUpdateWithoutVariantInput>
+    create: XOR<ValueCreateWithoutVariantInput, ValueUncheckedCreateWithoutVariantInput>
+  }
+
+  export type ValueUpdateWithWhereUniqueWithoutVariantInput = {
+    where: ValueWhereUniqueInput
+    data: XOR<ValueUpdateWithoutVariantInput, ValueUncheckedUpdateWithoutVariantInput>
+  }
+
+  export type ValueUpdateManyWithWhereWithoutVariantInput = {
+    where: ValueScalarWhereInput
+    data: XOR<ValueUpdateManyMutationInput, ValueUncheckedUpdateManyWithoutVariantInput>
+  }
+
+  export type ValueScalarWhereInput = {
+    AND?: ValueScalarWhereInput | ValueScalarWhereInput[]
+    OR?: ValueScalarWhereInput[]
+    NOT?: ValueScalarWhereInput | ValueScalarWhereInput[]
+    valueId?: StringFilter<"Value"> | string
+    label?: StringFilter<"Value"> | string
+    optionPrice?: FloatFilter<"Value"> | number
+    stock?: StringFilter<"Value"> | string
+    stock_type?: StringFilter<"Value"> | string
+    sell_count?: StringFilter<"Value"> | string
+    option_id?: IntFilter<"Value"> | number
+    current_stock?: IntFilter<"Value"> | number
+    variantId?: StringFilter<"Value"> | string
+  }
+
+  export type VariantCreateWithoutValuesInput = {
+    variantId?: string
+    name: string
+    type: string
+    min: string
+    max: string
+    required: boolean
+    food: FoodCreateNestedOneWithoutVariantsInput
+  }
+
+  export type VariantUncheckedCreateWithoutValuesInput = {
+    variantId?: string
+    name: string
+    type: string
+    min: string
+    max: string
+    required: boolean
+    foodId: string
+  }
+
+  export type VariantCreateOrConnectWithoutValuesInput = {
+    where: VariantWhereUniqueInput
+    create: XOR<VariantCreateWithoutValuesInput, VariantUncheckedCreateWithoutValuesInput>
+  }
+
+  export type VariantUpsertWithoutValuesInput = {
+    update: XOR<VariantUpdateWithoutValuesInput, VariantUncheckedUpdateWithoutValuesInput>
+    create: XOR<VariantCreateWithoutValuesInput, VariantUncheckedCreateWithoutValuesInput>
+    where?: VariantWhereInput
+  }
+
+  export type VariantUpdateToOneWithWhereWithoutValuesInput = {
+    where?: VariantWhereInput
+    data: XOR<VariantUpdateWithoutValuesInput, VariantUncheckedUpdateWithoutValuesInput>
+  }
+
+  export type VariantUpdateWithoutValuesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    min?: StringFieldUpdateOperationsInput | string
+    max?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    food?: FoodUpdateOneRequiredWithoutVariantsNestedInput
+  }
+
+  export type VariantUncheckedUpdateWithoutValuesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    min?: StringFieldUpdateOperationsInput | string
+    max?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    foodId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TypeCreateWithoutCategoryInput = {
+    id?: string
+    name: string
+    status?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TypeUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    name: string
+    status?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TypeCreateOrConnectWithoutCategoryInput = {
+    where: TypeWhereUniqueInput
+    create: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type TypeCreateManyCategoryInputEnvelope = {
+    data: TypeCreateManyCategoryInput | TypeCreateManyCategoryInput[]
   }
 
   export type FoodCreateWithoutCategoryInput = {
     id?: string
     name: string
-    price: number
-    lastPrice: number
-    rating: number
-    isNew: boolean
-    isPopular: boolean
-    isBestSeller: boolean
     description: string
-    nutrition?: FoodCreatenutritionInput | string[]
-    allergens?: FoodCreateallergensInput | string[]
-    size?: FoodCreatesizeInput | string[]
-    addOns?: FoodCreateaddOnsInput | string[]
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery?: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    restaurant_name: string
+    restaurant_status: boolean
+    restaurant_discount: number
+    restaurant_opening_time: Date | string
+    restaurant_closing_time: Date | string
     type: $Enums.FoodType
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    variants?: VariantCreateNestedManyWithoutFoodInput
   }
 
   export type FoodUncheckedCreateWithoutCategoryInput = {
     id?: string
     name: string
-    price: number
-    lastPrice: number
-    rating: number
-    isNew: boolean
-    isPopular: boolean
-    isBestSeller: boolean
     description: string
-    nutrition?: FoodCreatenutritionInput | string[]
-    allergens?: FoodCreateallergensInput | string[]
-    size?: FoodCreatesizeInput | string[]
-    addOns?: FoodCreateaddOnsInput | string[]
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery?: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    restaurant_name: string
+    restaurant_status: boolean
+    restaurant_discount: number
+    restaurant_opening_time: Date | string
+    restaurant_closing_time: Date | string
     type: $Enums.FoodType
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    variants?: VariantUncheckedCreateNestedManyWithoutFoodInput
   }
 
   export type FoodCreateOrConnectWithoutCategoryInput = {
@@ -5346,6 +10303,34 @@ export namespace Prisma {
 
   export type FoodCreateManyCategoryInputEnvelope = {
     data: FoodCreateManyCategoryInput | FoodCreateManyCategoryInput[]
+  }
+
+  export type TypeUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: TypeWhereUniqueInput
+    update: XOR<TypeUpdateWithoutCategoryInput, TypeUncheckedUpdateWithoutCategoryInput>
+    create: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type TypeUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: TypeWhereUniqueInput
+    data: XOR<TypeUpdateWithoutCategoryInput, TypeUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type TypeUpdateManyWithWhereWithoutCategoryInput = {
+    where: TypeScalarWhereInput
+    data: XOR<TypeUpdateManyMutationInput, TypeUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type TypeScalarWhereInput = {
+    AND?: TypeScalarWhereInput | TypeScalarWhereInput[]
+    OR?: TypeScalarWhereInput[]
+    NOT?: TypeScalarWhereInput | TypeScalarWhereInput[]
+    id?: StringFilter<"Type"> | string
+    name?: StringFilter<"Type"> | string
+    status?: BoolFilter<"Type"> | boolean
+    categoryId?: StringFilter<"Type"> | string
+    createdAt?: DateTimeFilter<"Type"> | Date | string
+    updatedAt?: DateTimeFilter<"Type"> | Date | string
   }
 
   export type FoodUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -5370,17 +10355,19 @@ export namespace Prisma {
     NOT?: FoodScalarWhereInput | FoodScalarWhereInput[]
     id?: StringFilter<"Food"> | string
     name?: StringFilter<"Food"> | string
-    price?: FloatFilter<"Food"> | number
-    lastPrice?: FloatFilter<"Food"> | number
-    rating?: FloatFilter<"Food"> | number
-    isNew?: BoolFilter<"Food"> | boolean
-    isPopular?: BoolFilter<"Food"> | boolean
-    isBestSeller?: BoolFilter<"Food"> | boolean
     description?: StringFilter<"Food"> | string
-    nutrition?: StringNullableListFilter<"Food">
-    allergens?: StringNullableListFilter<"Food">
-    size?: StringNullableListFilter<"Food">
-    addOns?: StringNullableListFilter<"Food">
+    price?: FloatFilter<"Food"> | number
+    min_delivery_time?: IntFilter<"Food"> | number
+    max_delivery_time?: IntFilter<"Food"> | number
+    free_delivery?: BoolFilter<"Food"> | boolean
+    veg?: BoolFilter<"Food"> | boolean
+    discount?: FloatFilter<"Food"> | number
+    sell_count?: IntFilter<"Food"> | number
+    restaurant_name?: StringFilter<"Food"> | string
+    restaurant_status?: BoolFilter<"Food"> | boolean
+    restaurant_discount?: FloatFilter<"Food"> | number
+    restaurant_opening_time?: DateTimeFilter<"Food"> | Date | string
+    restaurant_closing_time?: DateTimeFilter<"Food"> | Date | string
     type?: EnumFoodTypeFilter<"Food"> | $Enums.FoodType
     image?: StringFilter<"Food"> | string
     categoryId?: StringFilter<"Food"> | string
@@ -5388,77 +10375,258 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Food"> | Date | string
   }
 
+  export type CategoryCreateWithoutTypeInput = {
+    id?: string
+    name: string
+    image: string
+    products_count?: number
+    type_count?: number
+    status?: boolean
+    order_count?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    foods?: FoodCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateWithoutTypeInput = {
+    id?: string
+    name: string
+    image: string
+    products_count?: number
+    type_count?: number
+    status?: boolean
+    order_count?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    foods?: FoodUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryCreateOrConnectWithoutTypeInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutTypeInput, CategoryUncheckedCreateWithoutTypeInput>
+  }
+
+  export type CategoryUpsertWithoutTypeInput = {
+    update: XOR<CategoryUpdateWithoutTypeInput, CategoryUncheckedUpdateWithoutTypeInput>
+    create: XOR<CategoryCreateWithoutTypeInput, CategoryUncheckedCreateWithoutTypeInput>
+    where?: CategoryWhereInput
+  }
+
+  export type CategoryUpdateToOneWithWhereWithoutTypeInput = {
+    where?: CategoryWhereInput
+    data: XOR<CategoryUpdateWithoutTypeInput, CategoryUncheckedUpdateWithoutTypeInput>
+  }
+
+  export type CategoryUpdateWithoutTypeInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    products_count?: IntFieldUpdateOperationsInput | number
+    type_count?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    order_count?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    foods?: FoodUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateWithoutTypeInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    products_count?: IntFieldUpdateOperationsInput | number
+    type_count?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    order_count?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    foods?: FoodUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type VariantCreateManyFoodInput = {
+    variantId?: string
+    name: string
+    type: string
+    min: string
+    max: string
+    required: boolean
+  }
+
+  export type VariantUpdateWithoutFoodInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    min?: StringFieldUpdateOperationsInput | string
+    max?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    values?: ValueUpdateManyWithoutVariantNestedInput
+  }
+
+  export type VariantUncheckedUpdateWithoutFoodInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    min?: StringFieldUpdateOperationsInput | string
+    max?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    values?: ValueUncheckedUpdateManyWithoutVariantNestedInput
+  }
+
+  export type VariantUncheckedUpdateManyWithoutFoodInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    min?: StringFieldUpdateOperationsInput | string
+    max?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ValueCreateManyVariantInput = {
+    valueId?: string
+    label: string
+    optionPrice: number
+    stock: string
+    stock_type: string
+    sell_count: string
+    option_id: number
+    current_stock: number
+  }
+
+  export type ValueUpdateWithoutVariantInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    optionPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: StringFieldUpdateOperationsInput | string
+    stock_type?: StringFieldUpdateOperationsInput | string
+    sell_count?: StringFieldUpdateOperationsInput | string
+    option_id?: IntFieldUpdateOperationsInput | number
+    current_stock?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ValueUncheckedUpdateWithoutVariantInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    optionPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: StringFieldUpdateOperationsInput | string
+    stock_type?: StringFieldUpdateOperationsInput | string
+    sell_count?: StringFieldUpdateOperationsInput | string
+    option_id?: IntFieldUpdateOperationsInput | number
+    current_stock?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ValueUncheckedUpdateManyWithoutVariantInput = {
+    label?: StringFieldUpdateOperationsInput | string
+    optionPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: StringFieldUpdateOperationsInput | string
+    stock_type?: StringFieldUpdateOperationsInput | string
+    sell_count?: StringFieldUpdateOperationsInput | string
+    option_id?: IntFieldUpdateOperationsInput | number
+    current_stock?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TypeCreateManyCategoryInput = {
+    id?: string
+    name: string
+    status?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type FoodCreateManyCategoryInput = {
     id?: string
     name: string
-    price: number
-    lastPrice: number
-    rating: number
-    isNew: boolean
-    isPopular: boolean
-    isBestSeller: boolean
     description: string
-    nutrition?: FoodCreatenutritionInput | string[]
-    allergens?: FoodCreateallergensInput | string[]
-    size?: FoodCreatesizeInput | string[]
-    addOns?: FoodCreateaddOnsInput | string[]
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery?: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    restaurant_name: string
+    restaurant_status: boolean
+    restaurant_discount: number
+    restaurant_opening_time: Date | string
+    restaurant_closing_time: Date | string
     type: $Enums.FoodType
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
+  export type TypeUpdateWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TypeUncheckedUpdateWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TypeUncheckedUpdateManyWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type FoodUpdateWithoutCategoryInput = {
     name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    lastPrice?: FloatFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    isPopular?: BoolFieldUpdateOperationsInput | boolean
-    isBestSeller?: BoolFieldUpdateOperationsInput | boolean
     description?: StringFieldUpdateOperationsInput | string
-    nutrition?: FoodUpdatenutritionInput | string[]
-    allergens?: FoodUpdateallergensInput | string[]
-    size?: FoodUpdatesizeInput | string[]
-    addOns?: FoodUpdateaddOnsInput | string[]
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    restaurant_name?: StringFieldUpdateOperationsInput | string
+    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
+    restaurant_discount?: FloatFieldUpdateOperationsInput | number
+    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumFoodTypeFieldUpdateOperationsInput | $Enums.FoodType
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    variants?: VariantUpdateManyWithoutFoodNestedInput
   }
 
   export type FoodUncheckedUpdateWithoutCategoryInput = {
     name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    lastPrice?: FloatFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    isPopular?: BoolFieldUpdateOperationsInput | boolean
-    isBestSeller?: BoolFieldUpdateOperationsInput | boolean
     description?: StringFieldUpdateOperationsInput | string
-    nutrition?: FoodUpdatenutritionInput | string[]
-    allergens?: FoodUpdateallergensInput | string[]
-    size?: FoodUpdatesizeInput | string[]
-    addOns?: FoodUpdateaddOnsInput | string[]
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    restaurant_name?: StringFieldUpdateOperationsInput | string
+    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
+    restaurant_discount?: FloatFieldUpdateOperationsInput | number
+    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumFoodTypeFieldUpdateOperationsInput | $Enums.FoodType
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    variants?: VariantUncheckedUpdateManyWithoutFoodNestedInput
   }
 
   export type FoodUncheckedUpdateManyWithoutCategoryInput = {
     name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    lastPrice?: FloatFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    isPopular?: BoolFieldUpdateOperationsInput | boolean
-    isBestSeller?: BoolFieldUpdateOperationsInput | boolean
     description?: StringFieldUpdateOperationsInput | string
-    nutrition?: FoodUpdatenutritionInput | string[]
-    allergens?: FoodUpdateallergensInput | string[]
-    size?: FoodUpdatesizeInput | string[]
-    addOns?: FoodUpdateaddOnsInput | string[]
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    restaurant_name?: StringFieldUpdateOperationsInput | string
+    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
+    restaurant_discount?: FloatFieldUpdateOperationsInput | number
+    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: EnumFoodTypeFieldUpdateOperationsInput | $Enums.FoodType
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

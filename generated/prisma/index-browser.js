@@ -124,17 +124,19 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.FoodScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  price: 'price',
-  lastPrice: 'lastPrice',
-  rating: 'rating',
-  isNew: 'isNew',
-  isPopular: 'isPopular',
-  isBestSeller: 'isBestSeller',
   description: 'description',
-  nutrition: 'nutrition',
-  allergens: 'allergens',
-  size: 'size',
-  addOns: 'addOns',
+  price: 'price',
+  min_delivery_time: 'min_delivery_time',
+  max_delivery_time: 'max_delivery_time',
+  free_delivery: 'free_delivery',
+  veg: 'veg',
+  discount: 'discount',
+  sell_count: 'sell_count',
+  restaurant_name: 'restaurant_name',
+  restaurant_status: 'restaurant_status',
+  restaurant_discount: 'restaurant_discount',
+  restaurant_opening_time: 'restaurant_opening_time',
+  restaurant_closing_time: 'restaurant_closing_time',
   type: 'type',
   image: 'image',
   categoryId: 'categoryId',
@@ -142,9 +144,47 @@ exports.Prisma.FoodScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.VariantScalarFieldEnum = {
+  variantId: 'variantId',
+  name: 'name',
+  type: 'type',
+  min: 'min',
+  max: 'max',
+  required: 'required',
+  foodId: 'foodId'
+};
+
+exports.Prisma.ValueScalarFieldEnum = {
+  valueId: 'valueId',
+  label: 'label',
+  optionPrice: 'optionPrice',
+  stock: 'stock',
+  stock_type: 'stock_type',
+  sell_count: 'sell_count',
+  option_id: 'option_id',
+  current_stock: 'current_stock',
+  variantId: 'variantId'
+};
+
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  name: 'name',
+  image: 'image',
+  products_count: 'products_count',
+  type_count: 'type_count',
+  status: 'status',
+  order_count: 'order_count',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  status: 'status',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -165,7 +205,10 @@ exports.FoodType = exports.$Enums.FoodType = {
 exports.Prisma.ModelName = {
   User: 'User',
   Food: 'Food',
-  Category: 'Category'
+  Variant: 'Variant',
+  Value: 'Value',
+  Category: 'Category',
+  Type: 'Type'
 };
 
 /**
