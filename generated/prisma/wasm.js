@@ -182,6 +182,7 @@ exports.Prisma.TypeScalarFieldEnum = {
   id: 'id',
   name: 'name',
   status: 'status',
+  categoryId: 'categoryId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

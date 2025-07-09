@@ -9,9 +9,9 @@ async function bootstrap() {
   
   // Configuration globale de validation des DTOs
   app.useGlobalPipes(new ValidationPipe({
-    whitelist: true,
-    forbidNonWhitelisted: true,
-    transform: true,
+    whitelist: true, // Supprime les propriétés non définies dans les DTOs
+    forbidNonWhitelisted: false, // Interdit les propriétés non définies dans les DTOs
+    transform: true, // Transforme automatiquement les données en types DTO
   }));
 
   // Configuration Swagger
@@ -21,6 +21,7 @@ async function bootstrap() {
       persistAuthorization: true, // Conserve l'en-tête d'autorisation entre les requêtes
     },
   });
+
 
   await app.listen(3008);
 }

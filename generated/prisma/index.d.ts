@@ -1358,10 +1358,12 @@ export namespace Prisma {
    */
 
   export type CategoryCountOutputType = {
+    type: number
     foods: number
   }
 
   export type CategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    type?: boolean | CategoryCountOutputTypeCountTypeArgs
     foods?: boolean | CategoryCountOutputTypeCountFoodsArgs
   }
 
@@ -1374,6 +1376,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the CategoryCountOutputType
      */
     select?: CategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeCountTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TypeWhereInput
   }
 
   /**
@@ -5882,6 +5891,7 @@ export namespace Prisma {
     order_count?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    type?: boolean | Category$typeArgs<ExtArgs>
     foods?: boolean | Category$foodsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
@@ -5902,6 +5912,7 @@ export namespace Prisma {
 
   export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "image" | "products_count" | "type_count" | "status" | "order_count" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    type?: boolean | Category$typeArgs<ExtArgs>
     foods?: boolean | Category$foodsArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -5909,6 +5920,7 @@ export namespace Prisma {
   export type $CategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Category"
     objects: {
+      type: Prisma.$TypePayload<ExtArgs>[]
       foods: Prisma.$FoodPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -6284,6 +6296,7 @@ export namespace Prisma {
    */
   export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    type<T extends Category$typeArgs<ExtArgs> = {}>(args?: Subset<T, Category$typeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     foods<T extends Category$foodsArgs<ExtArgs> = {}>(args?: Subset<T, Category$foodsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6693,6 +6706,30 @@ export namespace Prisma {
   }
 
   /**
+   * Category.type
+   */
+  export type Category$typeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Type
+     */
+    select?: TypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Type
+     */
+    omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    where?: TypeWhereInput
+    orderBy?: TypeOrderByWithRelationInput | TypeOrderByWithRelationInput[]
+    cursor?: TypeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TypeScalarFieldEnum | TypeScalarFieldEnum[]
+  }
+
+  /**
    * Category.foods
    */
   export type Category$foodsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6749,6 +6786,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     status: boolean | null
+    categoryId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6757,6 +6795,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     status: boolean | null
+    categoryId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6765,6 +6804,7 @@ export namespace Prisma {
     id: number
     name: number
     status: number
+    categoryId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6775,6 +6815,7 @@ export namespace Prisma {
     id?: true
     name?: true
     status?: true
+    categoryId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6783,6 +6824,7 @@ export namespace Prisma {
     id?: true
     name?: true
     status?: true
+    categoryId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6791,6 +6833,7 @@ export namespace Prisma {
     id?: true
     name?: true
     status?: true
+    categoryId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6872,6 +6915,7 @@ export namespace Prisma {
     id: string
     name: string
     status: boolean
+    categoryId: string
     createdAt: Date
     updatedAt: Date
     _count: TypeCountAggregateOutputType | null
@@ -6897,8 +6941,10 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     status?: boolean
+    categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["type"]>
 
 
@@ -6907,19 +6953,26 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     status?: boolean
+    categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["type"]>
+  export type TypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "status" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["type"]>
+  export type TypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | CategoryDefaultArgs<ExtArgs>
+  }
 
   export type $TypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Type"
-    objects: {}
+    objects: {
+      category: Prisma.$CategoryPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       status: boolean
+      categoryId: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["type"]>
@@ -7285,6 +7338,7 @@ export namespace Prisma {
    */
   export interface Prisma__TypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7317,6 +7371,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Type", 'String'>
     readonly name: FieldRef<"Type", 'String'>
     readonly status: FieldRef<"Type", 'Boolean'>
+    readonly categoryId: FieldRef<"Type", 'String'>
     readonly createdAt: FieldRef<"Type", 'DateTime'>
     readonly updatedAt: FieldRef<"Type", 'DateTime'>
   }
@@ -7336,6 +7391,10 @@ export namespace Prisma {
      */
     omit?: TypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
      * Filter, which Type to fetch.
      */
     where: TypeWhereUniqueInput
@@ -7354,6 +7413,10 @@ export namespace Prisma {
      */
     omit?: TypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
      * Filter, which Type to fetch.
      */
     where: TypeWhereUniqueInput
@@ -7371,6 +7434,10 @@ export namespace Prisma {
      * Omit specific fields from the Type
      */
     omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
     /**
      * Filter, which Type to fetch.
      */
@@ -7420,6 +7487,10 @@ export namespace Prisma {
      */
     omit?: TypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
      * Filter, which Type to fetch.
      */
     where?: TypeWhereInput
@@ -7468,6 +7539,10 @@ export namespace Prisma {
      */
     omit?: TypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
      * Filter, which Types to fetch.
      */
     where?: TypeWhereInput
@@ -7511,6 +7586,10 @@ export namespace Prisma {
      */
     omit?: TypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
      * The data needed to create a Type.
      */
     data: XOR<TypeCreateInput, TypeUncheckedCreateInput>
@@ -7538,6 +7617,10 @@ export namespace Prisma {
      * Omit specific fields from the Type
      */
     omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
     /**
      * The data needed to update a Type.
      */
@@ -7579,6 +7662,10 @@ export namespace Prisma {
      */
     omit?: TypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
+    /**
      * The filter to search for the Type to update in case it exists.
      */
     where: TypeWhereUniqueInput
@@ -7604,6 +7691,10 @@ export namespace Prisma {
      * Omit specific fields from the Type
      */
     omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
     /**
      * Filter which Type to delete.
      */
@@ -7664,6 +7755,10 @@ export namespace Prisma {
      * Omit specific fields from the Type
      */
     omit?: TypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TypeInclude<ExtArgs> | null
   }
 
 
@@ -7755,6 +7850,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     status: 'status',
+    categoryId: 'categoryId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -8208,6 +8304,7 @@ export namespace Prisma {
     order_count?: IntFilter<"Category"> | number
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
+    type?: TypeListRelationFilter
     foods?: FoodListRelationFilter
   }
 
@@ -8221,6 +8318,7 @@ export namespace Prisma {
     order_count?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    type?: TypeOrderByRelationAggregateInput
     foods?: FoodOrderByRelationAggregateInput
   }
 
@@ -8237,6 +8335,7 @@ export namespace Prisma {
     order_count?: IntFilter<"Category"> | number
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
+    type?: TypeListRelationFilter
     foods?: FoodListRelationFilter
   }, "id">
 
@@ -8279,16 +8378,20 @@ export namespace Prisma {
     id?: StringFilter<"Type"> | string
     name?: StringFilter<"Type"> | string
     status?: BoolFilter<"Type"> | boolean
+    categoryId?: StringFilter<"Type"> | string
     createdAt?: DateTimeFilter<"Type"> | Date | string
     updatedAt?: DateTimeFilter<"Type"> | Date | string
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
   }
 
   export type TypeOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     status?: SortOrder
+    categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    category?: CategoryOrderByWithRelationInput
   }
 
   export type TypeWhereUniqueInput = Prisma.AtLeast<{
@@ -8298,14 +8401,17 @@ export namespace Prisma {
     NOT?: TypeWhereInput | TypeWhereInput[]
     name?: StringFilter<"Type"> | string
     status?: BoolFilter<"Type"> | boolean
+    categoryId?: StringFilter<"Type"> | string
     createdAt?: DateTimeFilter<"Type"> | Date | string
     updatedAt?: DateTimeFilter<"Type"> | Date | string
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
   }, "id">
 
   export type TypeOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     status?: SortOrder
+    categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TypeCountOrderByAggregateInput
@@ -8320,6 +8426,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Type"> | string
     name?: StringWithAggregatesFilter<"Type"> | string
     status?: BoolWithAggregatesFilter<"Type"> | boolean
+    categoryId?: StringWithAggregatesFilter<"Type"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Type"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Type"> | Date | string
   }
@@ -8694,6 +8801,7 @@ export namespace Prisma {
     order_count?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    type?: TypeCreateNestedManyWithoutCategoryInput
     foods?: FoodCreateNestedManyWithoutCategoryInput
   }
 
@@ -8707,6 +8815,7 @@ export namespace Prisma {
     order_count?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    type?: TypeUncheckedCreateNestedManyWithoutCategoryInput
     foods?: FoodUncheckedCreateNestedManyWithoutCategoryInput
   }
 
@@ -8719,6 +8828,7 @@ export namespace Prisma {
     order_count?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: TypeUpdateManyWithoutCategoryNestedInput
     foods?: FoodUpdateManyWithoutCategoryNestedInput
   }
 
@@ -8731,6 +8841,7 @@ export namespace Prisma {
     order_count?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: TypeUncheckedUpdateManyWithoutCategoryNestedInput
     foods?: FoodUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
@@ -8774,12 +8885,14 @@ export namespace Prisma {
     status?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    category: CategoryCreateNestedOneWithoutTypeInput
   }
 
   export type TypeUncheckedCreateInput = {
     id?: string
     name: string
     status?: boolean
+    categoryId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8789,11 +8902,13 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneRequiredWithoutTypeNestedInput
   }
 
   export type TypeUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8802,6 +8917,7 @@ export namespace Prisma {
     id?: string
     name: string
     status?: boolean
+    categoryId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8816,6 +8932,7 @@ export namespace Prisma {
   export type TypeUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9221,10 +9338,20 @@ export namespace Prisma {
     current_stock?: SortOrder
   }
 
+  export type TypeListRelationFilter = {
+    every?: TypeWhereInput
+    some?: TypeWhereInput
+    none?: TypeWhereInput
+  }
+
   export type FoodListRelationFilter = {
     every?: FoodWhereInput
     some?: FoodWhereInput
     none?: FoodWhereInput
+  }
+
+  export type TypeOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type FoodOrderByRelationAggregateInput = {
@@ -9283,6 +9410,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     status?: SortOrder
+    categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9291,6 +9419,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     status?: SortOrder
+    categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9299,6 +9428,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     status?: SortOrder
+    categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9466,6 +9596,13 @@ export namespace Prisma {
     update?: XOR<XOR<VariantUpdateToOneWithWhereWithoutValuesInput, VariantUpdateWithoutValuesInput>, VariantUncheckedUpdateWithoutValuesInput>
   }
 
+  export type TypeCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput> | TypeCreateWithoutCategoryInput[] | TypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TypeCreateOrConnectWithoutCategoryInput | TypeCreateOrConnectWithoutCategoryInput[]
+    createMany?: TypeCreateManyCategoryInputEnvelope
+    connect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+  }
+
   export type FoodCreateNestedManyWithoutCategoryInput = {
     create?: XOR<FoodCreateWithoutCategoryInput, FoodUncheckedCreateWithoutCategoryInput> | FoodCreateWithoutCategoryInput[] | FoodUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: FoodCreateOrConnectWithoutCategoryInput | FoodCreateOrConnectWithoutCategoryInput[]
@@ -9473,11 +9610,32 @@ export namespace Prisma {
     connect?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
   }
 
+  export type TypeUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput> | TypeCreateWithoutCategoryInput[] | TypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TypeCreateOrConnectWithoutCategoryInput | TypeCreateOrConnectWithoutCategoryInput[]
+    createMany?: TypeCreateManyCategoryInputEnvelope
+    connect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+  }
+
   export type FoodUncheckedCreateNestedManyWithoutCategoryInput = {
     create?: XOR<FoodCreateWithoutCategoryInput, FoodUncheckedCreateWithoutCategoryInput> | FoodCreateWithoutCategoryInput[] | FoodUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: FoodCreateOrConnectWithoutCategoryInput | FoodCreateOrConnectWithoutCategoryInput[]
     createMany?: FoodCreateManyCategoryInputEnvelope
     connect?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
+  }
+
+  export type TypeUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput> | TypeCreateWithoutCategoryInput[] | TypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TypeCreateOrConnectWithoutCategoryInput | TypeCreateOrConnectWithoutCategoryInput[]
+    upsert?: TypeUpsertWithWhereUniqueWithoutCategoryInput | TypeUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: TypeCreateManyCategoryInputEnvelope
+    set?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    disconnect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    delete?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    connect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    update?: TypeUpdateWithWhereUniqueWithoutCategoryInput | TypeUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: TypeUpdateManyWithWhereWithoutCategoryInput | TypeUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: TypeScalarWhereInput | TypeScalarWhereInput[]
   }
 
   export type FoodUpdateManyWithoutCategoryNestedInput = {
@@ -9494,6 +9652,20 @@ export namespace Prisma {
     deleteMany?: FoodScalarWhereInput | FoodScalarWhereInput[]
   }
 
+  export type TypeUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput> | TypeCreateWithoutCategoryInput[] | TypeUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: TypeCreateOrConnectWithoutCategoryInput | TypeCreateOrConnectWithoutCategoryInput[]
+    upsert?: TypeUpsertWithWhereUniqueWithoutCategoryInput | TypeUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: TypeCreateManyCategoryInputEnvelope
+    set?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    disconnect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    delete?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    connect?: TypeWhereUniqueInput | TypeWhereUniqueInput[]
+    update?: TypeUpdateWithWhereUniqueWithoutCategoryInput | TypeUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: TypeUpdateManyWithWhereWithoutCategoryInput | TypeUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: TypeScalarWhereInput | TypeScalarWhereInput[]
+  }
+
   export type FoodUncheckedUpdateManyWithoutCategoryNestedInput = {
     create?: XOR<FoodCreateWithoutCategoryInput, FoodUncheckedCreateWithoutCategoryInput> | FoodCreateWithoutCategoryInput[] | FoodUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: FoodCreateOrConnectWithoutCategoryInput | FoodCreateOrConnectWithoutCategoryInput[]
@@ -9506,6 +9678,20 @@ export namespace Prisma {
     update?: FoodUpdateWithWhereUniqueWithoutCategoryInput | FoodUpdateWithWhereUniqueWithoutCategoryInput[]
     updateMany?: FoodUpdateManyWithWhereWithoutCategoryInput | FoodUpdateManyWithWhereWithoutCategoryInput[]
     deleteMany?: FoodScalarWhereInput | FoodScalarWhereInput[]
+  }
+
+  export type CategoryCreateNestedOneWithoutTypeInput = {
+    create?: XOR<CategoryCreateWithoutTypeInput, CategoryUncheckedCreateWithoutTypeInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutTypeInput
+    connect?: CategoryWhereUniqueInput
+  }
+
+  export type CategoryUpdateOneRequiredWithoutTypeNestedInput = {
+    create?: XOR<CategoryCreateWithoutTypeInput, CategoryUncheckedCreateWithoutTypeInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutTypeInput
+    upsert?: CategoryUpsertWithoutTypeInput
+    connect?: CategoryWhereUniqueInput
+    update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutTypeInput, CategoryUpdateWithoutTypeInput>, CategoryUncheckedUpdateWithoutTypeInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9732,6 +9918,7 @@ export namespace Prisma {
     order_count?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    type?: TypeCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUncheckedCreateWithoutFoodsInput = {
@@ -9744,6 +9931,7 @@ export namespace Prisma {
     order_count?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    type?: TypeUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryCreateOrConnectWithoutFoodsInput = {
@@ -9800,6 +9988,7 @@ export namespace Prisma {
     order_count?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: TypeUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryUncheckedUpdateWithoutFoodsInput = {
@@ -9811,6 +10000,7 @@ export namespace Prisma {
     order_count?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: TypeUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type FoodCreateWithoutVariantsInput = {
@@ -10035,6 +10225,31 @@ export namespace Prisma {
     foodId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type TypeCreateWithoutCategoryInput = {
+    id?: string
+    name: string
+    status?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TypeUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    name: string
+    status?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TypeCreateOrConnectWithoutCategoryInput = {
+    where: TypeWhereUniqueInput
+    create: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type TypeCreateManyCategoryInputEnvelope = {
+    data: TypeCreateManyCategoryInput | TypeCreateManyCategoryInput[]
+  }
+
   export type FoodCreateWithoutCategoryInput = {
     id?: string
     name: string
@@ -10090,6 +10305,34 @@ export namespace Prisma {
     data: FoodCreateManyCategoryInput | FoodCreateManyCategoryInput[]
   }
 
+  export type TypeUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: TypeWhereUniqueInput
+    update: XOR<TypeUpdateWithoutCategoryInput, TypeUncheckedUpdateWithoutCategoryInput>
+    create: XOR<TypeCreateWithoutCategoryInput, TypeUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type TypeUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: TypeWhereUniqueInput
+    data: XOR<TypeUpdateWithoutCategoryInput, TypeUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type TypeUpdateManyWithWhereWithoutCategoryInput = {
+    where: TypeScalarWhereInput
+    data: XOR<TypeUpdateManyMutationInput, TypeUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type TypeScalarWhereInput = {
+    AND?: TypeScalarWhereInput | TypeScalarWhereInput[]
+    OR?: TypeScalarWhereInput[]
+    NOT?: TypeScalarWhereInput | TypeScalarWhereInput[]
+    id?: StringFilter<"Type"> | string
+    name?: StringFilter<"Type"> | string
+    status?: BoolFilter<"Type"> | boolean
+    categoryId?: StringFilter<"Type"> | string
+    createdAt?: DateTimeFilter<"Type"> | Date | string
+    updatedAt?: DateTimeFilter<"Type"> | Date | string
+  }
+
   export type FoodUpsertWithWhereUniqueWithoutCategoryInput = {
     where: FoodWhereUniqueInput
     update: XOR<FoodUpdateWithoutCategoryInput, FoodUncheckedUpdateWithoutCategoryInput>
@@ -10130,6 +10373,72 @@ export namespace Prisma {
     categoryId?: StringFilter<"Food"> | string
     createdAt?: DateTimeFilter<"Food"> | Date | string
     updatedAt?: DateTimeFilter<"Food"> | Date | string
+  }
+
+  export type CategoryCreateWithoutTypeInput = {
+    id?: string
+    name: string
+    image: string
+    products_count?: number
+    type_count?: number
+    status?: boolean
+    order_count?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    foods?: FoodCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateWithoutTypeInput = {
+    id?: string
+    name: string
+    image: string
+    products_count?: number
+    type_count?: number
+    status?: boolean
+    order_count?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    foods?: FoodUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryCreateOrConnectWithoutTypeInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutTypeInput, CategoryUncheckedCreateWithoutTypeInput>
+  }
+
+  export type CategoryUpsertWithoutTypeInput = {
+    update: XOR<CategoryUpdateWithoutTypeInput, CategoryUncheckedUpdateWithoutTypeInput>
+    create: XOR<CategoryCreateWithoutTypeInput, CategoryUncheckedCreateWithoutTypeInput>
+    where?: CategoryWhereInput
+  }
+
+  export type CategoryUpdateToOneWithWhereWithoutTypeInput = {
+    where?: CategoryWhereInput
+    data: XOR<CategoryUpdateWithoutTypeInput, CategoryUncheckedUpdateWithoutTypeInput>
+  }
+
+  export type CategoryUpdateWithoutTypeInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    products_count?: IntFieldUpdateOperationsInput | number
+    type_count?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    order_count?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    foods?: FoodUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateWithoutTypeInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    products_count?: IntFieldUpdateOperationsInput | number
+    type_count?: IntFieldUpdateOperationsInput | number
+    status?: BoolFieldUpdateOperationsInput | boolean
+    order_count?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    foods?: FoodUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type VariantCreateManyFoodInput = {
@@ -10208,6 +10517,14 @@ export namespace Prisma {
     current_stock?: IntFieldUpdateOperationsInput | number
   }
 
+  export type TypeCreateManyCategoryInput = {
+    id?: string
+    name: string
+    status?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type FoodCreateManyCategoryInput = {
     id?: string
     name: string
@@ -10228,6 +10545,27 @@ export namespace Prisma {
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type TypeUpdateWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TypeUncheckedUpdateWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TypeUncheckedUpdateManyWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FoodUpdateWithoutCategoryInput = {
