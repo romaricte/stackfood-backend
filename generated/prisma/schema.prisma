@@ -24,29 +24,72 @@ model User {
 }
 
 model Food {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  price        Float
-  lastPrice    Float
-  rating       Float
-  isNew        Boolean
-  isPopular    Boolean
-  isBestSeller Boolean
-  description  String
-  nutrition    String[]
-  allergens    String[]
-  size         String[]
-  addOns       String[]
-  type         FoodType
-  image        String
-  category     Category @relation(fields: [categoryId], references: [id])
-  categoryId   String   @db.ObjectId
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id                      String    @id @default(auto()) @map("_id") @db.ObjectId
+  name                    String
+  description             String
+  price                   Float
+  min_delivery_time       Int
+  max_delivery_time       Int
+  free_delivery           Boolean   @default(false)
+  veg                     Boolean
+  variants                Variant[]
+  discount                Float
+  sell_count              Int
+  restaurant_name         String
+  restaurant_status       Boolean
+  restaurant_discount     Float
+  restaurant_opening_time DateTime
+  restaurant_closing_time DateTime
+  type                    FoodType
+  image                   String
+  category                Category  @relation(fields: [categoryId], references: [id])
+  categoryId              String    @db.ObjectId
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+}
+
+model Variant {
+  variantId String  @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  type      String
+  min       String
+  max       String
+  required  Boolean
+  food      Food    @relation(fields: [foodId], references: [id])
+  foodId    String  @db.ObjectId
+  values    Value[]
+}
+
+model Value {
+  valueId       String  @id @default(auto()) @map("_id") @db.ObjectId
+  label         String
+  optionPrice   Float
+  stock         String
+  stock_type    String
+  sell_count    String
+  option_id     Int
+  current_stock Int
+  variant       Variant @relation(fields: [variantId], references: [variantId])
+  variantId     String  @db.ObjectId
 }
 
 model Category {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String
-  foods Food[]
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  image          String
+  products_count Int      @default(0)
+  type_count     Int      @default(0)
+  status         Boolean  @default(true)
+  order_count    Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  foods          Food[]
+}
+
+model Type {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  status    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
