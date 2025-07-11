@@ -14,6 +14,7 @@ export class CategoriesController {
   async getAllCategories(): Promise<Category[]> {
     return await this.categoriesService.findAll();
   }
+  @Public()
   @Get(':id')
   @ApiParam({ name: 'id', description: 'ID de la catégorie' })
   findOne(@Param('id') id: string) {
