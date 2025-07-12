@@ -1,0 +1,218 @@
+{
+    "id": 1,
+    "name": "Bengali",
+    "image": "2024-12-22-6767f51b1e9dd.png",
+    "status": 1,
+    "slug": "bengali",
+    "created_at": "2023-02-07T22:45:07.000000Z",
+    "updated_at": "2024-12-22T11:16:43.000000Z",
+    "image_full_url": "https:\/\/stackfood-admin.6amtech.com\/storage\/app\/public\/cuisine\/2024-12-22-6767f51b1e9dd.png"
+   
+} 
+
+{
+    "total_size": 1,
+    "limit": "10",
+    "offset": "1",
+    "restaurants": [
+        {
+            "id": 11,
+            "name": "Redcliff Cafe",
+            "phone": "+91025558884",
+            "email": "test.restaurant8@gmail.com",
+            "logo": "2024-12-09-6756a24d3f60b.png",
+            "latitude": "22.412810929663856",
+            "longitude": "87.82036307922327",
+            "address": "House: 00, Road: 00, Streed:00, Test City",
+            "footer_text": null,
+            "minimum_order": 100,
+            "comission": null,
+            "schedule_order": false,
+            "status": 1,
+            "vendor_id": 11,
+            "created_at": "2021-08-21T07:11:30.000000Z",
+            "updated_at": "2025-01-22T08:19:52.000000Z",
+            "free_delivery": false,
+            "cover_photo": "2024-12-22-6767e8c567244.png",
+            "delivery": true,
+            "take_away": true,
+            "food_section": true,
+            "tax": 12,
+            "zone_id": 1,
+            "reviews_section": true,
+            "active": true,
+            "off_day": " ",
+            "self_delivery_system": 0,
+            "pos_system": false,
+            "minimum_shipping_charge": 0,
+            "delivery_time": "30-40-min",
+            "veg": 1,
+            "non_veg": 1,
+            "order_count": 1,
+            "total_order": 1,
+            "per_km_shipping_charge": null,
+            "restaurant_model": "commission",
+            "maximum_shipping_charge": null,
+            "slug": "redcliff-cafe11",
+            "order_subscription_active": false,
+            "cutlery": false,
+            "meta_title": null,
+            "meta_description": null,
+            "meta_image": null,
+            "announcement": 1,
+            "announcement_message": "Takeaway and Delivery Options: Can't make it to the restaurant? No worries! Enjoy the goodness of Mini Kebab in the comfort of your home. We now offer convenient takeaway and delivery services, ensuring that our delicious dishes are just",
+            "qr_code": null,
+            "additional_data": null,
+            "additional_documents": "[]",
+            "package_id": null,
+            "open": 1,
+            "distance": 8418509.864521416,
+            "foods_count": 7,
+            "foods": [
+                {
+                    "id": 53,
+                    "image": "2021-08-21-6120e14e324c6.png",
+                    "name": "Grilled BBQ Steak",
+                    "image_full_url": "https:\/\/stackfood-admin.6amtech.com\/storage\/app\/public\/product\/2021-08-21-6120e14e324c6.png",
+                    "translations": [
+                        {
+                            "id": 1610,
+                            "translationable_type": "App\\Models\\Food",
+                            "translationable_id": 53,
+                            "locale": "en",
+                            "key": "name",
+                            "value": "Grilled BBQ Steak",
+                            "created_at": null,
+                            "updated_at": null
+                        },
+                        {
+                            "id": 1611,
+                            "translationable_type": "App\\Models\\Food",
+                            "translationable_id": 53,
+                            "locale": "en",
+                            "key": "description",
+                            "value": "Try our Grilled BBQ Steak for a sweet and spicy dish. Combine tangy BBQ sauce, orange marmalade and cinnamon to give our Grilled BBQ Steak some kick.",
+                            "created_at": null,
+                            "updated_at": null
+                        }
+                    ],
+                    "storage": []
+                },
+               
+            ],
+            "coupons": [],
+            "delivery_fee": "8458.50986",
+            "restaurant_status": 1,
+            "cuisine": [
+                {
+                    "id": 1,
+                    "name": "Bengali",
+                    "image": "2024-12-22-6767f51b1e9dd.png",
+                    "status": 1,
+                    "slug": "bengali",
+                    "created_at": "2023-02-07T22:45:07.000000Z",
+                    "updated_at": "2024-12-22T11:16:43.000000Z",
+                    "image_full_url": "https:\/\/stackfood-admin.6amtech.com\/storage\/app\/public\/cuisine\/2024-12-22-6767f51b1e9dd.png",
+                    "pivot": {
+                        "restaurant_id": 11,
+                        "cuisine_id": 1
+                    },
+                   
+                },
+            ],
+            "available_time_starts": "00:01",
+            "available_time_ends": "23:59",
+            "ratings": [],
+            "avg_rating": 4.5,
+            "rating_count": 2,
+            "positive_rating": 100,
+            "customer_order_date": 0,
+            "customer_date_order_sratus": false,
+            "instant_order": false,
+            "halal_tag_status": false,
+            "current_opening_time": "00:01:00",
+            "is_extra_packaging_active": false,
+            "extra_packaging_status": false,
+            "extra_packaging_amount": 0,
+            "is_dine_in_active": true,
+            "schedule_advance_dine_in_booking_duration": 0,
+            "schedule_advance_dine_in_booking_duration_time_format": "min",
+            "characteristics": [],
+            "gst_status": false,
+            "gst_code": "",
+            "free_delivery_distance_status": false,
+            "free_delivery_distance_value": "",
+            "logo_full_url": "https:\/\/stackfood-admin.6amtech.com\/storage\/app\/public\/restaurant\/2024-12-09-6756a24d3f60b.png",
+            "cover_photo_full_url": "https:\/\/stackfood-admin.6amtech.com\/storage\/app\/public\/restaurant\/cover\/2024-12-22-6767e8c567244.png",
+            "meta_image_full_url": null,
+            "discount": null,
+           
+            "schedules": [
+                {
+                    "id": 23,
+                    "restaurant_id": 11,
+                    "day": 1,
+                    "opening_time": "00:01:00",
+                    "closing_time": "23:59:00",
+                    "created_at": null,
+                    "updated_at": null
+                },
+                {
+                    "id": 24,
+                    "restaurant_id": 11,
+                    "day": 2,
+                    "opening_time": "00:01:00",
+                    "closing_time": "23:59:00",
+                    "created_at": null,
+                    "updated_at": null
+                },
+                {
+                    "id": 25,
+                    "restaurant_id": 11,
+                    "day": 3,
+                    "opening_time": "00:01:00",
+                    "closing_time": "23:59:00",
+                    "created_at": null,
+                    "updated_at": null
+                },
+                {
+                    "id": 26,
+                    "restaurant_id": 11,
+                    "day": 4,
+                    "opening_time": "00:01:00",
+                    "closing_time": "23:59:00",
+                    "created_at": null,
+                    "updated_at": null
+                },
+                {
+                    "id": 27,
+                    "restaurant_id": 11,
+                    "day": 5,
+                    "opening_time": "00:01:00",
+                    "closing_time": "23:59:00",
+                    "created_at": null,
+                    "updated_at": null
+                },
+                {
+                    "id": 28,
+                    "restaurant_id": 11,
+                    "day": 6,
+                    "opening_time": "00:01:00",
+                    "closing_time": "23:59:00",
+                    "created_at": null,
+                    "updated_at": null
+                },
+                {
+                    "id": 29,
+                    "restaurant_id": 11,
+                    "day": 0,
+                    "opening_time": "00:01:00",
+                    "closing_time": "23:59:00",
+                    "created_at": null,
+                    "updated_at": null
+                }
+            ],
+            
+        }
+    ]
+}
