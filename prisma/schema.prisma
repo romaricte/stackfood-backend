@@ -116,8 +116,40 @@ model Cuisine {
 model Restaurant {
   restaurantId       String @id @default(auto()) @map("_id") @db.ObjectId
   name     String
+  phone String
+  email String
+  logo String
   image String
   status Boolean @default(true)
+  longitude String
+  latitude String
+  address String
+  footer_text String
+  minimum_order Float
+  comission Float
+  schedule_order Boolean
+  cover_photo String
+  delivery Boolean
+  take_away Boolean
+  food_section Boolean
+  tax Float
+  zone_id String
+  reviews_section Boolean
+  active Boolean
+  off_day String
+  self_delivery_system Int
+  pos_system Boolean
+  minimum_shipping_charge Float
+  delivery_time String
+  veg Int
+  non_veg Int
+  order_count Int
+  total_order Int
+  per_km_shipping_charge String
+  restaurant_model String
+  maximum_shipping_charge String
+  slug String
+  order_subscription_active Boolean
   cuisine Cuisine[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
