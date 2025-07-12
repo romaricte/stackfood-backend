@@ -100,3 +100,25 @@ model Type {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Cuisine {
+  cuisineId       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  image String
+  status Boolean @default(true)
+  restaurant Restaurant @relation(fields: [restaurantId], references: [restaurantId])
+  restaurantId String @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+  
+
+model Restaurant {
+  restaurantId       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  image String
+  status Boolean @default(true)
+  cuisine Cuisine[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
