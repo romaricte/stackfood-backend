@@ -33,6 +33,7 @@ model Food {
   free_delivery           Boolean   @default(false)
   veg                     Boolean
   variants                Variant[]
+  cuisine                 Cuisine[]
   discount                Float
   sell_count              Int
   restaurant_name         String
@@ -40,7 +41,7 @@ model Food {
   restaurant_discount     Float
   restaurant_opening_time DateTime
   restaurant_closing_time DateTime
-  type                    FoodType
+  // type FoodType
   image                   String
   category                Category  @relation(fields: [categoryId], references: [id])
   categoryId              String    @db.ObjectId
@@ -61,16 +62,13 @@ model Variant {
 }
 
 model Value {
-  valueId       String  @id @default(auto()) @map("_id") @db.ObjectId
-  label         String
-  optionPrice   Float
-  stock         String
-  stock_type    String
-  sell_count    String
-  option_id     Int
-  current_stock Int
-  variant       Variant @relation(fields: [variantId], references: [variantId])
-  variantId     String  @db.ObjectId
+  valueId         String  @id @default(auto()) @map("_id") @db.ObjectId
+  label           String
+  optionPrice     Int
+  stock           Int
+  stock_unlimited Boolean
+  variant         Variant @relation(fields: [variantId], references: [variantId])
+  variantId       String  @db.ObjectId
 }
 
 model Category {
@@ -95,4 +93,44 @@ model Type {
   categoryId String   @db.ObjectId
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+}
+
+model Cuisine {
+  cuisineId    String     @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  image        String
+  status       Boolean    @default(true)
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [restaurantId])
+  restaurantId String     @db.ObjectId
+  food         Food       @relation(fields: [foodId], references: [id])
+  foodId       String     @db.ObjectId
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Restaurant {
+  restaurantId   String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  phone          String
+  email          String
+  logo           String
+  image          String
+  status         Boolean   @default(true)
+  longitude      String
+  latitude       String
+  address        String
+  footer_text    String
+  minimum_order  Float
+  comission      Float
+  schedule_order Boolean
+  cover_photo    String
+  delivery       Boolean
+  free_delivery  Boolean
+  active         Boolean
+  off_day        String
+  delivery_time  String
+  veg            Boolean
+  cuisine        Cuisine[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 }

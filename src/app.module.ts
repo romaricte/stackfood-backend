@@ -7,9 +7,11 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { PrismaModule } from './prisma/prisma.module';
 import { CategoriesModule } from './categories/categories.module';
 import { TypesModule } from './types/types.module';
+import { ValueModule } from './value/value.module';
 
 @Module({
-  imports: [AuthModule, PrismaModule, CategoriesModule, TypesModule],
+  imports: [AuthModule, PrismaModule, 
+    CategoriesModule, TypesModule, ValueModule],
   controllers: [AppController],
   providers: [
     AppService,
@@ -19,4 +21,4 @@ import { TypesModule } from './types/types.module';
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }
