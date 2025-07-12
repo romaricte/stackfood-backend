@@ -137,7 +137,6 @@ exports.Prisma.FoodScalarFieldEnum = {
   restaurant_discount: 'restaurant_discount',
   restaurant_opening_time: 'restaurant_opening_time',
   restaurant_closing_time: 'restaurant_closing_time',
-  type: 'type',
   image: 'image',
   categoryId: 'categoryId',
   createdAt: 'createdAt',
@@ -159,10 +158,7 @@ exports.Prisma.ValueScalarFieldEnum = {
   label: 'label',
   optionPrice: 'optionPrice',
   stock: 'stock',
-  stock_type: 'stock_type',
-  sell_count: 'sell_count',
-  option_id: 'option_id',
-  current_stock: 'current_stock',
+  stock_unlimited: 'stock_unlimited',
   variantId: 'variantId'
 };
 
@@ -187,6 +183,43 @@ exports.Prisma.TypeScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CuisineScalarFieldEnum = {
+  cuisineId: 'cuisineId',
+  name: 'name',
+  image: 'image',
+  status: 'status',
+  restaurantId: 'restaurantId',
+  foodId: 'foodId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RestaurantScalarFieldEnum = {
+  restaurantId: 'restaurantId',
+  name: 'name',
+  phone: 'phone',
+  email: 'email',
+  logo: 'logo',
+  image: 'image',
+  status: 'status',
+  longitude: 'longitude',
+  latitude: 'latitude',
+  address: 'address',
+  footer_text: 'footer_text',
+  minimum_order: 'minimum_order',
+  comission: 'comission',
+  schedule_order: 'schedule_order',
+  cover_photo: 'cover_photo',
+  delivery: 'delivery',
+  free_delivery: 'free_delivery',
+  active: 'active',
+  off_day: 'off_day',
+  delivery_time: 'delivery_time',
+  veg: 'veg',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -196,11 +229,7 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-exports.FoodType = exports.$Enums.FoodType = {
-  NON_VEGETARIAN: 'NON_VEGETARIAN',
-  VEGETARIAN: 'VEGETARIAN',
-  VEGAN: 'VEGAN'
-};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -208,7 +237,9 @@ exports.Prisma.ModelName = {
   Variant: 'Variant',
   Value: 'Value',
   Category: 'Category',
-  Type: 'Type'
+  Type: 'Type',
+  Cuisine: 'Cuisine',
+  Restaurant: 'Restaurant'
 };
 
 /**
