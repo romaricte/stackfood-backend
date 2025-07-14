@@ -12,6 +12,9 @@ export class ValueService {
     async findAllValue(): Promise<Value[]> {
         return await this.prisma.value.findMany();
     }
+    async findAllVariant(): Promise<Variant[]> {
+        return await this.prisma.variant.findMany();
+    }
     async createValue(valueDto: ValueDto): Promise<Value> {
         return await this.prisma.value.create({ data: {
             label: valueDto.label,

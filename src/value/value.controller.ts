@@ -2,7 +2,7 @@ import { Body, Controller, Post } from "@nestjs/common";
 import { ValueService } from "./value.service";
 import { Public } from "../auth/decorators/public.decorator";
 import { Get } from "@nestjs/common";
-import { Value } from "generated/prisma/client";
+import { Value, Variant } from "generated/prisma/client";
 import { ApiTags } from "@nestjs/swagger";
 import { ValueDto } from "./dto/value.dto";
 
@@ -14,6 +14,11 @@ export class ValueController {
     @Get()
     async getAllValues(): Promise<Value[]> {
         return await this.valueService.findAllValue();
+    }
+    @Public()
+    @Get()
+    async getAllVariants(): Promise<Variant[]> {
+        return await this.valueService.findAllVariant();
     }
     @Public()
     @Post()
