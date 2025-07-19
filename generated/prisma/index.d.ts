@@ -49,6 +49,11 @@ export type Type = $Result.DefaultSelection<Prisma.$TypePayload>
  */
 export type Cuisine = $Result.DefaultSelection<Prisma.$CuisinePayload>
 /**
+ * Model schedules
+ * 
+ */
+export type schedules = $Result.DefaultSelection<Prisma.$schedulesPayload>
+/**
  * Model Restaurant
  * 
  */
@@ -233,6 +238,16 @@ export class PrismaClient<
     * ```
     */
   get cuisine(): Prisma.CuisineDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.schedules`: Exposes CRUD operations for the **schedules** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Schedules
+    * const schedules = await prisma.schedules.findMany()
+    * ```
+    */
+  get schedules(): Prisma.schedulesDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.restaurant`: Exposes CRUD operations for the **Restaurant** model.
@@ -690,6 +705,7 @@ export namespace Prisma {
     Category: 'Category',
     Type: 'Type',
     Cuisine: 'Cuisine',
+    schedules: 'schedules',
     Restaurant: 'Restaurant'
   };
 
@@ -709,7 +725,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "food" | "variant" | "value" | "category" | "type" | "cuisine" | "restaurant"
+      modelProps: "user" | "food" | "variant" | "value" | "category" | "type" | "cuisine" | "schedules" | "restaurant"
       txIsolationLevel: never
     }
     model: {
@@ -1231,6 +1247,80 @@ export namespace Prisma {
           }
         }
       }
+      schedules: {
+        payload: Prisma.$schedulesPayload<ExtArgs>
+        fields: Prisma.schedulesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.schedulesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$schedulesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.schedulesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$schedulesPayload>
+          }
+          findFirst: {
+            args: Prisma.schedulesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$schedulesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.schedulesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$schedulesPayload>
+          }
+          findMany: {
+            args: Prisma.schedulesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$schedulesPayload>[]
+          }
+          create: {
+            args: Prisma.schedulesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$schedulesPayload>
+          }
+          createMany: {
+            args: Prisma.schedulesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.schedulesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$schedulesPayload>
+          }
+          update: {
+            args: Prisma.schedulesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$schedulesPayload>
+          }
+          deleteMany: {
+            args: Prisma.schedulesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.schedulesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.schedulesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$schedulesPayload>
+          }
+          aggregate: {
+            args: Prisma.SchedulesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSchedules>
+          }
+          groupBy: {
+            args: Prisma.schedulesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SchedulesGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.schedulesFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.schedulesAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.schedulesCountArgs<ExtArgs>
+            result: $Utils.Optional<SchedulesCountAggregateOutputType> | number
+          }
+        }
+      }
       Restaurant: {
         payload: Prisma.$RestaurantPayload<ExtArgs>
         fields: Prisma.RestaurantFieldRefs
@@ -1383,6 +1473,7 @@ export namespace Prisma {
     category?: CategoryOmit
     type?: TypeOmit
     cuisine?: CuisineOmit
+    schedules?: schedulesOmit
     restaurant?: RestaurantOmit
   }
 
@@ -1589,10 +1680,14 @@ export namespace Prisma {
    */
 
   export type RestaurantCountOutputType = {
+    schedules: number
+    foods: number
     cuisine: number
   }
 
   export type RestaurantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    schedules?: boolean | RestaurantCountOutputTypeCountSchedulesArgs
+    foods?: boolean | RestaurantCountOutputTypeCountFoodsArgs
     cuisine?: boolean | RestaurantCountOutputTypeCountCuisineArgs
   }
 
@@ -1605,6 +1700,20 @@ export namespace Prisma {
      * Select specific fields to fetch from the RestaurantCountOutputType
      */
     select?: RestaurantCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RestaurantCountOutputType without action
+   */
+  export type RestaurantCountOutputTypeCountSchedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: schedulesWhereInput
+  }
+
+  /**
+   * RestaurantCountOutputType without action
+   */
+  export type RestaurantCountOutputTypeCountFoodsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FoodWhereInput
   }
 
   /**
@@ -2569,7 +2678,6 @@ export namespace Prisma {
     max_delivery_time: number | null
     discount: number | null
     sell_count: number | null
-    restaurant_discount: number | null
   }
 
   export type FoodSumAggregateOutputType = {
@@ -2578,7 +2686,6 @@ export namespace Prisma {
     max_delivery_time: number | null
     discount: number | null
     sell_count: number | null
-    restaurant_discount: number | null
   }
 
   export type FoodMinAggregateOutputType = {
@@ -2592,12 +2699,8 @@ export namespace Prisma {
     veg: boolean | null
     discount: number | null
     sell_count: number | null
-    restaurant_name: string | null
-    restaurant_status: boolean | null
-    restaurant_discount: number | null
-    restaurant_opening_time: Date | null
-    restaurant_closing_time: Date | null
     image: string | null
+    restaurantId: string | null
     categoryId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2614,12 +2717,8 @@ export namespace Prisma {
     veg: boolean | null
     discount: number | null
     sell_count: number | null
-    restaurant_name: string | null
-    restaurant_status: boolean | null
-    restaurant_discount: number | null
-    restaurant_opening_time: Date | null
-    restaurant_closing_time: Date | null
     image: string | null
+    restaurantId: string | null
     categoryId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2636,12 +2735,8 @@ export namespace Prisma {
     veg: number
     discount: number
     sell_count: number
-    restaurant_name: number
-    restaurant_status: number
-    restaurant_discount: number
-    restaurant_opening_time: number
-    restaurant_closing_time: number
     image: number
+    restaurantId: number
     categoryId: number
     createdAt: number
     updatedAt: number
@@ -2655,7 +2750,6 @@ export namespace Prisma {
     max_delivery_time?: true
     discount?: true
     sell_count?: true
-    restaurant_discount?: true
   }
 
   export type FoodSumAggregateInputType = {
@@ -2664,7 +2758,6 @@ export namespace Prisma {
     max_delivery_time?: true
     discount?: true
     sell_count?: true
-    restaurant_discount?: true
   }
 
   export type FoodMinAggregateInputType = {
@@ -2678,12 +2771,8 @@ export namespace Prisma {
     veg?: true
     discount?: true
     sell_count?: true
-    restaurant_name?: true
-    restaurant_status?: true
-    restaurant_discount?: true
-    restaurant_opening_time?: true
-    restaurant_closing_time?: true
     image?: true
+    restaurantId?: true
     categoryId?: true
     createdAt?: true
     updatedAt?: true
@@ -2700,12 +2789,8 @@ export namespace Prisma {
     veg?: true
     discount?: true
     sell_count?: true
-    restaurant_name?: true
-    restaurant_status?: true
-    restaurant_discount?: true
-    restaurant_opening_time?: true
-    restaurant_closing_time?: true
     image?: true
+    restaurantId?: true
     categoryId?: true
     createdAt?: true
     updatedAt?: true
@@ -2722,12 +2807,8 @@ export namespace Prisma {
     veg?: true
     discount?: true
     sell_count?: true
-    restaurant_name?: true
-    restaurant_status?: true
-    restaurant_discount?: true
-    restaurant_opening_time?: true
-    restaurant_closing_time?: true
     image?: true
+    restaurantId?: true
     categoryId?: true
     createdAt?: true
     updatedAt?: true
@@ -2831,13 +2912,9 @@ export namespace Prisma {
     veg: boolean
     discount: number
     sell_count: number
-    restaurant_name: string
-    restaurant_status: boolean
-    restaurant_discount: number
-    restaurant_opening_time: Date
-    restaurant_closing_time: Date
     image: string
-    categoryId: string
+    restaurantId: string | null
+    categoryId: string | null
     createdAt: Date
     updatedAt: Date
     _count: FoodCountAggregateOutputType | null
@@ -2872,18 +2949,15 @@ export namespace Prisma {
     veg?: boolean
     discount?: boolean
     sell_count?: boolean
-    restaurant_name?: boolean
-    restaurant_status?: boolean
-    restaurant_discount?: boolean
-    restaurant_opening_time?: boolean
-    restaurant_closing_time?: boolean
     image?: boolean
+    restaurantId?: boolean
     categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     variants?: boolean | Food$variantsArgs<ExtArgs>
     cuisine?: boolean | Food$cuisineArgs<ExtArgs>
-    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    restaurant?: boolean | Food$restaurantArgs<ExtArgs>
+    category?: boolean | Food$categoryArgs<ExtArgs>
     _count?: boolean | FoodCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["food"]>
 
@@ -2900,22 +2974,19 @@ export namespace Prisma {
     veg?: boolean
     discount?: boolean
     sell_count?: boolean
-    restaurant_name?: boolean
-    restaurant_status?: boolean
-    restaurant_discount?: boolean
-    restaurant_opening_time?: boolean
-    restaurant_closing_time?: boolean
     image?: boolean
+    restaurantId?: boolean
     categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type FoodOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "price" | "min_delivery_time" | "max_delivery_time" | "free_delivery" | "veg" | "discount" | "sell_count" | "restaurant_name" | "restaurant_status" | "restaurant_discount" | "restaurant_opening_time" | "restaurant_closing_time" | "image" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["food"]>
+  export type FoodOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "price" | "min_delivery_time" | "max_delivery_time" | "free_delivery" | "veg" | "discount" | "sell_count" | "image" | "restaurantId" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["food"]>
   export type FoodInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     variants?: boolean | Food$variantsArgs<ExtArgs>
     cuisine?: boolean | Food$cuisineArgs<ExtArgs>
-    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    restaurant?: boolean | Food$restaurantArgs<ExtArgs>
+    category?: boolean | Food$categoryArgs<ExtArgs>
     _count?: boolean | FoodCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2924,7 +2995,8 @@ export namespace Prisma {
     objects: {
       variants: Prisma.$VariantPayload<ExtArgs>[]
       cuisine: Prisma.$CuisinePayload<ExtArgs>[]
-      category: Prisma.$CategoryPayload<ExtArgs>
+      restaurant: Prisma.$RestaurantPayload<ExtArgs> | null
+      category: Prisma.$CategoryPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2937,13 +3009,9 @@ export namespace Prisma {
       veg: boolean
       discount: number
       sell_count: number
-      restaurant_name: string
-      restaurant_status: boolean
-      restaurant_discount: number
-      restaurant_opening_time: Date
-      restaurant_closing_time: Date
       image: string
-      categoryId: string
+      restaurantId: string | null
+      categoryId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["food"]>
@@ -3311,7 +3379,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     variants<T extends Food$variantsArgs<ExtArgs> = {}>(args?: Subset<T, Food$variantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     cuisine<T extends Food$cuisineArgs<ExtArgs> = {}>(args?: Subset<T, Food$cuisineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CuisinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    restaurant<T extends Food$restaurantArgs<ExtArgs> = {}>(args?: Subset<T, Food$restaurantArgs<ExtArgs>>): Prisma__RestaurantClient<$Result.GetResult<Prisma.$RestaurantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    category<T extends Food$categoryArgs<ExtArgs> = {}>(args?: Subset<T, Food$categoryArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3351,12 +3420,8 @@ export namespace Prisma {
     readonly veg: FieldRef<"Food", 'Boolean'>
     readonly discount: FieldRef<"Food", 'Float'>
     readonly sell_count: FieldRef<"Food", 'Int'>
-    readonly restaurant_name: FieldRef<"Food", 'String'>
-    readonly restaurant_status: FieldRef<"Food", 'Boolean'>
-    readonly restaurant_discount: FieldRef<"Food", 'Float'>
-    readonly restaurant_opening_time: FieldRef<"Food", 'DateTime'>
-    readonly restaurant_closing_time: FieldRef<"Food", 'DateTime'>
     readonly image: FieldRef<"Food", 'String'>
+    readonly restaurantId: FieldRef<"Food", 'String'>
     readonly categoryId: FieldRef<"Food", 'String'>
     readonly createdAt: FieldRef<"Food", 'DateTime'>
     readonly updatedAt: FieldRef<"Food", 'DateTime'>
@@ -3778,6 +3843,44 @@ export namespace Prisma {
   }
 
   /**
+   * Food.restaurant
+   */
+  export type Food$restaurantArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Restaurant
+     */
+    select?: RestaurantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Restaurant
+     */
+    omit?: RestaurantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RestaurantInclude<ExtArgs> | null
+    where?: RestaurantWhereInput
+  }
+
+  /**
+   * Food.category
+   */
+  export type Food$categoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+  }
+
+  /**
    * Food without action
    */
   export type FoodDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3948,7 +4051,7 @@ export namespace Prisma {
     min: string
     max: string
     required: boolean
-    foodId: string
+    foodId: string | null
     _count: VariantCountAggregateOutputType | null
     _min: VariantMinAggregateOutputType | null
     _max: VariantMaxAggregateOutputType | null
@@ -3976,7 +4079,7 @@ export namespace Prisma {
     max?: boolean
     required?: boolean
     foodId?: boolean
-    food?: boolean | FoodDefaultArgs<ExtArgs>
+    food?: boolean | Variant$foodArgs<ExtArgs>
     values?: boolean | Variant$valuesArgs<ExtArgs>
     _count?: boolean | VariantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["variant"]>
@@ -3995,7 +4098,7 @@ export namespace Prisma {
 
   export type VariantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"variantId" | "name" | "type" | "min" | "max" | "required" | "foodId", ExtArgs["result"]["variant"]>
   export type VariantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    food?: boolean | FoodDefaultArgs<ExtArgs>
+    food?: boolean | Variant$foodArgs<ExtArgs>
     values?: boolean | Variant$valuesArgs<ExtArgs>
     _count?: boolean | VariantCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -4003,7 +4106,7 @@ export namespace Prisma {
   export type $VariantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Variant"
     objects: {
-      food: Prisma.$FoodPayload<ExtArgs>
+      food: Prisma.$FoodPayload<ExtArgs> | null
       values: Prisma.$ValuePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -4013,7 +4116,7 @@ export namespace Prisma {
       min: string
       max: string
       required: boolean
-      foodId: string
+      foodId: string | null
     }, ExtArgs["result"]["variant"]>
     composites: {}
   }
@@ -4377,7 +4480,7 @@ export namespace Prisma {
    */
   export interface Prisma__VariantClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    food<T extends FoodDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FoodDefaultArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    food<T extends Variant$foodArgs<ExtArgs> = {}>(args?: Subset<T, Variant$foodArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     values<T extends Variant$valuesArgs<ExtArgs> = {}>(args?: Subset<T, Variant$valuesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ValuePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4782,6 +4885,25 @@ export namespace Prisma {
      * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
      */
     options?: InputJsonValue
+  }
+
+  /**
+   * Variant.food
+   */
+  export type Variant$foodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    where?: FoodWhereInput
   }
 
   /**
@@ -7136,7 +7258,7 @@ export namespace Prisma {
     id: string
     name: string
     status: boolean
-    categoryId: string
+    categoryId: string | null
     createdAt: Date
     updatedAt: Date
     _count: TypeCountAggregateOutputType | null
@@ -7165,7 +7287,7 @@ export namespace Prisma {
     categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    category?: boolean | Type$categoryArgs<ExtArgs>
   }, ExtArgs["result"]["type"]>
 
 
@@ -7181,19 +7303,19 @@ export namespace Prisma {
 
   export type TypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "status" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["type"]>
   export type TypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    category?: boolean | CategoryDefaultArgs<ExtArgs>
+    category?: boolean | Type$categoryArgs<ExtArgs>
   }
 
   export type $TypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Type"
     objects: {
-      category: Prisma.$CategoryPayload<ExtArgs>
+      category: Prisma.$CategoryPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       status: boolean
-      categoryId: string
+      categoryId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["type"]>
@@ -7559,7 +7681,7 @@ export namespace Prisma {
    */
   export interface Prisma__TypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    category<T extends Type$categoryArgs<ExtArgs> = {}>(args?: Subset<T, Type$categoryArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7965,6 +8087,25 @@ export namespace Prisma {
   }
 
   /**
+   * Type.category
+   */
+  export type Type$categoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+  }
+
+  /**
    * Type without action
    */
   export type TypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8139,8 +8280,8 @@ export namespace Prisma {
     name: string
     image: string
     status: boolean
-    restaurantId: string
-    foodId: string
+    restaurantId: string | null
+    foodId: string | null
     createdAt: Date
     updatedAt: Date
     _count: CuisineCountAggregateOutputType | null
@@ -8171,8 +8312,8 @@ export namespace Prisma {
     foodId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
-    food?: boolean | FoodDefaultArgs<ExtArgs>
+    restaurant?: boolean | Cuisine$restaurantArgs<ExtArgs>
+    food?: boolean | Cuisine$foodArgs<ExtArgs>
   }, ExtArgs["result"]["cuisine"]>
 
 
@@ -8190,23 +8331,23 @@ export namespace Prisma {
 
   export type CuisineOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cuisineId" | "name" | "image" | "status" | "restaurantId" | "foodId" | "createdAt" | "updatedAt", ExtArgs["result"]["cuisine"]>
   export type CuisineInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
-    food?: boolean | FoodDefaultArgs<ExtArgs>
+    restaurant?: boolean | Cuisine$restaurantArgs<ExtArgs>
+    food?: boolean | Cuisine$foodArgs<ExtArgs>
   }
 
   export type $CuisinePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Cuisine"
     objects: {
-      restaurant: Prisma.$RestaurantPayload<ExtArgs>
-      food: Prisma.$FoodPayload<ExtArgs>
+      restaurant: Prisma.$RestaurantPayload<ExtArgs> | null
+      food: Prisma.$FoodPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       cuisineId: string
       name: string
       image: string
       status: boolean
-      restaurantId: string
-      foodId: string
+      restaurantId: string | null
+      foodId: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["cuisine"]>
@@ -8572,8 +8713,8 @@ export namespace Prisma {
    */
   export interface Prisma__CuisineClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    restaurant<T extends RestaurantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RestaurantDefaultArgs<ExtArgs>>): Prisma__RestaurantClient<$Result.GetResult<Prisma.$RestaurantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    food<T extends FoodDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FoodDefaultArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    restaurant<T extends Cuisine$restaurantArgs<ExtArgs> = {}>(args?: Subset<T, Cuisine$restaurantArgs<ExtArgs>>): Prisma__RestaurantClient<$Result.GetResult<Prisma.$RestaurantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    food<T extends Cuisine$foodArgs<ExtArgs> = {}>(args?: Subset<T, Cuisine$foodArgs<ExtArgs>>): Prisma__FoodClient<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8981,6 +9122,44 @@ export namespace Prisma {
   }
 
   /**
+   * Cuisine.restaurant
+   */
+  export type Cuisine$restaurantArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Restaurant
+     */
+    select?: RestaurantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Restaurant
+     */
+    omit?: RestaurantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RestaurantInclude<ExtArgs> | null
+    where?: RestaurantWhereInput
+  }
+
+  /**
+   * Cuisine.food
+   */
+  export type Cuisine$foodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    where?: FoodWhereInput
+  }
+
+  /**
    * Cuisine without action
    */
   export type CuisineDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8996,6 +9175,1060 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CuisineInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model schedules
+   */
+
+  export type AggregateSchedules = {
+    _count: SchedulesCountAggregateOutputType | null
+    _avg: SchedulesAvgAggregateOutputType | null
+    _sum: SchedulesSumAggregateOutputType | null
+    _min: SchedulesMinAggregateOutputType | null
+    _max: SchedulesMaxAggregateOutputType | null
+  }
+
+  export type SchedulesAvgAggregateOutputType = {
+    day: number | null
+  }
+
+  export type SchedulesSumAggregateOutputType = {
+    day: number | null
+  }
+
+  export type SchedulesMinAggregateOutputType = {
+    scheduleId: string | null
+    day: number | null
+    opening_time: Date | null
+    closeing_time: Date | null
+    restaurantId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SchedulesMaxAggregateOutputType = {
+    scheduleId: string | null
+    day: number | null
+    opening_time: Date | null
+    closeing_time: Date | null
+    restaurantId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SchedulesCountAggregateOutputType = {
+    scheduleId: number
+    day: number
+    opening_time: number
+    closeing_time: number
+    restaurantId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SchedulesAvgAggregateInputType = {
+    day?: true
+  }
+
+  export type SchedulesSumAggregateInputType = {
+    day?: true
+  }
+
+  export type SchedulesMinAggregateInputType = {
+    scheduleId?: true
+    day?: true
+    opening_time?: true
+    closeing_time?: true
+    restaurantId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SchedulesMaxAggregateInputType = {
+    scheduleId?: true
+    day?: true
+    opening_time?: true
+    closeing_time?: true
+    restaurantId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SchedulesCountAggregateInputType = {
+    scheduleId?: true
+    day?: true
+    opening_time?: true
+    closeing_time?: true
+    restaurantId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SchedulesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which schedules to aggregate.
+     */
+    where?: schedulesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of schedules to fetch.
+     */
+    orderBy?: schedulesOrderByWithRelationInput | schedulesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: schedulesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` schedules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` schedules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned schedules
+    **/
+    _count?: true | SchedulesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SchedulesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SchedulesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SchedulesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SchedulesMaxAggregateInputType
+  }
+
+  export type GetSchedulesAggregateType<T extends SchedulesAggregateArgs> = {
+        [P in keyof T & keyof AggregateSchedules]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSchedules[P]>
+      : GetScalarType<T[P], AggregateSchedules[P]>
+  }
+
+
+
+
+  export type schedulesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: schedulesWhereInput
+    orderBy?: schedulesOrderByWithAggregationInput | schedulesOrderByWithAggregationInput[]
+    by: SchedulesScalarFieldEnum[] | SchedulesScalarFieldEnum
+    having?: schedulesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SchedulesCountAggregateInputType | true
+    _avg?: SchedulesAvgAggregateInputType
+    _sum?: SchedulesSumAggregateInputType
+    _min?: SchedulesMinAggregateInputType
+    _max?: SchedulesMaxAggregateInputType
+  }
+
+  export type SchedulesGroupByOutputType = {
+    scheduleId: string
+    day: number
+    opening_time: Date | null
+    closeing_time: Date | null
+    restaurantId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: SchedulesCountAggregateOutputType | null
+    _avg: SchedulesAvgAggregateOutputType | null
+    _sum: SchedulesSumAggregateOutputType | null
+    _min: SchedulesMinAggregateOutputType | null
+    _max: SchedulesMaxAggregateOutputType | null
+  }
+
+  type GetSchedulesGroupByPayload<T extends schedulesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SchedulesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SchedulesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SchedulesGroupByOutputType[P]>
+            : GetScalarType<T[P], SchedulesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type schedulesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    scheduleId?: boolean
+    day?: boolean
+    opening_time?: boolean
+    closeing_time?: boolean
+    restaurantId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    restaurant?: boolean | schedules$restaurantArgs<ExtArgs>
+  }, ExtArgs["result"]["schedules"]>
+
+
+
+  export type schedulesSelectScalar = {
+    scheduleId?: boolean
+    day?: boolean
+    opening_time?: boolean
+    closeing_time?: boolean
+    restaurantId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type schedulesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"scheduleId" | "day" | "opening_time" | "closeing_time" | "restaurantId" | "createdAt" | "updatedAt", ExtArgs["result"]["schedules"]>
+  export type schedulesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    restaurant?: boolean | schedules$restaurantArgs<ExtArgs>
+  }
+
+  export type $schedulesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "schedules"
+    objects: {
+      restaurant: Prisma.$RestaurantPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      scheduleId: string
+      day: number
+      opening_time: Date | null
+      closeing_time: Date | null
+      restaurantId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["schedules"]>
+    composites: {}
+  }
+
+  type schedulesGetPayload<S extends boolean | null | undefined | schedulesDefaultArgs> = $Result.GetResult<Prisma.$schedulesPayload, S>
+
+  type schedulesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<schedulesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SchedulesCountAggregateInputType | true
+    }
+
+  export interface schedulesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['schedules'], meta: { name: 'schedules' } }
+    /**
+     * Find zero or one Schedules that matches the filter.
+     * @param {schedulesFindUniqueArgs} args - Arguments to find a Schedules
+     * @example
+     * // Get one Schedules
+     * const schedules = await prisma.schedules.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends schedulesFindUniqueArgs>(args: SelectSubset<T, schedulesFindUniqueArgs<ExtArgs>>): Prisma__schedulesClient<$Result.GetResult<Prisma.$schedulesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Schedules that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {schedulesFindUniqueOrThrowArgs} args - Arguments to find a Schedules
+     * @example
+     * // Get one Schedules
+     * const schedules = await prisma.schedules.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends schedulesFindUniqueOrThrowArgs>(args: SelectSubset<T, schedulesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__schedulesClient<$Result.GetResult<Prisma.$schedulesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Schedules that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {schedulesFindFirstArgs} args - Arguments to find a Schedules
+     * @example
+     * // Get one Schedules
+     * const schedules = await prisma.schedules.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends schedulesFindFirstArgs>(args?: SelectSubset<T, schedulesFindFirstArgs<ExtArgs>>): Prisma__schedulesClient<$Result.GetResult<Prisma.$schedulesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Schedules that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {schedulesFindFirstOrThrowArgs} args - Arguments to find a Schedules
+     * @example
+     * // Get one Schedules
+     * const schedules = await prisma.schedules.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends schedulesFindFirstOrThrowArgs>(args?: SelectSubset<T, schedulesFindFirstOrThrowArgs<ExtArgs>>): Prisma__schedulesClient<$Result.GetResult<Prisma.$schedulesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Schedules that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {schedulesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Schedules
+     * const schedules = await prisma.schedules.findMany()
+     * 
+     * // Get first 10 Schedules
+     * const schedules = await prisma.schedules.findMany({ take: 10 })
+     * 
+     * // Only select the `scheduleId`
+     * const schedulesWithScheduleIdOnly = await prisma.schedules.findMany({ select: { scheduleId: true } })
+     * 
+     */
+    findMany<T extends schedulesFindManyArgs>(args?: SelectSubset<T, schedulesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$schedulesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Schedules.
+     * @param {schedulesCreateArgs} args - Arguments to create a Schedules.
+     * @example
+     * // Create one Schedules
+     * const Schedules = await prisma.schedules.create({
+     *   data: {
+     *     // ... data to create a Schedules
+     *   }
+     * })
+     * 
+     */
+    create<T extends schedulesCreateArgs>(args: SelectSubset<T, schedulesCreateArgs<ExtArgs>>): Prisma__schedulesClient<$Result.GetResult<Prisma.$schedulesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Schedules.
+     * @param {schedulesCreateManyArgs} args - Arguments to create many Schedules.
+     * @example
+     * // Create many Schedules
+     * const schedules = await prisma.schedules.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends schedulesCreateManyArgs>(args?: SelectSubset<T, schedulesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Schedules.
+     * @param {schedulesDeleteArgs} args - Arguments to delete one Schedules.
+     * @example
+     * // Delete one Schedules
+     * const Schedules = await prisma.schedules.delete({
+     *   where: {
+     *     // ... filter to delete one Schedules
+     *   }
+     * })
+     * 
+     */
+    delete<T extends schedulesDeleteArgs>(args: SelectSubset<T, schedulesDeleteArgs<ExtArgs>>): Prisma__schedulesClient<$Result.GetResult<Prisma.$schedulesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Schedules.
+     * @param {schedulesUpdateArgs} args - Arguments to update one Schedules.
+     * @example
+     * // Update one Schedules
+     * const schedules = await prisma.schedules.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends schedulesUpdateArgs>(args: SelectSubset<T, schedulesUpdateArgs<ExtArgs>>): Prisma__schedulesClient<$Result.GetResult<Prisma.$schedulesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Schedules.
+     * @param {schedulesDeleteManyArgs} args - Arguments to filter Schedules to delete.
+     * @example
+     * // Delete a few Schedules
+     * const { count } = await prisma.schedules.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends schedulesDeleteManyArgs>(args?: SelectSubset<T, schedulesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Schedules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {schedulesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Schedules
+     * const schedules = await prisma.schedules.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends schedulesUpdateManyArgs>(args: SelectSubset<T, schedulesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Schedules.
+     * @param {schedulesUpsertArgs} args - Arguments to update or create a Schedules.
+     * @example
+     * // Update or create a Schedules
+     * const schedules = await prisma.schedules.upsert({
+     *   create: {
+     *     // ... data to create a Schedules
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Schedules we want to update
+     *   }
+     * })
+     */
+    upsert<T extends schedulesUpsertArgs>(args: SelectSubset<T, schedulesUpsertArgs<ExtArgs>>): Prisma__schedulesClient<$Result.GetResult<Prisma.$schedulesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Schedules that matches the filter.
+     * @param {schedulesFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const schedules = await prisma.schedules.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: schedulesFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Schedules.
+     * @param {schedulesAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const schedules = await prisma.schedules.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: schedulesAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Schedules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {schedulesCountArgs} args - Arguments to filter Schedules to count.
+     * @example
+     * // Count the number of Schedules
+     * const count = await prisma.schedules.count({
+     *   where: {
+     *     // ... the filter for the Schedules we want to count
+     *   }
+     * })
+    **/
+    count<T extends schedulesCountArgs>(
+      args?: Subset<T, schedulesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SchedulesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Schedules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SchedulesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SchedulesAggregateArgs>(args: Subset<T, SchedulesAggregateArgs>): Prisma.PrismaPromise<GetSchedulesAggregateType<T>>
+
+    /**
+     * Group by Schedules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {schedulesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends schedulesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: schedulesGroupByArgs['orderBy'] }
+        : { orderBy?: schedulesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, schedulesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSchedulesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the schedules model
+   */
+  readonly fields: schedulesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for schedules.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__schedulesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    restaurant<T extends schedules$restaurantArgs<ExtArgs> = {}>(args?: Subset<T, schedules$restaurantArgs<ExtArgs>>): Prisma__RestaurantClient<$Result.GetResult<Prisma.$RestaurantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the schedules model
+   */
+  interface schedulesFieldRefs {
+    readonly scheduleId: FieldRef<"schedules", 'String'>
+    readonly day: FieldRef<"schedules", 'Int'>
+    readonly opening_time: FieldRef<"schedules", 'DateTime'>
+    readonly closeing_time: FieldRef<"schedules", 'DateTime'>
+    readonly restaurantId: FieldRef<"schedules", 'String'>
+    readonly createdAt: FieldRef<"schedules", 'DateTime'>
+    readonly updatedAt: FieldRef<"schedules", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * schedules findUnique
+   */
+  export type schedulesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the schedules
+     */
+    select?: schedulesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the schedules
+     */
+    omit?: schedulesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: schedulesInclude<ExtArgs> | null
+    /**
+     * Filter, which schedules to fetch.
+     */
+    where: schedulesWhereUniqueInput
+  }
+
+  /**
+   * schedules findUniqueOrThrow
+   */
+  export type schedulesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the schedules
+     */
+    select?: schedulesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the schedules
+     */
+    omit?: schedulesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: schedulesInclude<ExtArgs> | null
+    /**
+     * Filter, which schedules to fetch.
+     */
+    where: schedulesWhereUniqueInput
+  }
+
+  /**
+   * schedules findFirst
+   */
+  export type schedulesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the schedules
+     */
+    select?: schedulesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the schedules
+     */
+    omit?: schedulesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: schedulesInclude<ExtArgs> | null
+    /**
+     * Filter, which schedules to fetch.
+     */
+    where?: schedulesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of schedules to fetch.
+     */
+    orderBy?: schedulesOrderByWithRelationInput | schedulesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for schedules.
+     */
+    cursor?: schedulesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` schedules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` schedules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of schedules.
+     */
+    distinct?: SchedulesScalarFieldEnum | SchedulesScalarFieldEnum[]
+  }
+
+  /**
+   * schedules findFirstOrThrow
+   */
+  export type schedulesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the schedules
+     */
+    select?: schedulesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the schedules
+     */
+    omit?: schedulesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: schedulesInclude<ExtArgs> | null
+    /**
+     * Filter, which schedules to fetch.
+     */
+    where?: schedulesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of schedules to fetch.
+     */
+    orderBy?: schedulesOrderByWithRelationInput | schedulesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for schedules.
+     */
+    cursor?: schedulesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` schedules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` schedules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of schedules.
+     */
+    distinct?: SchedulesScalarFieldEnum | SchedulesScalarFieldEnum[]
+  }
+
+  /**
+   * schedules findMany
+   */
+  export type schedulesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the schedules
+     */
+    select?: schedulesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the schedules
+     */
+    omit?: schedulesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: schedulesInclude<ExtArgs> | null
+    /**
+     * Filter, which schedules to fetch.
+     */
+    where?: schedulesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of schedules to fetch.
+     */
+    orderBy?: schedulesOrderByWithRelationInput | schedulesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing schedules.
+     */
+    cursor?: schedulesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` schedules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` schedules.
+     */
+    skip?: number
+    distinct?: SchedulesScalarFieldEnum | SchedulesScalarFieldEnum[]
+  }
+
+  /**
+   * schedules create
+   */
+  export type schedulesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the schedules
+     */
+    select?: schedulesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the schedules
+     */
+    omit?: schedulesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: schedulesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a schedules.
+     */
+    data: XOR<schedulesCreateInput, schedulesUncheckedCreateInput>
+  }
+
+  /**
+   * schedules createMany
+   */
+  export type schedulesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many schedules.
+     */
+    data: schedulesCreateManyInput | schedulesCreateManyInput[]
+  }
+
+  /**
+   * schedules update
+   */
+  export type schedulesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the schedules
+     */
+    select?: schedulesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the schedules
+     */
+    omit?: schedulesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: schedulesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a schedules.
+     */
+    data: XOR<schedulesUpdateInput, schedulesUncheckedUpdateInput>
+    /**
+     * Choose, which schedules to update.
+     */
+    where: schedulesWhereUniqueInput
+  }
+
+  /**
+   * schedules updateMany
+   */
+  export type schedulesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update schedules.
+     */
+    data: XOR<schedulesUpdateManyMutationInput, schedulesUncheckedUpdateManyInput>
+    /**
+     * Filter which schedules to update
+     */
+    where?: schedulesWhereInput
+    /**
+     * Limit how many schedules to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * schedules upsert
+   */
+  export type schedulesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the schedules
+     */
+    select?: schedulesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the schedules
+     */
+    omit?: schedulesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: schedulesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the schedules to update in case it exists.
+     */
+    where: schedulesWhereUniqueInput
+    /**
+     * In case the schedules found by the `where` argument doesn't exist, create a new schedules with this data.
+     */
+    create: XOR<schedulesCreateInput, schedulesUncheckedCreateInput>
+    /**
+     * In case the schedules was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<schedulesUpdateInput, schedulesUncheckedUpdateInput>
+  }
+
+  /**
+   * schedules delete
+   */
+  export type schedulesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the schedules
+     */
+    select?: schedulesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the schedules
+     */
+    omit?: schedulesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: schedulesInclude<ExtArgs> | null
+    /**
+     * Filter which schedules to delete.
+     */
+    where: schedulesWhereUniqueInput
+  }
+
+  /**
+   * schedules deleteMany
+   */
+  export type schedulesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which schedules to delete
+     */
+    where?: schedulesWhereInput
+    /**
+     * Limit how many schedules to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * schedules findRaw
+   */
+  export type schedulesFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * schedules aggregateRaw
+   */
+  export type schedulesAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * schedules.restaurant
+   */
+  export type schedules$restaurantArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Restaurant
+     */
+    select?: RestaurantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Restaurant
+     */
+    omit?: RestaurantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RestaurantInclude<ExtArgs> | null
+    where?: RestaurantWhereInput
+  }
+
+  /**
+   * schedules without action
+   */
+  export type schedulesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the schedules
+     */
+    select?: schedulesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the schedules
+     */
+    omit?: schedulesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: schedulesInclude<ExtArgs> | null
   }
 
 
@@ -9345,6 +10578,8 @@ export namespace Prisma {
     veg?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    schedules?: boolean | Restaurant$schedulesArgs<ExtArgs>
+    foods?: boolean | Restaurant$foodsArgs<ExtArgs>
     cuisine?: boolean | Restaurant$cuisineArgs<ExtArgs>
     _count?: boolean | RestaurantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["restaurant"]>
@@ -9379,6 +10614,8 @@ export namespace Prisma {
 
   export type RestaurantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"restaurantId" | "name" | "phone" | "email" | "logo" | "image" | "status" | "longitude" | "latitude" | "address" | "footer_text" | "minimum_order" | "comission" | "schedule_order" | "cover_photo" | "delivery" | "free_delivery" | "active" | "off_day" | "delivery_time" | "veg" | "createdAt" | "updatedAt", ExtArgs["result"]["restaurant"]>
   export type RestaurantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    schedules?: boolean | Restaurant$schedulesArgs<ExtArgs>
+    foods?: boolean | Restaurant$foodsArgs<ExtArgs>
     cuisine?: boolean | Restaurant$cuisineArgs<ExtArgs>
     _count?: boolean | RestaurantCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -9386,6 +10623,8 @@ export namespace Prisma {
   export type $RestaurantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Restaurant"
     objects: {
+      schedules: Prisma.$schedulesPayload<ExtArgs>[]
+      foods: Prisma.$FoodPayload<ExtArgs>[]
       cuisine: Prisma.$CuisinePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -9775,6 +11014,8 @@ export namespace Prisma {
    */
   export interface Prisma__RestaurantClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    schedules<T extends Restaurant$schedulesArgs<ExtArgs> = {}>(args?: Subset<T, Restaurant$schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$schedulesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    foods<T extends Restaurant$foodsArgs<ExtArgs> = {}>(args?: Subset<T, Restaurant$foodsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FoodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     cuisine<T extends Restaurant$cuisineArgs<ExtArgs> = {}>(args?: Subset<T, Restaurant$cuisineArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CuisinePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10198,6 +11439,54 @@ export namespace Prisma {
   }
 
   /**
+   * Restaurant.schedules
+   */
+  export type Restaurant$schedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the schedules
+     */
+    select?: schedulesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the schedules
+     */
+    omit?: schedulesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: schedulesInclude<ExtArgs> | null
+    where?: schedulesWhereInput
+    orderBy?: schedulesOrderByWithRelationInput | schedulesOrderByWithRelationInput[]
+    cursor?: schedulesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SchedulesScalarFieldEnum | SchedulesScalarFieldEnum[]
+  }
+
+  /**
+   * Restaurant.foods
+   */
+  export type Restaurant$foodsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Food
+     */
+    select?: FoodSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Food
+     */
+    omit?: FoodOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FoodInclude<ExtArgs> | null
+    where?: FoodWhereInput
+    orderBy?: FoodOrderByWithRelationInput | FoodOrderByWithRelationInput[]
+    cursor?: FoodWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FoodScalarFieldEnum | FoodScalarFieldEnum[]
+  }
+
+  /**
    * Restaurant.cuisine
    */
   export type Restaurant$cuisineArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10266,12 +11555,8 @@ export namespace Prisma {
     veg: 'veg',
     discount: 'discount',
     sell_count: 'sell_count',
-    restaurant_name: 'restaurant_name',
-    restaurant_status: 'restaurant_status',
-    restaurant_discount: 'restaurant_discount',
-    restaurant_opening_time: 'restaurant_opening_time',
-    restaurant_closing_time: 'restaurant_closing_time',
     image: 'image',
+    restaurantId: 'restaurantId',
     categoryId: 'categoryId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -10344,6 +11629,19 @@ export namespace Prisma {
   };
 
   export type CuisineScalarFieldEnum = (typeof CuisineScalarFieldEnum)[keyof typeof CuisineScalarFieldEnum]
+
+
+  export const SchedulesScalarFieldEnum: {
+    scheduleId: 'scheduleId',
+    day: 'day',
+    opening_time: 'opening_time',
+    closeing_time: 'closeing_time',
+    restaurantId: 'restaurantId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SchedulesScalarFieldEnum = (typeof SchedulesScalarFieldEnum)[keyof typeof SchedulesScalarFieldEnum]
 
 
   export const RestaurantScalarFieldEnum: {
@@ -10528,18 +11826,15 @@ export namespace Prisma {
     veg?: BoolFilter<"Food"> | boolean
     discount?: FloatFilter<"Food"> | number
     sell_count?: IntFilter<"Food"> | number
-    restaurant_name?: StringFilter<"Food"> | string
-    restaurant_status?: BoolFilter<"Food"> | boolean
-    restaurant_discount?: FloatFilter<"Food"> | number
-    restaurant_opening_time?: DateTimeFilter<"Food"> | Date | string
-    restaurant_closing_time?: DateTimeFilter<"Food"> | Date | string
     image?: StringFilter<"Food"> | string
-    categoryId?: StringFilter<"Food"> | string
+    restaurantId?: StringNullableFilter<"Food"> | string | null
+    categoryId?: StringNullableFilter<"Food"> | string | null
     createdAt?: DateTimeFilter<"Food"> | Date | string
     updatedAt?: DateTimeFilter<"Food"> | Date | string
     variants?: VariantListRelationFilter
     cuisine?: CuisineListRelationFilter
-    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+    restaurant?: XOR<RestaurantNullableScalarRelationFilter, RestaurantWhereInput> | null
+    category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
   }
 
   export type FoodOrderByWithRelationInput = {
@@ -10553,17 +11848,14 @@ export namespace Prisma {
     veg?: SortOrder
     discount?: SortOrder
     sell_count?: SortOrder
-    restaurant_name?: SortOrder
-    restaurant_status?: SortOrder
-    restaurant_discount?: SortOrder
-    restaurant_opening_time?: SortOrder
-    restaurant_closing_time?: SortOrder
     image?: SortOrder
+    restaurantId?: SortOrder
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     variants?: VariantOrderByRelationAggregateInput
     cuisine?: CuisineOrderByRelationAggregateInput
+    restaurant?: RestaurantOrderByWithRelationInput
     category?: CategoryOrderByWithRelationInput
   }
 
@@ -10581,18 +11873,15 @@ export namespace Prisma {
     veg?: BoolFilter<"Food"> | boolean
     discount?: FloatFilter<"Food"> | number
     sell_count?: IntFilter<"Food"> | number
-    restaurant_name?: StringFilter<"Food"> | string
-    restaurant_status?: BoolFilter<"Food"> | boolean
-    restaurant_discount?: FloatFilter<"Food"> | number
-    restaurant_opening_time?: DateTimeFilter<"Food"> | Date | string
-    restaurant_closing_time?: DateTimeFilter<"Food"> | Date | string
     image?: StringFilter<"Food"> | string
-    categoryId?: StringFilter<"Food"> | string
+    restaurantId?: StringNullableFilter<"Food"> | string | null
+    categoryId?: StringNullableFilter<"Food"> | string | null
     createdAt?: DateTimeFilter<"Food"> | Date | string
     updatedAt?: DateTimeFilter<"Food"> | Date | string
     variants?: VariantListRelationFilter
     cuisine?: CuisineListRelationFilter
-    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+    restaurant?: XOR<RestaurantNullableScalarRelationFilter, RestaurantWhereInput> | null
+    category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
   }, "id">
 
   export type FoodOrderByWithAggregationInput = {
@@ -10606,12 +11895,8 @@ export namespace Prisma {
     veg?: SortOrder
     discount?: SortOrder
     sell_count?: SortOrder
-    restaurant_name?: SortOrder
-    restaurant_status?: SortOrder
-    restaurant_discount?: SortOrder
-    restaurant_opening_time?: SortOrder
-    restaurant_closing_time?: SortOrder
     image?: SortOrder
+    restaurantId?: SortOrder
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10636,13 +11921,9 @@ export namespace Prisma {
     veg?: BoolWithAggregatesFilter<"Food"> | boolean
     discount?: FloatWithAggregatesFilter<"Food"> | number
     sell_count?: IntWithAggregatesFilter<"Food"> | number
-    restaurant_name?: StringWithAggregatesFilter<"Food"> | string
-    restaurant_status?: BoolWithAggregatesFilter<"Food"> | boolean
-    restaurant_discount?: FloatWithAggregatesFilter<"Food"> | number
-    restaurant_opening_time?: DateTimeWithAggregatesFilter<"Food"> | Date | string
-    restaurant_closing_time?: DateTimeWithAggregatesFilter<"Food"> | Date | string
     image?: StringWithAggregatesFilter<"Food"> | string
-    categoryId?: StringWithAggregatesFilter<"Food"> | string
+    restaurantId?: StringNullableWithAggregatesFilter<"Food"> | string | null
+    categoryId?: StringNullableWithAggregatesFilter<"Food"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Food"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Food"> | Date | string
   }
@@ -10657,8 +11938,8 @@ export namespace Prisma {
     min?: StringFilter<"Variant"> | string
     max?: StringFilter<"Variant"> | string
     required?: BoolFilter<"Variant"> | boolean
-    foodId?: StringFilter<"Variant"> | string
-    food?: XOR<FoodScalarRelationFilter, FoodWhereInput>
+    foodId?: StringNullableFilter<"Variant"> | string | null
+    food?: XOR<FoodNullableScalarRelationFilter, FoodWhereInput> | null
     values?: ValueListRelationFilter
   }
 
@@ -10684,8 +11965,8 @@ export namespace Prisma {
     min?: StringFilter<"Variant"> | string
     max?: StringFilter<"Variant"> | string
     required?: BoolFilter<"Variant"> | boolean
-    foodId?: StringFilter<"Variant"> | string
-    food?: XOR<FoodScalarRelationFilter, FoodWhereInput>
+    foodId?: StringNullableFilter<"Variant"> | string | null
+    food?: XOR<FoodNullableScalarRelationFilter, FoodWhereInput> | null
     values?: ValueListRelationFilter
   }, "variantId">
 
@@ -10712,7 +11993,7 @@ export namespace Prisma {
     min?: StringWithAggregatesFilter<"Variant"> | string
     max?: StringWithAggregatesFilter<"Variant"> | string
     required?: BoolWithAggregatesFilter<"Variant"> | boolean
-    foodId?: StringWithAggregatesFilter<"Variant"> | string
+    foodId?: StringNullableWithAggregatesFilter<"Variant"> | string | null
   }
 
   export type ValueWhereInput = {
@@ -10864,10 +12145,10 @@ export namespace Prisma {
     id?: StringFilter<"Type"> | string
     name?: StringFilter<"Type"> | string
     status?: BoolFilter<"Type"> | boolean
-    categoryId?: StringFilter<"Type"> | string
+    categoryId?: StringNullableFilter<"Type"> | string | null
     createdAt?: DateTimeFilter<"Type"> | Date | string
     updatedAt?: DateTimeFilter<"Type"> | Date | string
-    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+    category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
   }
 
   export type TypeOrderByWithRelationInput = {
@@ -10887,10 +12168,10 @@ export namespace Prisma {
     NOT?: TypeWhereInput | TypeWhereInput[]
     name?: StringFilter<"Type"> | string
     status?: BoolFilter<"Type"> | boolean
-    categoryId?: StringFilter<"Type"> | string
+    categoryId?: StringNullableFilter<"Type"> | string | null
     createdAt?: DateTimeFilter<"Type"> | Date | string
     updatedAt?: DateTimeFilter<"Type"> | Date | string
-    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
+    category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
   }, "id">
 
   export type TypeOrderByWithAggregationInput = {
@@ -10912,7 +12193,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Type"> | string
     name?: StringWithAggregatesFilter<"Type"> | string
     status?: BoolWithAggregatesFilter<"Type"> | boolean
-    categoryId?: StringWithAggregatesFilter<"Type"> | string
+    categoryId?: StringNullableWithAggregatesFilter<"Type"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Type"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Type"> | Date | string
   }
@@ -10925,12 +12206,12 @@ export namespace Prisma {
     name?: StringFilter<"Cuisine"> | string
     image?: StringFilter<"Cuisine"> | string
     status?: BoolFilter<"Cuisine"> | boolean
-    restaurantId?: StringFilter<"Cuisine"> | string
-    foodId?: StringFilter<"Cuisine"> | string
+    restaurantId?: StringNullableFilter<"Cuisine"> | string | null
+    foodId?: StringNullableFilter<"Cuisine"> | string | null
     createdAt?: DateTimeFilter<"Cuisine"> | Date | string
     updatedAt?: DateTimeFilter<"Cuisine"> | Date | string
-    restaurant?: XOR<RestaurantScalarRelationFilter, RestaurantWhereInput>
-    food?: XOR<FoodScalarRelationFilter, FoodWhereInput>
+    restaurant?: XOR<RestaurantNullableScalarRelationFilter, RestaurantWhereInput> | null
+    food?: XOR<FoodNullableScalarRelationFilter, FoodWhereInput> | null
   }
 
   export type CuisineOrderByWithRelationInput = {
@@ -10954,12 +12235,12 @@ export namespace Prisma {
     name?: StringFilter<"Cuisine"> | string
     image?: StringFilter<"Cuisine"> | string
     status?: BoolFilter<"Cuisine"> | boolean
-    restaurantId?: StringFilter<"Cuisine"> | string
-    foodId?: StringFilter<"Cuisine"> | string
+    restaurantId?: StringNullableFilter<"Cuisine"> | string | null
+    foodId?: StringNullableFilter<"Cuisine"> | string | null
     createdAt?: DateTimeFilter<"Cuisine"> | Date | string
     updatedAt?: DateTimeFilter<"Cuisine"> | Date | string
-    restaurant?: XOR<RestaurantScalarRelationFilter, RestaurantWhereInput>
-    food?: XOR<FoodScalarRelationFilter, FoodWhereInput>
+    restaurant?: XOR<RestaurantNullableScalarRelationFilter, RestaurantWhereInput> | null
+    food?: XOR<FoodNullableScalarRelationFilter, FoodWhereInput> | null
   }, "cuisineId">
 
   export type CuisineOrderByWithAggregationInput = {
@@ -10984,10 +12265,77 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Cuisine"> | string
     image?: StringWithAggregatesFilter<"Cuisine"> | string
     status?: BoolWithAggregatesFilter<"Cuisine"> | boolean
-    restaurantId?: StringWithAggregatesFilter<"Cuisine"> | string
-    foodId?: StringWithAggregatesFilter<"Cuisine"> | string
+    restaurantId?: StringNullableWithAggregatesFilter<"Cuisine"> | string | null
+    foodId?: StringNullableWithAggregatesFilter<"Cuisine"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Cuisine"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Cuisine"> | Date | string
+  }
+
+  export type schedulesWhereInput = {
+    AND?: schedulesWhereInput | schedulesWhereInput[]
+    OR?: schedulesWhereInput[]
+    NOT?: schedulesWhereInput | schedulesWhereInput[]
+    scheduleId?: StringFilter<"schedules"> | string
+    day?: IntFilter<"schedules"> | number
+    opening_time?: DateTimeNullableFilter<"schedules"> | Date | string | null
+    closeing_time?: DateTimeNullableFilter<"schedules"> | Date | string | null
+    restaurantId?: StringNullableFilter<"schedules"> | string | null
+    createdAt?: DateTimeFilter<"schedules"> | Date | string
+    updatedAt?: DateTimeFilter<"schedules"> | Date | string
+    restaurant?: XOR<RestaurantNullableScalarRelationFilter, RestaurantWhereInput> | null
+  }
+
+  export type schedulesOrderByWithRelationInput = {
+    scheduleId?: SortOrder
+    day?: SortOrder
+    opening_time?: SortOrder
+    closeing_time?: SortOrder
+    restaurantId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    restaurant?: RestaurantOrderByWithRelationInput
+  }
+
+  export type schedulesWhereUniqueInput = Prisma.AtLeast<{
+    scheduleId?: string
+    AND?: schedulesWhereInput | schedulesWhereInput[]
+    OR?: schedulesWhereInput[]
+    NOT?: schedulesWhereInput | schedulesWhereInput[]
+    day?: IntFilter<"schedules"> | number
+    opening_time?: DateTimeNullableFilter<"schedules"> | Date | string | null
+    closeing_time?: DateTimeNullableFilter<"schedules"> | Date | string | null
+    restaurantId?: StringNullableFilter<"schedules"> | string | null
+    createdAt?: DateTimeFilter<"schedules"> | Date | string
+    updatedAt?: DateTimeFilter<"schedules"> | Date | string
+    restaurant?: XOR<RestaurantNullableScalarRelationFilter, RestaurantWhereInput> | null
+  }, "scheduleId">
+
+  export type schedulesOrderByWithAggregationInput = {
+    scheduleId?: SortOrder
+    day?: SortOrder
+    opening_time?: SortOrder
+    closeing_time?: SortOrder
+    restaurantId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: schedulesCountOrderByAggregateInput
+    _avg?: schedulesAvgOrderByAggregateInput
+    _max?: schedulesMaxOrderByAggregateInput
+    _min?: schedulesMinOrderByAggregateInput
+    _sum?: schedulesSumOrderByAggregateInput
+  }
+
+  export type schedulesScalarWhereWithAggregatesInput = {
+    AND?: schedulesScalarWhereWithAggregatesInput | schedulesScalarWhereWithAggregatesInput[]
+    OR?: schedulesScalarWhereWithAggregatesInput[]
+    NOT?: schedulesScalarWhereWithAggregatesInput | schedulesScalarWhereWithAggregatesInput[]
+    scheduleId?: StringWithAggregatesFilter<"schedules"> | string
+    day?: IntWithAggregatesFilter<"schedules"> | number
+    opening_time?: DateTimeNullableWithAggregatesFilter<"schedules"> | Date | string | null
+    closeing_time?: DateTimeNullableWithAggregatesFilter<"schedules"> | Date | string | null
+    restaurantId?: StringNullableWithAggregatesFilter<"schedules"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"schedules"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"schedules"> | Date | string
   }
 
   export type RestaurantWhereInput = {
@@ -11017,6 +12365,8 @@ export namespace Prisma {
     veg?: BoolFilter<"Restaurant"> | boolean
     createdAt?: DateTimeFilter<"Restaurant"> | Date | string
     updatedAt?: DateTimeFilter<"Restaurant"> | Date | string
+    schedules?: SchedulesListRelationFilter
+    foods?: FoodListRelationFilter
     cuisine?: CuisineListRelationFilter
   }
 
@@ -11044,6 +12394,8 @@ export namespace Prisma {
     veg?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    schedules?: schedulesOrderByRelationAggregateInput
+    foods?: FoodOrderByRelationAggregateInput
     cuisine?: CuisineOrderByRelationAggregateInput
   }
 
@@ -11074,6 +12426,8 @@ export namespace Prisma {
     veg?: BoolFilter<"Restaurant"> | boolean
     createdAt?: DateTimeFilter<"Restaurant"> | Date | string
     updatedAt?: DateTimeFilter<"Restaurant"> | Date | string
+    schedules?: SchedulesListRelationFilter
+    foods?: FoodListRelationFilter
     cuisine?: CuisineListRelationFilter
   }, "restaurantId">
 
@@ -11200,17 +12554,13 @@ export namespace Prisma {
     veg: boolean
     discount: number
     sell_count: number
-    restaurant_name: string
-    restaurant_status: boolean
-    restaurant_discount: number
-    restaurant_opening_time: Date | string
-    restaurant_closing_time: Date | string
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
     variants?: VariantCreateNestedManyWithoutFoodInput
     cuisine?: CuisineCreateNestedManyWithoutFoodInput
-    category: CategoryCreateNestedOneWithoutFoodsInput
+    restaurant?: RestaurantCreateNestedOneWithoutFoodsInput
+    category?: CategoryCreateNestedOneWithoutFoodsInput
   }
 
   export type FoodUncheckedCreateInput = {
@@ -11224,13 +12574,9 @@ export namespace Prisma {
     veg: boolean
     discount: number
     sell_count: number
-    restaurant_name: string
-    restaurant_status: boolean
-    restaurant_discount: number
-    restaurant_opening_time: Date | string
-    restaurant_closing_time: Date | string
     image: string
-    categoryId: string
+    restaurantId?: string | null
+    categoryId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     variants?: VariantUncheckedCreateNestedManyWithoutFoodInput
@@ -11247,17 +12593,13 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     discount?: FloatFieldUpdateOperationsInput | number
     sell_count?: IntFieldUpdateOperationsInput | number
-    restaurant_name?: StringFieldUpdateOperationsInput | string
-    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
-    restaurant_discount?: FloatFieldUpdateOperationsInput | number
-    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     variants?: VariantUpdateManyWithoutFoodNestedInput
     cuisine?: CuisineUpdateManyWithoutFoodNestedInput
-    category?: CategoryUpdateOneRequiredWithoutFoodsNestedInput
+    restaurant?: RestaurantUpdateOneWithoutFoodsNestedInput
+    category?: CategoryUpdateOneWithoutFoodsNestedInput
   }
 
   export type FoodUncheckedUpdateInput = {
@@ -11270,13 +12612,9 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     discount?: FloatFieldUpdateOperationsInput | number
     sell_count?: IntFieldUpdateOperationsInput | number
-    restaurant_name?: StringFieldUpdateOperationsInput | string
-    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
-    restaurant_discount?: FloatFieldUpdateOperationsInput | number
-    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     variants?: VariantUncheckedUpdateManyWithoutFoodNestedInput
@@ -11294,13 +12632,9 @@ export namespace Prisma {
     veg: boolean
     discount: number
     sell_count: number
-    restaurant_name: string
-    restaurant_status: boolean
-    restaurant_discount: number
-    restaurant_opening_time: Date | string
-    restaurant_closing_time: Date | string
     image: string
-    categoryId: string
+    restaurantId?: string | null
+    categoryId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11315,11 +12649,6 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     discount?: FloatFieldUpdateOperationsInput | number
     sell_count?: IntFieldUpdateOperationsInput | number
-    restaurant_name?: StringFieldUpdateOperationsInput | string
-    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
-    restaurant_discount?: FloatFieldUpdateOperationsInput | number
-    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11335,13 +12664,9 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     discount?: FloatFieldUpdateOperationsInput | number
     sell_count?: IntFieldUpdateOperationsInput | number
-    restaurant_name?: StringFieldUpdateOperationsInput | string
-    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
-    restaurant_discount?: FloatFieldUpdateOperationsInput | number
-    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11353,7 +12678,7 @@ export namespace Prisma {
     min: string
     max: string
     required: boolean
-    food: FoodCreateNestedOneWithoutVariantsInput
+    food?: FoodCreateNestedOneWithoutVariantsInput
     values?: ValueCreateNestedManyWithoutVariantInput
   }
 
@@ -11364,7 +12689,7 @@ export namespace Prisma {
     min: string
     max: string
     required: boolean
-    foodId: string
+    foodId?: string | null
     values?: ValueUncheckedCreateNestedManyWithoutVariantInput
   }
 
@@ -11374,7 +12699,7 @@ export namespace Prisma {
     min?: StringFieldUpdateOperationsInput | string
     max?: StringFieldUpdateOperationsInput | string
     required?: BoolFieldUpdateOperationsInput | boolean
-    food?: FoodUpdateOneRequiredWithoutVariantsNestedInput
+    food?: FoodUpdateOneWithoutVariantsNestedInput
     values?: ValueUpdateManyWithoutVariantNestedInput
   }
 
@@ -11384,7 +12709,7 @@ export namespace Prisma {
     min?: StringFieldUpdateOperationsInput | string
     max?: StringFieldUpdateOperationsInput | string
     required?: BoolFieldUpdateOperationsInput | boolean
-    foodId?: StringFieldUpdateOperationsInput | string
+    foodId?: NullableStringFieldUpdateOperationsInput | string | null
     values?: ValueUncheckedUpdateManyWithoutVariantNestedInput
   }
 
@@ -11395,7 +12720,7 @@ export namespace Prisma {
     min: string
     max: string
     required: boolean
-    foodId: string
+    foodId?: string | null
   }
 
   export type VariantUpdateManyMutationInput = {
@@ -11412,7 +12737,7 @@ export namespace Prisma {
     min?: StringFieldUpdateOperationsInput | string
     max?: StringFieldUpdateOperationsInput | string
     required?: BoolFieldUpdateOperationsInput | boolean
-    foodId?: StringFieldUpdateOperationsInput | string
+    foodId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ValueCreateInput = {
@@ -11567,14 +12892,14 @@ export namespace Prisma {
     status?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    category: CategoryCreateNestedOneWithoutTypeInput
+    category?: CategoryCreateNestedOneWithoutTypeInput
   }
 
   export type TypeUncheckedCreateInput = {
     id?: string
     name: string
     status?: boolean
-    categoryId: string
+    categoryId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11584,13 +12909,13 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    category?: CategoryUpdateOneRequiredWithoutTypeNestedInput
+    category?: CategoryUpdateOneWithoutTypeNestedInput
   }
 
   export type TypeUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
-    categoryId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11599,7 +12924,7 @@ export namespace Prisma {
     id?: string
     name: string
     status?: boolean
-    categoryId: string
+    categoryId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11614,7 +12939,7 @@ export namespace Prisma {
   export type TypeUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
-    categoryId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11626,8 +12951,8 @@ export namespace Prisma {
     status?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    restaurant: RestaurantCreateNestedOneWithoutCuisineInput
-    food: FoodCreateNestedOneWithoutCuisineInput
+    restaurant?: RestaurantCreateNestedOneWithoutCuisineInput
+    food?: FoodCreateNestedOneWithoutCuisineInput
   }
 
   export type CuisineUncheckedCreateInput = {
@@ -11635,8 +12960,8 @@ export namespace Prisma {
     name: string
     image: string
     status?: boolean
-    restaurantId: string
-    foodId: string
+    restaurantId?: string | null
+    foodId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11647,16 +12972,16 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant?: RestaurantUpdateOneRequiredWithoutCuisineNestedInput
-    food?: FoodUpdateOneRequiredWithoutCuisineNestedInput
+    restaurant?: RestaurantUpdateOneWithoutCuisineNestedInput
+    food?: FoodUpdateOneWithoutCuisineNestedInput
   }
 
   export type CuisineUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
-    restaurantId?: StringFieldUpdateOperationsInput | string
-    foodId?: StringFieldUpdateOperationsInput | string
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
+    foodId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11666,8 +12991,8 @@ export namespace Prisma {
     name: string
     image: string
     status?: boolean
-    restaurantId: string
-    foodId: string
+    restaurantId?: string | null
+    foodId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11684,8 +13009,73 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
-    restaurantId?: StringFieldUpdateOperationsInput | string
-    foodId?: StringFieldUpdateOperationsInput | string
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
+    foodId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type schedulesCreateInput = {
+    scheduleId?: string
+    day: number
+    opening_time?: Date | string | null
+    closeing_time?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    restaurant?: RestaurantCreateNestedOneWithoutSchedulesInput
+  }
+
+  export type schedulesUncheckedCreateInput = {
+    scheduleId?: string
+    day: number
+    opening_time?: Date | string | null
+    closeing_time?: Date | string | null
+    restaurantId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type schedulesUpdateInput = {
+    day?: IntFieldUpdateOperationsInput | number
+    opening_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closeing_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    restaurant?: RestaurantUpdateOneWithoutSchedulesNestedInput
+  }
+
+  export type schedulesUncheckedUpdateInput = {
+    day?: IntFieldUpdateOperationsInput | number
+    opening_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closeing_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type schedulesCreateManyInput = {
+    scheduleId?: string
+    day: number
+    opening_time?: Date | string | null
+    closeing_time?: Date | string | null
+    restaurantId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type schedulesUpdateManyMutationInput = {
+    day?: IntFieldUpdateOperationsInput | number
+    opening_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closeing_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type schedulesUncheckedUpdateManyInput = {
+    day?: IntFieldUpdateOperationsInput | number
+    opening_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closeing_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11714,6 +13104,8 @@ export namespace Prisma {
     veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    schedules?: schedulesCreateNestedManyWithoutRestaurantInput
+    foods?: FoodCreateNestedManyWithoutRestaurantInput
     cuisine?: CuisineCreateNestedManyWithoutRestaurantInput
   }
 
@@ -11741,6 +13133,8 @@ export namespace Prisma {
     veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    schedules?: schedulesUncheckedCreateNestedManyWithoutRestaurantInput
+    foods?: FoodUncheckedCreateNestedManyWithoutRestaurantInput
     cuisine?: CuisineUncheckedCreateNestedManyWithoutRestaurantInput
   }
 
@@ -11767,6 +13161,8 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    schedules?: schedulesUpdateManyWithoutRestaurantNestedInput
+    foods?: FoodUpdateManyWithoutRestaurantNestedInput
     cuisine?: CuisineUpdateManyWithoutRestaurantNestedInput
   }
 
@@ -11793,6 +13189,8 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    schedules?: schedulesUncheckedUpdateManyWithoutRestaurantNestedInput
+    foods?: FoodUncheckedUpdateManyWithoutRestaurantNestedInput
     cuisine?: CuisineUncheckedUpdateManyWithoutRestaurantNestedInput
   }
 
@@ -12014,9 +13412,14 @@ export namespace Prisma {
     none?: CuisineWhereInput
   }
 
-  export type CategoryScalarRelationFilter = {
-    is?: CategoryWhereInput
-    isNot?: CategoryWhereInput
+  export type RestaurantNullableScalarRelationFilter = {
+    is?: RestaurantWhereInput | null
+    isNot?: RestaurantWhereInput | null
+  }
+
+  export type CategoryNullableScalarRelationFilter = {
+    is?: CategoryWhereInput | null
+    isNot?: CategoryWhereInput | null
   }
 
   export type VariantOrderByRelationAggregateInput = {
@@ -12038,12 +13441,8 @@ export namespace Prisma {
     veg?: SortOrder
     discount?: SortOrder
     sell_count?: SortOrder
-    restaurant_name?: SortOrder
-    restaurant_status?: SortOrder
-    restaurant_discount?: SortOrder
-    restaurant_opening_time?: SortOrder
-    restaurant_closing_time?: SortOrder
     image?: SortOrder
+    restaurantId?: SortOrder
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12055,7 +13454,6 @@ export namespace Prisma {
     max_delivery_time?: SortOrder
     discount?: SortOrder
     sell_count?: SortOrder
-    restaurant_discount?: SortOrder
   }
 
   export type FoodMaxOrderByAggregateInput = {
@@ -12069,12 +13467,8 @@ export namespace Prisma {
     veg?: SortOrder
     discount?: SortOrder
     sell_count?: SortOrder
-    restaurant_name?: SortOrder
-    restaurant_status?: SortOrder
-    restaurant_discount?: SortOrder
-    restaurant_opening_time?: SortOrder
-    restaurant_closing_time?: SortOrder
     image?: SortOrder
+    restaurantId?: SortOrder
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12091,12 +13485,8 @@ export namespace Prisma {
     veg?: SortOrder
     discount?: SortOrder
     sell_count?: SortOrder
-    restaurant_name?: SortOrder
-    restaurant_status?: SortOrder
-    restaurant_discount?: SortOrder
-    restaurant_opening_time?: SortOrder
-    restaurant_closing_time?: SortOrder
     image?: SortOrder
+    restaurantId?: SortOrder
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12108,7 +13498,6 @@ export namespace Prisma {
     max_delivery_time?: SortOrder
     discount?: SortOrder
     sell_count?: SortOrder
-    restaurant_discount?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -12165,9 +13554,9 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type FoodScalarRelationFilter = {
-    is?: FoodWhereInput
-    isNot?: FoodWhereInput
+  export type FoodNullableScalarRelationFilter = {
+    is?: FoodWhereInput | null
+    isNot?: FoodWhereInput | null
   }
 
   export type ValueListRelationFilter = {
@@ -12347,11 +13736,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type RestaurantScalarRelationFilter = {
-    is?: RestaurantWhereInput
-    isNot?: RestaurantWhereInput
-  }
-
   export type CuisineCountOrderByAggregateInput = {
     cuisineId?: SortOrder
     name?: SortOrder
@@ -12383,6 +13767,81 @@ export namespace Prisma {
     foodId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+    isSet?: boolean
+  }
+
+  export type schedulesCountOrderByAggregateInput = {
+    scheduleId?: SortOrder
+    day?: SortOrder
+    opening_time?: SortOrder
+    closeing_time?: SortOrder
+    restaurantId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type schedulesAvgOrderByAggregateInput = {
+    day?: SortOrder
+  }
+
+  export type schedulesMaxOrderByAggregateInput = {
+    scheduleId?: SortOrder
+    day?: SortOrder
+    opening_time?: SortOrder
+    closeing_time?: SortOrder
+    restaurantId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type schedulesMinOrderByAggregateInput = {
+    scheduleId?: SortOrder
+    day?: SortOrder
+    opening_time?: SortOrder
+    closeing_time?: SortOrder
+    restaurantId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type schedulesSumOrderByAggregateInput = {
+    day?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+    isSet?: boolean
+  }
+
+  export type SchedulesListRelationFilter = {
+    every?: schedulesWhereInput
+    some?: schedulesWhereInput
+    none?: schedulesWhereInput
+  }
+
+  export type schedulesOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type RestaurantCountOrderByAggregateInput = {
@@ -12496,6 +13955,12 @@ export namespace Prisma {
     connect?: CuisineWhereUniqueInput | CuisineWhereUniqueInput[]
   }
 
+  export type RestaurantCreateNestedOneWithoutFoodsInput = {
+    create?: XOR<RestaurantCreateWithoutFoodsInput, RestaurantUncheckedCreateWithoutFoodsInput>
+    connectOrCreate?: RestaurantCreateOrConnectWithoutFoodsInput
+    connect?: RestaurantWhereUniqueInput
+  }
+
   export type CategoryCreateNestedOneWithoutFoodsInput = {
     create?: XOR<CategoryCreateWithoutFoodsInput, CategoryUncheckedCreateWithoutFoodsInput>
     connectOrCreate?: CategoryCreateOrConnectWithoutFoodsInput
@@ -12568,10 +14033,22 @@ export namespace Prisma {
     deleteMany?: CuisineScalarWhereInput | CuisineScalarWhereInput[]
   }
 
-  export type CategoryUpdateOneRequiredWithoutFoodsNestedInput = {
+  export type RestaurantUpdateOneWithoutFoodsNestedInput = {
+    create?: XOR<RestaurantCreateWithoutFoodsInput, RestaurantUncheckedCreateWithoutFoodsInput>
+    connectOrCreate?: RestaurantCreateOrConnectWithoutFoodsInput
+    upsert?: RestaurantUpsertWithoutFoodsInput
+    disconnect?: boolean
+    delete?: RestaurantWhereInput | boolean
+    connect?: RestaurantWhereUniqueInput
+    update?: XOR<XOR<RestaurantUpdateToOneWithWhereWithoutFoodsInput, RestaurantUpdateWithoutFoodsInput>, RestaurantUncheckedUpdateWithoutFoodsInput>
+  }
+
+  export type CategoryUpdateOneWithoutFoodsNestedInput = {
     create?: XOR<CategoryCreateWithoutFoodsInput, CategoryUncheckedCreateWithoutFoodsInput>
     connectOrCreate?: CategoryCreateOrConnectWithoutFoodsInput
     upsert?: CategoryUpsertWithoutFoodsInput
+    disconnect?: boolean
+    delete?: CategoryWhereInput | boolean
     connect?: CategoryWhereUniqueInput
     update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutFoodsInput, CategoryUpdateWithoutFoodsInput>, CategoryUncheckedUpdateWithoutFoodsInput>
   }
@@ -12624,10 +14101,12 @@ export namespace Prisma {
     connect?: ValueWhereUniqueInput | ValueWhereUniqueInput[]
   }
 
-  export type FoodUpdateOneRequiredWithoutVariantsNestedInput = {
+  export type FoodUpdateOneWithoutVariantsNestedInput = {
     create?: XOR<FoodCreateWithoutVariantsInput, FoodUncheckedCreateWithoutVariantsInput>
     connectOrCreate?: FoodCreateOrConnectWithoutVariantsInput
     upsert?: FoodUpsertWithoutVariantsInput
+    disconnect?: boolean
+    delete?: FoodWhereInput | boolean
     connect?: FoodWhereUniqueInput
     update?: XOR<XOR<FoodUpdateToOneWithWhereWithoutVariantsInput, FoodUpdateWithoutVariantsInput>, FoodUncheckedUpdateWithoutVariantsInput>
   }
@@ -12766,10 +14245,12 @@ export namespace Prisma {
     connect?: CategoryWhereUniqueInput
   }
 
-  export type CategoryUpdateOneRequiredWithoutTypeNestedInput = {
+  export type CategoryUpdateOneWithoutTypeNestedInput = {
     create?: XOR<CategoryCreateWithoutTypeInput, CategoryUncheckedCreateWithoutTypeInput>
     connectOrCreate?: CategoryCreateOrConnectWithoutTypeInput
     upsert?: CategoryUpsertWithoutTypeInput
+    disconnect?: boolean
+    delete?: CategoryWhereInput | boolean
     connect?: CategoryWhereUniqueInput
     update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutTypeInput, CategoryUpdateWithoutTypeInput>, CategoryUncheckedUpdateWithoutTypeInput>
   }
@@ -12786,20 +14267,59 @@ export namespace Prisma {
     connect?: FoodWhereUniqueInput
   }
 
-  export type RestaurantUpdateOneRequiredWithoutCuisineNestedInput = {
+  export type RestaurantUpdateOneWithoutCuisineNestedInput = {
     create?: XOR<RestaurantCreateWithoutCuisineInput, RestaurantUncheckedCreateWithoutCuisineInput>
     connectOrCreate?: RestaurantCreateOrConnectWithoutCuisineInput
     upsert?: RestaurantUpsertWithoutCuisineInput
+    disconnect?: boolean
+    delete?: RestaurantWhereInput | boolean
     connect?: RestaurantWhereUniqueInput
     update?: XOR<XOR<RestaurantUpdateToOneWithWhereWithoutCuisineInput, RestaurantUpdateWithoutCuisineInput>, RestaurantUncheckedUpdateWithoutCuisineInput>
   }
 
-  export type FoodUpdateOneRequiredWithoutCuisineNestedInput = {
+  export type FoodUpdateOneWithoutCuisineNestedInput = {
     create?: XOR<FoodCreateWithoutCuisineInput, FoodUncheckedCreateWithoutCuisineInput>
     connectOrCreate?: FoodCreateOrConnectWithoutCuisineInput
     upsert?: FoodUpsertWithoutCuisineInput
+    disconnect?: boolean
+    delete?: FoodWhereInput | boolean
     connect?: FoodWhereUniqueInput
     update?: XOR<XOR<FoodUpdateToOneWithWhereWithoutCuisineInput, FoodUpdateWithoutCuisineInput>, FoodUncheckedUpdateWithoutCuisineInput>
+  }
+
+  export type RestaurantCreateNestedOneWithoutSchedulesInput = {
+    create?: XOR<RestaurantCreateWithoutSchedulesInput, RestaurantUncheckedCreateWithoutSchedulesInput>
+    connectOrCreate?: RestaurantCreateOrConnectWithoutSchedulesInput
+    connect?: RestaurantWhereUniqueInput
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+    unset?: boolean
+  }
+
+  export type RestaurantUpdateOneWithoutSchedulesNestedInput = {
+    create?: XOR<RestaurantCreateWithoutSchedulesInput, RestaurantUncheckedCreateWithoutSchedulesInput>
+    connectOrCreate?: RestaurantCreateOrConnectWithoutSchedulesInput
+    upsert?: RestaurantUpsertWithoutSchedulesInput
+    disconnect?: boolean
+    delete?: RestaurantWhereInput | boolean
+    connect?: RestaurantWhereUniqueInput
+    update?: XOR<XOR<RestaurantUpdateToOneWithWhereWithoutSchedulesInput, RestaurantUpdateWithoutSchedulesInput>, RestaurantUncheckedUpdateWithoutSchedulesInput>
+  }
+
+  export type schedulesCreateNestedManyWithoutRestaurantInput = {
+    create?: XOR<schedulesCreateWithoutRestaurantInput, schedulesUncheckedCreateWithoutRestaurantInput> | schedulesCreateWithoutRestaurantInput[] | schedulesUncheckedCreateWithoutRestaurantInput[]
+    connectOrCreate?: schedulesCreateOrConnectWithoutRestaurantInput | schedulesCreateOrConnectWithoutRestaurantInput[]
+    createMany?: schedulesCreateManyRestaurantInputEnvelope
+    connect?: schedulesWhereUniqueInput | schedulesWhereUniqueInput[]
+  }
+
+  export type FoodCreateNestedManyWithoutRestaurantInput = {
+    create?: XOR<FoodCreateWithoutRestaurantInput, FoodUncheckedCreateWithoutRestaurantInput> | FoodCreateWithoutRestaurantInput[] | FoodUncheckedCreateWithoutRestaurantInput[]
+    connectOrCreate?: FoodCreateOrConnectWithoutRestaurantInput | FoodCreateOrConnectWithoutRestaurantInput[]
+    createMany?: FoodCreateManyRestaurantInputEnvelope
+    connect?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
   }
 
   export type CuisineCreateNestedManyWithoutRestaurantInput = {
@@ -12809,11 +14329,53 @@ export namespace Prisma {
     connect?: CuisineWhereUniqueInput | CuisineWhereUniqueInput[]
   }
 
+  export type schedulesUncheckedCreateNestedManyWithoutRestaurantInput = {
+    create?: XOR<schedulesCreateWithoutRestaurantInput, schedulesUncheckedCreateWithoutRestaurantInput> | schedulesCreateWithoutRestaurantInput[] | schedulesUncheckedCreateWithoutRestaurantInput[]
+    connectOrCreate?: schedulesCreateOrConnectWithoutRestaurantInput | schedulesCreateOrConnectWithoutRestaurantInput[]
+    createMany?: schedulesCreateManyRestaurantInputEnvelope
+    connect?: schedulesWhereUniqueInput | schedulesWhereUniqueInput[]
+  }
+
+  export type FoodUncheckedCreateNestedManyWithoutRestaurantInput = {
+    create?: XOR<FoodCreateWithoutRestaurantInput, FoodUncheckedCreateWithoutRestaurantInput> | FoodCreateWithoutRestaurantInput[] | FoodUncheckedCreateWithoutRestaurantInput[]
+    connectOrCreate?: FoodCreateOrConnectWithoutRestaurantInput | FoodCreateOrConnectWithoutRestaurantInput[]
+    createMany?: FoodCreateManyRestaurantInputEnvelope
+    connect?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
+  }
+
   export type CuisineUncheckedCreateNestedManyWithoutRestaurantInput = {
     create?: XOR<CuisineCreateWithoutRestaurantInput, CuisineUncheckedCreateWithoutRestaurantInput> | CuisineCreateWithoutRestaurantInput[] | CuisineUncheckedCreateWithoutRestaurantInput[]
     connectOrCreate?: CuisineCreateOrConnectWithoutRestaurantInput | CuisineCreateOrConnectWithoutRestaurantInput[]
     createMany?: CuisineCreateManyRestaurantInputEnvelope
     connect?: CuisineWhereUniqueInput | CuisineWhereUniqueInput[]
+  }
+
+  export type schedulesUpdateManyWithoutRestaurantNestedInput = {
+    create?: XOR<schedulesCreateWithoutRestaurantInput, schedulesUncheckedCreateWithoutRestaurantInput> | schedulesCreateWithoutRestaurantInput[] | schedulesUncheckedCreateWithoutRestaurantInput[]
+    connectOrCreate?: schedulesCreateOrConnectWithoutRestaurantInput | schedulesCreateOrConnectWithoutRestaurantInput[]
+    upsert?: schedulesUpsertWithWhereUniqueWithoutRestaurantInput | schedulesUpsertWithWhereUniqueWithoutRestaurantInput[]
+    createMany?: schedulesCreateManyRestaurantInputEnvelope
+    set?: schedulesWhereUniqueInput | schedulesWhereUniqueInput[]
+    disconnect?: schedulesWhereUniqueInput | schedulesWhereUniqueInput[]
+    delete?: schedulesWhereUniqueInput | schedulesWhereUniqueInput[]
+    connect?: schedulesWhereUniqueInput | schedulesWhereUniqueInput[]
+    update?: schedulesUpdateWithWhereUniqueWithoutRestaurantInput | schedulesUpdateWithWhereUniqueWithoutRestaurantInput[]
+    updateMany?: schedulesUpdateManyWithWhereWithoutRestaurantInput | schedulesUpdateManyWithWhereWithoutRestaurantInput[]
+    deleteMany?: schedulesScalarWhereInput | schedulesScalarWhereInput[]
+  }
+
+  export type FoodUpdateManyWithoutRestaurantNestedInput = {
+    create?: XOR<FoodCreateWithoutRestaurantInput, FoodUncheckedCreateWithoutRestaurantInput> | FoodCreateWithoutRestaurantInput[] | FoodUncheckedCreateWithoutRestaurantInput[]
+    connectOrCreate?: FoodCreateOrConnectWithoutRestaurantInput | FoodCreateOrConnectWithoutRestaurantInput[]
+    upsert?: FoodUpsertWithWhereUniqueWithoutRestaurantInput | FoodUpsertWithWhereUniqueWithoutRestaurantInput[]
+    createMany?: FoodCreateManyRestaurantInputEnvelope
+    set?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
+    disconnect?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
+    delete?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
+    connect?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
+    update?: FoodUpdateWithWhereUniqueWithoutRestaurantInput | FoodUpdateWithWhereUniqueWithoutRestaurantInput[]
+    updateMany?: FoodUpdateManyWithWhereWithoutRestaurantInput | FoodUpdateManyWithWhereWithoutRestaurantInput[]
+    deleteMany?: FoodScalarWhereInput | FoodScalarWhereInput[]
   }
 
   export type CuisineUpdateManyWithoutRestaurantNestedInput = {
@@ -12828,6 +14390,34 @@ export namespace Prisma {
     update?: CuisineUpdateWithWhereUniqueWithoutRestaurantInput | CuisineUpdateWithWhereUniqueWithoutRestaurantInput[]
     updateMany?: CuisineUpdateManyWithWhereWithoutRestaurantInput | CuisineUpdateManyWithWhereWithoutRestaurantInput[]
     deleteMany?: CuisineScalarWhereInput | CuisineScalarWhereInput[]
+  }
+
+  export type schedulesUncheckedUpdateManyWithoutRestaurantNestedInput = {
+    create?: XOR<schedulesCreateWithoutRestaurantInput, schedulesUncheckedCreateWithoutRestaurantInput> | schedulesCreateWithoutRestaurantInput[] | schedulesUncheckedCreateWithoutRestaurantInput[]
+    connectOrCreate?: schedulesCreateOrConnectWithoutRestaurantInput | schedulesCreateOrConnectWithoutRestaurantInput[]
+    upsert?: schedulesUpsertWithWhereUniqueWithoutRestaurantInput | schedulesUpsertWithWhereUniqueWithoutRestaurantInput[]
+    createMany?: schedulesCreateManyRestaurantInputEnvelope
+    set?: schedulesWhereUniqueInput | schedulesWhereUniqueInput[]
+    disconnect?: schedulesWhereUniqueInput | schedulesWhereUniqueInput[]
+    delete?: schedulesWhereUniqueInput | schedulesWhereUniqueInput[]
+    connect?: schedulesWhereUniqueInput | schedulesWhereUniqueInput[]
+    update?: schedulesUpdateWithWhereUniqueWithoutRestaurantInput | schedulesUpdateWithWhereUniqueWithoutRestaurantInput[]
+    updateMany?: schedulesUpdateManyWithWhereWithoutRestaurantInput | schedulesUpdateManyWithWhereWithoutRestaurantInput[]
+    deleteMany?: schedulesScalarWhereInput | schedulesScalarWhereInput[]
+  }
+
+  export type FoodUncheckedUpdateManyWithoutRestaurantNestedInput = {
+    create?: XOR<FoodCreateWithoutRestaurantInput, FoodUncheckedCreateWithoutRestaurantInput> | FoodCreateWithoutRestaurantInput[] | FoodUncheckedCreateWithoutRestaurantInput[]
+    connectOrCreate?: FoodCreateOrConnectWithoutRestaurantInput | FoodCreateOrConnectWithoutRestaurantInput[]
+    upsert?: FoodUpsertWithWhereUniqueWithoutRestaurantInput | FoodUpsertWithWhereUniqueWithoutRestaurantInput[]
+    createMany?: FoodCreateManyRestaurantInputEnvelope
+    set?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
+    disconnect?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
+    delete?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
+    connect?: FoodWhereUniqueInput | FoodWhereUniqueInput[]
+    update?: FoodUpdateWithWhereUniqueWithoutRestaurantInput | FoodUpdateWithWhereUniqueWithoutRestaurantInput[]
+    updateMany?: FoodUpdateManyWithWhereWithoutRestaurantInput | FoodUpdateManyWithWhereWithoutRestaurantInput[]
+    deleteMany?: FoodScalarWhereInput | FoodScalarWhereInput[]
   }
 
   export type CuisineUncheckedUpdateManyWithoutRestaurantNestedInput = {
@@ -13012,6 +14602,33 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+    isSet?: boolean
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+    isSet?: boolean
+  }
+
   export type VariantCreateWithoutFoodInput = {
     variantId?: string
     name: string
@@ -13048,7 +14665,7 @@ export namespace Prisma {
     status?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    restaurant: RestaurantCreateNestedOneWithoutCuisineInput
+    restaurant?: RestaurantCreateNestedOneWithoutCuisineInput
   }
 
   export type CuisineUncheckedCreateWithoutFoodInput = {
@@ -13056,7 +14673,7 @@ export namespace Prisma {
     name: string
     image: string
     status?: boolean
-    restaurantId: string
+    restaurantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13068,6 +14685,67 @@ export namespace Prisma {
 
   export type CuisineCreateManyFoodInputEnvelope = {
     data: CuisineCreateManyFoodInput | CuisineCreateManyFoodInput[]
+  }
+
+  export type RestaurantCreateWithoutFoodsInput = {
+    restaurantId?: string
+    name: string
+    phone: string
+    email: string
+    logo: string
+    image: string
+    status?: boolean
+    longitude: string
+    latitude: string
+    address: string
+    footer_text: string
+    minimum_order: number
+    comission: number
+    schedule_order: boolean
+    cover_photo: string
+    delivery: boolean
+    free_delivery: boolean
+    active: boolean
+    off_day: string
+    delivery_time: string
+    veg: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    schedules?: schedulesCreateNestedManyWithoutRestaurantInput
+    cuisine?: CuisineCreateNestedManyWithoutRestaurantInput
+  }
+
+  export type RestaurantUncheckedCreateWithoutFoodsInput = {
+    restaurantId?: string
+    name: string
+    phone: string
+    email: string
+    logo: string
+    image: string
+    status?: boolean
+    longitude: string
+    latitude: string
+    address: string
+    footer_text: string
+    minimum_order: number
+    comission: number
+    schedule_order: boolean
+    cover_photo: string
+    delivery: boolean
+    free_delivery: boolean
+    active: boolean
+    off_day: string
+    delivery_time: string
+    veg: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    schedules?: schedulesUncheckedCreateNestedManyWithoutRestaurantInput
+    cuisine?: CuisineUncheckedCreateNestedManyWithoutRestaurantInput
+  }
+
+  export type RestaurantCreateOrConnectWithoutFoodsInput = {
+    where: RestaurantWhereUniqueInput
+    create: XOR<RestaurantCreateWithoutFoodsInput, RestaurantUncheckedCreateWithoutFoodsInput>
   }
 
   export type CategoryCreateWithoutFoodsInput = {
@@ -13127,7 +14805,7 @@ export namespace Prisma {
     min?: StringFilter<"Variant"> | string
     max?: StringFilter<"Variant"> | string
     required?: BoolFilter<"Variant"> | boolean
-    foodId?: StringFilter<"Variant"> | string
+    foodId?: StringNullableFilter<"Variant"> | string | null
   }
 
   export type CuisineUpsertWithWhereUniqueWithoutFoodInput = {
@@ -13154,10 +14832,75 @@ export namespace Prisma {
     name?: StringFilter<"Cuisine"> | string
     image?: StringFilter<"Cuisine"> | string
     status?: BoolFilter<"Cuisine"> | boolean
-    restaurantId?: StringFilter<"Cuisine"> | string
-    foodId?: StringFilter<"Cuisine"> | string
+    restaurantId?: StringNullableFilter<"Cuisine"> | string | null
+    foodId?: StringNullableFilter<"Cuisine"> | string | null
     createdAt?: DateTimeFilter<"Cuisine"> | Date | string
     updatedAt?: DateTimeFilter<"Cuisine"> | Date | string
+  }
+
+  export type RestaurantUpsertWithoutFoodsInput = {
+    update: XOR<RestaurantUpdateWithoutFoodsInput, RestaurantUncheckedUpdateWithoutFoodsInput>
+    create: XOR<RestaurantCreateWithoutFoodsInput, RestaurantUncheckedCreateWithoutFoodsInput>
+    where?: RestaurantWhereInput
+  }
+
+  export type RestaurantUpdateToOneWithWhereWithoutFoodsInput = {
+    where?: RestaurantWhereInput
+    data: XOR<RestaurantUpdateWithoutFoodsInput, RestaurantUncheckedUpdateWithoutFoodsInput>
+  }
+
+  export type RestaurantUpdateWithoutFoodsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    longitude?: StringFieldUpdateOperationsInput | string
+    latitude?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    footer_text?: StringFieldUpdateOperationsInput | string
+    minimum_order?: FloatFieldUpdateOperationsInput | number
+    comission?: FloatFieldUpdateOperationsInput | number
+    schedule_order?: BoolFieldUpdateOperationsInput | boolean
+    cover_photo?: StringFieldUpdateOperationsInput | string
+    delivery?: BoolFieldUpdateOperationsInput | boolean
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    active?: BoolFieldUpdateOperationsInput | boolean
+    off_day?: StringFieldUpdateOperationsInput | string
+    delivery_time?: StringFieldUpdateOperationsInput | string
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    schedules?: schedulesUpdateManyWithoutRestaurantNestedInput
+    cuisine?: CuisineUpdateManyWithoutRestaurantNestedInput
+  }
+
+  export type RestaurantUncheckedUpdateWithoutFoodsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    longitude?: StringFieldUpdateOperationsInput | string
+    latitude?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    footer_text?: StringFieldUpdateOperationsInput | string
+    minimum_order?: FloatFieldUpdateOperationsInput | number
+    comission?: FloatFieldUpdateOperationsInput | number
+    schedule_order?: BoolFieldUpdateOperationsInput | boolean
+    cover_photo?: StringFieldUpdateOperationsInput | string
+    delivery?: BoolFieldUpdateOperationsInput | boolean
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    active?: BoolFieldUpdateOperationsInput | boolean
+    off_day?: StringFieldUpdateOperationsInput | string
+    delivery_time?: StringFieldUpdateOperationsInput | string
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    schedules?: schedulesUncheckedUpdateManyWithoutRestaurantNestedInput
+    cuisine?: CuisineUncheckedUpdateManyWithoutRestaurantNestedInput
   }
 
   export type CategoryUpsertWithoutFoodsInput = {
@@ -13206,16 +14949,12 @@ export namespace Prisma {
     veg: boolean
     discount: number
     sell_count: number
-    restaurant_name: string
-    restaurant_status: boolean
-    restaurant_discount: number
-    restaurant_opening_time: Date | string
-    restaurant_closing_time: Date | string
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
     cuisine?: CuisineCreateNestedManyWithoutFoodInput
-    category: CategoryCreateNestedOneWithoutFoodsInput
+    restaurant?: RestaurantCreateNestedOneWithoutFoodsInput
+    category?: CategoryCreateNestedOneWithoutFoodsInput
   }
 
   export type FoodUncheckedCreateWithoutVariantsInput = {
@@ -13229,13 +14968,9 @@ export namespace Prisma {
     veg: boolean
     discount: number
     sell_count: number
-    restaurant_name: string
-    restaurant_status: boolean
-    restaurant_discount: number
-    restaurant_opening_time: Date | string
-    restaurant_closing_time: Date | string
     image: string
-    categoryId: string
+    restaurantId?: string | null
+    categoryId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     cuisine?: CuisineUncheckedCreateNestedManyWithoutFoodInput
@@ -13292,16 +15027,12 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     discount?: FloatFieldUpdateOperationsInput | number
     sell_count?: IntFieldUpdateOperationsInput | number
-    restaurant_name?: StringFieldUpdateOperationsInput | string
-    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
-    restaurant_discount?: FloatFieldUpdateOperationsInput | number
-    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cuisine?: CuisineUpdateManyWithoutFoodNestedInput
-    category?: CategoryUpdateOneRequiredWithoutFoodsNestedInput
+    restaurant?: RestaurantUpdateOneWithoutFoodsNestedInput
+    category?: CategoryUpdateOneWithoutFoodsNestedInput
   }
 
   export type FoodUncheckedUpdateWithoutVariantsInput = {
@@ -13314,13 +15045,9 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     discount?: FloatFieldUpdateOperationsInput | number
     sell_count?: IntFieldUpdateOperationsInput | number
-    restaurant_name?: StringFieldUpdateOperationsInput | string
-    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
-    restaurant_discount?: FloatFieldUpdateOperationsInput | number
-    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cuisine?: CuisineUncheckedUpdateManyWithoutFoodNestedInput
@@ -13361,7 +15088,7 @@ export namespace Prisma {
     min: string
     max: string
     required: boolean
-    food: FoodCreateNestedOneWithoutVariantsInput
+    food?: FoodCreateNestedOneWithoutVariantsInput
   }
 
   export type VariantUncheckedCreateWithoutValuesInput = {
@@ -13371,7 +15098,7 @@ export namespace Prisma {
     min: string
     max: string
     required: boolean
-    foodId: string
+    foodId?: string | null
   }
 
   export type VariantCreateOrConnectWithoutValuesInput = {
@@ -13396,7 +15123,7 @@ export namespace Prisma {
     min?: StringFieldUpdateOperationsInput | string
     max?: StringFieldUpdateOperationsInput | string
     required?: BoolFieldUpdateOperationsInput | boolean
-    food?: FoodUpdateOneRequiredWithoutVariantsNestedInput
+    food?: FoodUpdateOneWithoutVariantsNestedInput
   }
 
   export type VariantUncheckedUpdateWithoutValuesInput = {
@@ -13405,7 +15132,7 @@ export namespace Prisma {
     min?: StringFieldUpdateOperationsInput | string
     max?: StringFieldUpdateOperationsInput | string
     required?: BoolFieldUpdateOperationsInput | boolean
-    foodId?: StringFieldUpdateOperationsInput | string
+    foodId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TypeCreateWithoutCategoryInput = {
@@ -13444,16 +15171,12 @@ export namespace Prisma {
     veg: boolean
     discount: number
     sell_count: number
-    restaurant_name: string
-    restaurant_status: boolean
-    restaurant_discount: number
-    restaurant_opening_time: Date | string
-    restaurant_closing_time: Date | string
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
     variants?: VariantCreateNestedManyWithoutFoodInput
     cuisine?: CuisineCreateNestedManyWithoutFoodInput
+    restaurant?: RestaurantCreateNestedOneWithoutFoodsInput
   }
 
   export type FoodUncheckedCreateWithoutCategoryInput = {
@@ -13467,12 +15190,8 @@ export namespace Prisma {
     veg: boolean
     discount: number
     sell_count: number
-    restaurant_name: string
-    restaurant_status: boolean
-    restaurant_discount: number
-    restaurant_opening_time: Date | string
-    restaurant_closing_time: Date | string
     image: string
+    restaurantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     variants?: VariantUncheckedCreateNestedManyWithoutFoodInput
@@ -13511,7 +15230,7 @@ export namespace Prisma {
     id?: StringFilter<"Type"> | string
     name?: StringFilter<"Type"> | string
     status?: BoolFilter<"Type"> | boolean
-    categoryId?: StringFilter<"Type"> | string
+    categoryId?: StringNullableFilter<"Type"> | string | null
     createdAt?: DateTimeFilter<"Type"> | Date | string
     updatedAt?: DateTimeFilter<"Type"> | Date | string
   }
@@ -13546,13 +15265,9 @@ export namespace Prisma {
     veg?: BoolFilter<"Food"> | boolean
     discount?: FloatFilter<"Food"> | number
     sell_count?: IntFilter<"Food"> | number
-    restaurant_name?: StringFilter<"Food"> | string
-    restaurant_status?: BoolFilter<"Food"> | boolean
-    restaurant_discount?: FloatFilter<"Food"> | number
-    restaurant_opening_time?: DateTimeFilter<"Food"> | Date | string
-    restaurant_closing_time?: DateTimeFilter<"Food"> | Date | string
     image?: StringFilter<"Food"> | string
-    categoryId?: StringFilter<"Food"> | string
+    restaurantId?: StringNullableFilter<"Food"> | string | null
+    categoryId?: StringNullableFilter<"Food"> | string | null
     createdAt?: DateTimeFilter<"Food"> | Date | string
     updatedAt?: DateTimeFilter<"Food"> | Date | string
   }
@@ -13647,6 +15362,8 @@ export namespace Prisma {
     veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    schedules?: schedulesCreateNestedManyWithoutRestaurantInput
+    foods?: FoodCreateNestedManyWithoutRestaurantInput
   }
 
   export type RestaurantUncheckedCreateWithoutCuisineInput = {
@@ -13673,6 +15390,8 @@ export namespace Prisma {
     veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    schedules?: schedulesUncheckedCreateNestedManyWithoutRestaurantInput
+    foods?: FoodUncheckedCreateNestedManyWithoutRestaurantInput
   }
 
   export type RestaurantCreateOrConnectWithoutCuisineInput = {
@@ -13691,16 +15410,12 @@ export namespace Prisma {
     veg: boolean
     discount: number
     sell_count: number
-    restaurant_name: string
-    restaurant_status: boolean
-    restaurant_discount: number
-    restaurant_opening_time: Date | string
-    restaurant_closing_time: Date | string
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
     variants?: VariantCreateNestedManyWithoutFoodInput
-    category: CategoryCreateNestedOneWithoutFoodsInput
+    restaurant?: RestaurantCreateNestedOneWithoutFoodsInput
+    category?: CategoryCreateNestedOneWithoutFoodsInput
   }
 
   export type FoodUncheckedCreateWithoutCuisineInput = {
@@ -13714,13 +15429,9 @@ export namespace Prisma {
     veg: boolean
     discount: number
     sell_count: number
-    restaurant_name: string
-    restaurant_status: boolean
-    restaurant_discount: number
-    restaurant_opening_time: Date | string
-    restaurant_closing_time: Date | string
     image: string
-    categoryId: string
+    restaurantId?: string | null
+    categoryId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     variants?: VariantUncheckedCreateNestedManyWithoutFoodInput
@@ -13765,6 +15476,8 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    schedules?: schedulesUpdateManyWithoutRestaurantNestedInput
+    foods?: FoodUpdateManyWithoutRestaurantNestedInput
   }
 
   export type RestaurantUncheckedUpdateWithoutCuisineInput = {
@@ -13790,6 +15503,8 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    schedules?: schedulesUncheckedUpdateManyWithoutRestaurantNestedInput
+    foods?: FoodUncheckedUpdateManyWithoutRestaurantNestedInput
   }
 
   export type FoodUpsertWithoutCuisineInput = {
@@ -13813,16 +15528,12 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     discount?: FloatFieldUpdateOperationsInput | number
     sell_count?: IntFieldUpdateOperationsInput | number
-    restaurant_name?: StringFieldUpdateOperationsInput | string
-    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
-    restaurant_discount?: FloatFieldUpdateOperationsInput | number
-    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     variants?: VariantUpdateManyWithoutFoodNestedInput
-    category?: CategoryUpdateOneRequiredWithoutFoodsNestedInput
+    restaurant?: RestaurantUpdateOneWithoutFoodsNestedInput
+    category?: CategoryUpdateOneWithoutFoodsNestedInput
   }
 
   export type FoodUncheckedUpdateWithoutCuisineInput = {
@@ -13835,16 +15546,212 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     discount?: FloatFieldUpdateOperationsInput | number
     sell_count?: IntFieldUpdateOperationsInput | number
-    restaurant_name?: StringFieldUpdateOperationsInput | string
-    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
-    restaurant_discount?: FloatFieldUpdateOperationsInput | number
-    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     variants?: VariantUncheckedUpdateManyWithoutFoodNestedInput
+  }
+
+  export type RestaurantCreateWithoutSchedulesInput = {
+    restaurantId?: string
+    name: string
+    phone: string
+    email: string
+    logo: string
+    image: string
+    status?: boolean
+    longitude: string
+    latitude: string
+    address: string
+    footer_text: string
+    minimum_order: number
+    comission: number
+    schedule_order: boolean
+    cover_photo: string
+    delivery: boolean
+    free_delivery: boolean
+    active: boolean
+    off_day: string
+    delivery_time: string
+    veg: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    foods?: FoodCreateNestedManyWithoutRestaurantInput
+    cuisine?: CuisineCreateNestedManyWithoutRestaurantInput
+  }
+
+  export type RestaurantUncheckedCreateWithoutSchedulesInput = {
+    restaurantId?: string
+    name: string
+    phone: string
+    email: string
+    logo: string
+    image: string
+    status?: boolean
+    longitude: string
+    latitude: string
+    address: string
+    footer_text: string
+    minimum_order: number
+    comission: number
+    schedule_order: boolean
+    cover_photo: string
+    delivery: boolean
+    free_delivery: boolean
+    active: boolean
+    off_day: string
+    delivery_time: string
+    veg: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    foods?: FoodUncheckedCreateNestedManyWithoutRestaurantInput
+    cuisine?: CuisineUncheckedCreateNestedManyWithoutRestaurantInput
+  }
+
+  export type RestaurantCreateOrConnectWithoutSchedulesInput = {
+    where: RestaurantWhereUniqueInput
+    create: XOR<RestaurantCreateWithoutSchedulesInput, RestaurantUncheckedCreateWithoutSchedulesInput>
+  }
+
+  export type RestaurantUpsertWithoutSchedulesInput = {
+    update: XOR<RestaurantUpdateWithoutSchedulesInput, RestaurantUncheckedUpdateWithoutSchedulesInput>
+    create: XOR<RestaurantCreateWithoutSchedulesInput, RestaurantUncheckedCreateWithoutSchedulesInput>
+    where?: RestaurantWhereInput
+  }
+
+  export type RestaurantUpdateToOneWithWhereWithoutSchedulesInput = {
+    where?: RestaurantWhereInput
+    data: XOR<RestaurantUpdateWithoutSchedulesInput, RestaurantUncheckedUpdateWithoutSchedulesInput>
+  }
+
+  export type RestaurantUpdateWithoutSchedulesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    longitude?: StringFieldUpdateOperationsInput | string
+    latitude?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    footer_text?: StringFieldUpdateOperationsInput | string
+    minimum_order?: FloatFieldUpdateOperationsInput | number
+    comission?: FloatFieldUpdateOperationsInput | number
+    schedule_order?: BoolFieldUpdateOperationsInput | boolean
+    cover_photo?: StringFieldUpdateOperationsInput | string
+    delivery?: BoolFieldUpdateOperationsInput | boolean
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    active?: BoolFieldUpdateOperationsInput | boolean
+    off_day?: StringFieldUpdateOperationsInput | string
+    delivery_time?: StringFieldUpdateOperationsInput | string
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    foods?: FoodUpdateManyWithoutRestaurantNestedInput
+    cuisine?: CuisineUpdateManyWithoutRestaurantNestedInput
+  }
+
+  export type RestaurantUncheckedUpdateWithoutSchedulesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    longitude?: StringFieldUpdateOperationsInput | string
+    latitude?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    footer_text?: StringFieldUpdateOperationsInput | string
+    minimum_order?: FloatFieldUpdateOperationsInput | number
+    comission?: FloatFieldUpdateOperationsInput | number
+    schedule_order?: BoolFieldUpdateOperationsInput | boolean
+    cover_photo?: StringFieldUpdateOperationsInput | string
+    delivery?: BoolFieldUpdateOperationsInput | boolean
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    active?: BoolFieldUpdateOperationsInput | boolean
+    off_day?: StringFieldUpdateOperationsInput | string
+    delivery_time?: StringFieldUpdateOperationsInput | string
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    foods?: FoodUncheckedUpdateManyWithoutRestaurantNestedInput
+    cuisine?: CuisineUncheckedUpdateManyWithoutRestaurantNestedInput
+  }
+
+  export type schedulesCreateWithoutRestaurantInput = {
+    scheduleId?: string
+    day: number
+    opening_time?: Date | string | null
+    closeing_time?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type schedulesUncheckedCreateWithoutRestaurantInput = {
+    scheduleId?: string
+    day: number
+    opening_time?: Date | string | null
+    closeing_time?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type schedulesCreateOrConnectWithoutRestaurantInput = {
+    where: schedulesWhereUniqueInput
+    create: XOR<schedulesCreateWithoutRestaurantInput, schedulesUncheckedCreateWithoutRestaurantInput>
+  }
+
+  export type schedulesCreateManyRestaurantInputEnvelope = {
+    data: schedulesCreateManyRestaurantInput | schedulesCreateManyRestaurantInput[]
+  }
+
+  export type FoodCreateWithoutRestaurantInput = {
+    id?: string
+    name: string
+    description: string
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery?: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    image: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    variants?: VariantCreateNestedManyWithoutFoodInput
+    cuisine?: CuisineCreateNestedManyWithoutFoodInput
+    category?: CategoryCreateNestedOneWithoutFoodsInput
+  }
+
+  export type FoodUncheckedCreateWithoutRestaurantInput = {
+    id?: string
+    name: string
+    description: string
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery?: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    image: string
+    categoryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    variants?: VariantUncheckedCreateNestedManyWithoutFoodInput
+    cuisine?: CuisineUncheckedCreateNestedManyWithoutFoodInput
+  }
+
+  export type FoodCreateOrConnectWithoutRestaurantInput = {
+    where: FoodWhereUniqueInput
+    create: XOR<FoodCreateWithoutRestaurantInput, FoodUncheckedCreateWithoutRestaurantInput>
+  }
+
+  export type FoodCreateManyRestaurantInputEnvelope = {
+    data: FoodCreateManyRestaurantInput | FoodCreateManyRestaurantInput[]
   }
 
   export type CuisineCreateWithoutRestaurantInput = {
@@ -13854,7 +15761,7 @@ export namespace Prisma {
     status?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    food: FoodCreateNestedOneWithoutCuisineInput
+    food?: FoodCreateNestedOneWithoutCuisineInput
   }
 
   export type CuisineUncheckedCreateWithoutRestaurantInput = {
@@ -13862,7 +15769,7 @@ export namespace Prisma {
     name: string
     image: string
     status?: boolean
-    foodId: string
+    foodId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13874,6 +15781,51 @@ export namespace Prisma {
 
   export type CuisineCreateManyRestaurantInputEnvelope = {
     data: CuisineCreateManyRestaurantInput | CuisineCreateManyRestaurantInput[]
+  }
+
+  export type schedulesUpsertWithWhereUniqueWithoutRestaurantInput = {
+    where: schedulesWhereUniqueInput
+    update: XOR<schedulesUpdateWithoutRestaurantInput, schedulesUncheckedUpdateWithoutRestaurantInput>
+    create: XOR<schedulesCreateWithoutRestaurantInput, schedulesUncheckedCreateWithoutRestaurantInput>
+  }
+
+  export type schedulesUpdateWithWhereUniqueWithoutRestaurantInput = {
+    where: schedulesWhereUniqueInput
+    data: XOR<schedulesUpdateWithoutRestaurantInput, schedulesUncheckedUpdateWithoutRestaurantInput>
+  }
+
+  export type schedulesUpdateManyWithWhereWithoutRestaurantInput = {
+    where: schedulesScalarWhereInput
+    data: XOR<schedulesUpdateManyMutationInput, schedulesUncheckedUpdateManyWithoutRestaurantInput>
+  }
+
+  export type schedulesScalarWhereInput = {
+    AND?: schedulesScalarWhereInput | schedulesScalarWhereInput[]
+    OR?: schedulesScalarWhereInput[]
+    NOT?: schedulesScalarWhereInput | schedulesScalarWhereInput[]
+    scheduleId?: StringFilter<"schedules"> | string
+    day?: IntFilter<"schedules"> | number
+    opening_time?: DateTimeNullableFilter<"schedules"> | Date | string | null
+    closeing_time?: DateTimeNullableFilter<"schedules"> | Date | string | null
+    restaurantId?: StringNullableFilter<"schedules"> | string | null
+    createdAt?: DateTimeFilter<"schedules"> | Date | string
+    updatedAt?: DateTimeFilter<"schedules"> | Date | string
+  }
+
+  export type FoodUpsertWithWhereUniqueWithoutRestaurantInput = {
+    where: FoodWhereUniqueInput
+    update: XOR<FoodUpdateWithoutRestaurantInput, FoodUncheckedUpdateWithoutRestaurantInput>
+    create: XOR<FoodCreateWithoutRestaurantInput, FoodUncheckedCreateWithoutRestaurantInput>
+  }
+
+  export type FoodUpdateWithWhereUniqueWithoutRestaurantInput = {
+    where: FoodWhereUniqueInput
+    data: XOR<FoodUpdateWithoutRestaurantInput, FoodUncheckedUpdateWithoutRestaurantInput>
+  }
+
+  export type FoodUpdateManyWithWhereWithoutRestaurantInput = {
+    where: FoodScalarWhereInput
+    data: XOR<FoodUpdateManyMutationInput, FoodUncheckedUpdateManyWithoutRestaurantInput>
   }
 
   export type CuisineUpsertWithWhereUniqueWithoutRestaurantInput = {
@@ -13906,7 +15858,7 @@ export namespace Prisma {
     name: string
     image: string
     status?: boolean
-    restaurantId: string
+    restaurantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13943,14 +15895,14 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant?: RestaurantUpdateOneRequiredWithoutCuisineNestedInput
+    restaurant?: RestaurantUpdateOneWithoutCuisineNestedInput
   }
 
   export type CuisineUncheckedUpdateWithoutFoodInput = {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
-    restaurantId?: StringFieldUpdateOperationsInput | string
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13959,7 +15911,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
-    restaurantId?: StringFieldUpdateOperationsInput | string
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14012,12 +15964,8 @@ export namespace Prisma {
     veg: boolean
     discount: number
     sell_count: number
-    restaurant_name: string
-    restaurant_status: boolean
-    restaurant_discount: number
-    restaurant_opening_time: Date | string
-    restaurant_closing_time: Date | string
     image: string
+    restaurantId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14053,16 +16001,12 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     discount?: FloatFieldUpdateOperationsInput | number
     sell_count?: IntFieldUpdateOperationsInput | number
-    restaurant_name?: StringFieldUpdateOperationsInput | string
-    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
-    restaurant_discount?: FloatFieldUpdateOperationsInput | number
-    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     variants?: VariantUpdateManyWithoutFoodNestedInput
     cuisine?: CuisineUpdateManyWithoutFoodNestedInput
+    restaurant?: RestaurantUpdateOneWithoutFoodsNestedInput
   }
 
   export type FoodUncheckedUpdateWithoutCategoryInput = {
@@ -14075,12 +16019,8 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     discount?: FloatFieldUpdateOperationsInput | number
     sell_count?: IntFieldUpdateOperationsInput | number
-    restaurant_name?: StringFieldUpdateOperationsInput | string
-    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
-    restaurant_discount?: FloatFieldUpdateOperationsInput | number
-    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: StringFieldUpdateOperationsInput | string
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     variants?: VariantUncheckedUpdateManyWithoutFoodNestedInput
@@ -14097,14 +16037,36 @@ export namespace Prisma {
     veg?: BoolFieldUpdateOperationsInput | boolean
     discount?: FloatFieldUpdateOperationsInput | number
     sell_count?: IntFieldUpdateOperationsInput | number
-    restaurant_name?: StringFieldUpdateOperationsInput | string
-    restaurant_status?: BoolFieldUpdateOperationsInput | boolean
-    restaurant_discount?: FloatFieldUpdateOperationsInput | number
-    restaurant_opening_time?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant_closing_time?: DateTimeFieldUpdateOperationsInput | Date | string
     image?: StringFieldUpdateOperationsInput | string
+    restaurantId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type schedulesCreateManyRestaurantInput = {
+    scheduleId?: string
+    day: number
+    opening_time?: Date | string | null
+    closeing_time?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FoodCreateManyRestaurantInput = {
+    id?: string
+    name: string
+    description: string
+    price: number
+    min_delivery_time: number
+    max_delivery_time: number
+    free_delivery?: boolean
+    veg: boolean
+    discount: number
+    sell_count: number
+    image: string
+    categoryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type CuisineCreateManyRestaurantInput = {
@@ -14112,9 +16074,85 @@ export namespace Prisma {
     name: string
     image: string
     status?: boolean
-    foodId: string
+    foodId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type schedulesUpdateWithoutRestaurantInput = {
+    day?: IntFieldUpdateOperationsInput | number
+    opening_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closeing_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type schedulesUncheckedUpdateWithoutRestaurantInput = {
+    day?: IntFieldUpdateOperationsInput | number
+    opening_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closeing_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type schedulesUncheckedUpdateManyWithoutRestaurantInput = {
+    day?: IntFieldUpdateOperationsInput | number
+    opening_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closeing_time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FoodUpdateWithoutRestaurantInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    variants?: VariantUpdateManyWithoutFoodNestedInput
+    cuisine?: CuisineUpdateManyWithoutFoodNestedInput
+    category?: CategoryUpdateOneWithoutFoodsNestedInput
+  }
+
+  export type FoodUncheckedUpdateWithoutRestaurantInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    variants?: VariantUncheckedUpdateManyWithoutFoodNestedInput
+    cuisine?: CuisineUncheckedUpdateManyWithoutFoodNestedInput
+  }
+
+  export type FoodUncheckedUpdateManyWithoutRestaurantInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    min_delivery_time?: IntFieldUpdateOperationsInput | number
+    max_delivery_time?: IntFieldUpdateOperationsInput | number
+    free_delivery?: BoolFieldUpdateOperationsInput | boolean
+    veg?: BoolFieldUpdateOperationsInput | boolean
+    discount?: FloatFieldUpdateOperationsInput | number
+    sell_count?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CuisineUpdateWithoutRestaurantInput = {
@@ -14123,14 +16161,14 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    food?: FoodUpdateOneRequiredWithoutCuisineNestedInput
+    food?: FoodUpdateOneWithoutCuisineNestedInput
   }
 
   export type CuisineUncheckedUpdateWithoutRestaurantInput = {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
-    foodId?: StringFieldUpdateOperationsInput | string
+    foodId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14139,7 +16177,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
-    foodId?: StringFieldUpdateOperationsInput | string
+    foodId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

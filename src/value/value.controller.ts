@@ -1,7 +1,6 @@
-import { Body, Controller, Delete, Param, Post, Put } from "@nestjs/common";
+import { Body, Get, Controller, Delete, Param, Post, Put } from "@nestjs/common";
 import { ValueService } from "./value.service";
 import { Public } from "../auth/decorators/public.decorator";
-import { Get } from "@nestjs/common";
 import { Value, Variant } from "generated/prisma/client";
 import { ApiTags } from "@nestjs/swagger";
 import { CreateValueDto, CreateVariantDto, UpdateValueDto, UpdateVariantDto } from "./dto/value.dto";

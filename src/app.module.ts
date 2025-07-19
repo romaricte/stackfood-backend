@@ -6,12 +6,20 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { PrismaModule } from './prisma/prisma.module';
 import { CategoriesModule } from './categories/categories.module';
-import { TypesModule } from './types/types.module';
 import { ValueModule } from './value/value.module';
+import { CuisineModule } from './cuisine/cuisine.module';
+import { foodModule } from './food/food.module';
 
 @Module({
-  imports: [AuthModule, PrismaModule, 
-    CategoriesModule, TypesModule, ValueModule],
+  imports: [AuthModule, 
+            PrismaModule, 
+            CategoriesModule, 
+            ValueModule, 
+            CuisineModule,
+            foodModule
+          
+          
+          ],
   controllers: [AppController],
   providers: [
     AppService,

@@ -132,12 +132,8 @@ exports.Prisma.FoodScalarFieldEnum = {
   veg: 'veg',
   discount: 'discount',
   sell_count: 'sell_count',
-  restaurant_name: 'restaurant_name',
-  restaurant_status: 'restaurant_status',
-  restaurant_discount: 'restaurant_discount',
-  restaurant_opening_time: 'restaurant_opening_time',
-  restaurant_closing_time: 'restaurant_closing_time',
   image: 'image',
+  restaurantId: 'restaurantId',
   categoryId: 'categoryId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -194,6 +190,16 @@ exports.Prisma.CuisineScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SchedulesScalarFieldEnum = {
+  scheduleId: 'scheduleId',
+  day: 'day',
+  opening_time: 'opening_time',
+  closeing_time: 'closeing_time',
+  restaurantId: 'restaurantId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.RestaurantScalarFieldEnum = {
   restaurantId: 'restaurantId',
   name: 'name',
@@ -239,6 +245,7 @@ exports.Prisma.ModelName = {
   Category: 'Category',
   Type: 'Type',
   Cuisine: 'Cuisine',
+  schedules: 'schedules',
   Restaurant: 'Restaurant'
 };
 
