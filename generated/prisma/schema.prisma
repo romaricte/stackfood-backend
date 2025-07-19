@@ -24,29 +24,25 @@ model User {
 }
 
 model Food {
-  id                      String    @id @default(auto()) @map("_id") @db.ObjectId
-  name                    String
-  description             String
-  price                   Float
-  min_delivery_time       Int
-  max_delivery_time       Int
-  free_delivery           Boolean   @default(false)
-  veg                     Boolean
-  variants                Variant[]
-  cuisine                 Cuisine[]
-  discount                Float
-  sell_count              Int
-  restaurant_name         String
-  restaurant_status       Boolean
-  restaurant_discount     Float
-  restaurant_opening_time DateTime
-  restaurant_closing_time DateTime
-  // type FoodType
-  image                   String
-  category                Category  @relation(fields: [categoryId], references: [id])
-  categoryId              String    @db.ObjectId
-  createdAt               DateTime  @default(now())
-  updatedAt               DateTime  @updatedAt
+  id                String      @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  description       String
+  price             Float
+  min_delivery_time Int
+  max_delivery_time Int
+  free_delivery     Boolean     @default(false)
+  veg               Boolean
+  variants          Variant[]
+  cuisine           Cuisine[]
+  discount          Float
+  sell_count        Int
+  image             String
+  restaurant        Restaurant? @relation(fields: [restaurantId], references: [restaurantId])
+  restaurantId      String?     @db.ObjectId
+  category          Category?   @relation(fields: [categoryId], references: [id])
+  categoryId        String?     @db.ObjectId
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
 }
 
 model Variant {
@@ -56,8 +52,8 @@ model Variant {
   min       String
   max       String
   required  Boolean
-  food      Food    @relation(fields: [foodId], references: [id])
-  foodId    String  @db.ObjectId
+  food      Food?   @relation(fields: [foodId], references: [id])
+  foodId    String? @db.ObjectId
   values    Value[]
 }
 
@@ -86,36 +82,47 @@ model Category {
 }
 
 model Type {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
   name       String
-  status     Boolean  @default(true)
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId String   @db.ObjectId
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  status     Boolean   @default(true)
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?   @db.ObjectId
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 }
 
 model Cuisine {
-  cuisineId    String     @id @default(auto()) @map("_id") @db.ObjectId
+  cuisineId    String      @id @default(auto()) @map("_id") @db.ObjectId
   name         String
   image        String
-  status       Boolean    @default(true)
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [restaurantId])
-  restaurantId String     @db.ObjectId
-  food         Food       @relation(fields: [foodId], references: [id])
-  foodId       String     @db.ObjectId
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  status       Boolean     @default(true)
+  restaurant   Restaurant? @relation(fields: [restaurantId], references: [restaurantId])
+  restaurantId String?     @db.ObjectId
+  food         Food?       @relation(fields: [foodId], references: [id])
+  foodId       String?     @db.ObjectId
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model schedules {
+  scheduleId    String      @id @default(auto()) @map("_id") @db.ObjectId
+  day           Int
+  opening_time  DateTime?
+  closeing_time DateTime?
+  restaurant    Restaurant? @relation(fields: [restaurantId], references: [restaurantId])
+  restaurantId  String?     @db.ObjectId
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
 
 model Restaurant {
-  restaurantId   String    @id @default(auto()) @map("_id") @db.ObjectId
+  restaurantId   String      @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   phone          String
   email          String
   logo           String
   image          String
-  status         Boolean   @default(true)
+  status         Boolean     @default(true)
   longitude      String
   latitude       String
   address        String
@@ -124,6 +131,8 @@ model Restaurant {
   comission      Float
   schedule_order Boolean
   cover_photo    String
+  schedules      schedules[]
+  foods          Food[]
   delivery       Boolean
   free_delivery  Boolean
   active         Boolean
@@ -131,6 +140,6 @@ model Restaurant {
   delivery_time  String
   veg            Boolean
   cuisine        Cuisine[]
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
 }
