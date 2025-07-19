@@ -9,6 +9,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { ValueModule } from './value/value.module';
 import { CuisineModule } from './cuisine/cuisine.module';
 import { foodModule } from './food/food.module';
+import { RestaurantModule } from './restaurant/restaurant.module';
 
 @Module({
   imports: [AuthModule, 
@@ -16,7 +17,8 @@ import { foodModule } from './food/food.module';
             CategoriesModule, 
             ValueModule, 
             CuisineModule,
-            foodModule
+            foodModule,
+            RestaurantModule
           
           
           ],
