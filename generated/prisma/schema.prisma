@@ -62,13 +62,13 @@ model Variant {
 }
 
 model Value {
-  valueId         String  @id @default(auto()) @map("_id") @db.ObjectId
+  valueId         String   @id @default(auto()) @map("_id") @db.ObjectId
   label           String
   optionPrice     Int
   stock           Int
   stock_unlimited Boolean
-  variant         Variant @relation(fields: [variantId], references: [variantId])
-  variantId       String  @db.ObjectId
+  variant         Variant? @relation(fields: [variantId], references: [variantId])
+  variantId       String?  @db.ObjectId
 }
 
 model Category {

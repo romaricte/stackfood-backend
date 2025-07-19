@@ -5008,7 +5008,7 @@ export namespace Prisma {
     optionPrice: number
     stock: number
     stock_unlimited: boolean
-    variantId: string
+    variantId: string | null
     _count: ValueCountAggregateOutputType | null
     _avg: ValueAvgAggregateOutputType | null
     _sum: ValueSumAggregateOutputType | null
@@ -5037,7 +5037,7 @@ export namespace Prisma {
     stock?: boolean
     stock_unlimited?: boolean
     variantId?: boolean
-    variant?: boolean | VariantDefaultArgs<ExtArgs>
+    variant?: boolean | Value$variantArgs<ExtArgs>
   }, ExtArgs["result"]["value"]>
 
 
@@ -5053,13 +5053,13 @@ export namespace Prisma {
 
   export type ValueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"valueId" | "label" | "optionPrice" | "stock" | "stock_unlimited" | "variantId", ExtArgs["result"]["value"]>
   export type ValueInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    variant?: boolean | VariantDefaultArgs<ExtArgs>
+    variant?: boolean | Value$variantArgs<ExtArgs>
   }
 
   export type $ValuePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Value"
     objects: {
-      variant: Prisma.$VariantPayload<ExtArgs>
+      variant: Prisma.$VariantPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       valueId: string
@@ -5067,7 +5067,7 @@ export namespace Prisma {
       optionPrice: number
       stock: number
       stock_unlimited: boolean
-      variantId: string
+      variantId: string | null
     }, ExtArgs["result"]["value"]>
     composites: {}
   }
@@ -5431,7 +5431,7 @@ export namespace Prisma {
    */
   export interface Prisma__ValueClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    variant<T extends VariantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VariantDefaultArgs<ExtArgs>>): Prisma__VariantClient<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    variant<T extends Value$variantArgs<ExtArgs> = {}>(args?: Subset<T, Value$variantArgs<ExtArgs>>): Prisma__VariantClient<$Result.GetResult<Prisma.$VariantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5834,6 +5834,25 @@ export namespace Prisma {
      * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
      */
     options?: InputJsonValue
+  }
+
+  /**
+   * Value.variant
+   */
+  export type Value$variantArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Variant
+     */
+    select?: VariantSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Variant
+     */
+    omit?: VariantOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VariantInclude<ExtArgs> | null
+    where?: VariantWhereInput
   }
 
   /**
@@ -10705,8 +10724,8 @@ export namespace Prisma {
     optionPrice?: IntFilter<"Value"> | number
     stock?: IntFilter<"Value"> | number
     stock_unlimited?: BoolFilter<"Value"> | boolean
-    variantId?: StringFilter<"Value"> | string
-    variant?: XOR<VariantScalarRelationFilter, VariantWhereInput>
+    variantId?: StringNullableFilter<"Value"> | string | null
+    variant?: XOR<VariantNullableScalarRelationFilter, VariantWhereInput> | null
   }
 
   export type ValueOrderByWithRelationInput = {
@@ -10728,8 +10747,8 @@ export namespace Prisma {
     optionPrice?: IntFilter<"Value"> | number
     stock?: IntFilter<"Value"> | number
     stock_unlimited?: BoolFilter<"Value"> | boolean
-    variantId?: StringFilter<"Value"> | string
-    variant?: XOR<VariantScalarRelationFilter, VariantWhereInput>
+    variantId?: StringNullableFilter<"Value"> | string | null
+    variant?: XOR<VariantNullableScalarRelationFilter, VariantWhereInput> | null
   }, "valueId">
 
   export type ValueOrderByWithAggregationInput = {
@@ -10755,7 +10774,7 @@ export namespace Prisma {
     optionPrice?: IntWithAggregatesFilter<"Value"> | number
     stock?: IntWithAggregatesFilter<"Value"> | number
     stock_unlimited?: BoolWithAggregatesFilter<"Value"> | boolean
-    variantId?: StringWithAggregatesFilter<"Value"> | string
+    variantId?: StringNullableWithAggregatesFilter<"Value"> | string | null
   }
 
   export type CategoryWhereInput = {
@@ -11402,7 +11421,7 @@ export namespace Prisma {
     optionPrice: number
     stock: number
     stock_unlimited: boolean
-    variant: VariantCreateNestedOneWithoutValuesInput
+    variant?: VariantCreateNestedOneWithoutValuesInput
   }
 
   export type ValueUncheckedCreateInput = {
@@ -11411,7 +11430,7 @@ export namespace Prisma {
     optionPrice: number
     stock: number
     stock_unlimited: boolean
-    variantId: string
+    variantId?: string | null
   }
 
   export type ValueUpdateInput = {
@@ -11419,7 +11438,7 @@ export namespace Prisma {
     optionPrice?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     stock_unlimited?: BoolFieldUpdateOperationsInput | boolean
-    variant?: VariantUpdateOneRequiredWithoutValuesNestedInput
+    variant?: VariantUpdateOneWithoutValuesNestedInput
   }
 
   export type ValueUncheckedUpdateInput = {
@@ -11427,7 +11446,7 @@ export namespace Prisma {
     optionPrice?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     stock_unlimited?: BoolFieldUpdateOperationsInput | boolean
-    variantId?: StringFieldUpdateOperationsInput | string
+    variantId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ValueCreateManyInput = {
@@ -11436,7 +11455,7 @@ export namespace Prisma {
     optionPrice: number
     stock: number
     stock_unlimited: boolean
-    variantId: string
+    variantId?: string | null
   }
 
   export type ValueUpdateManyMutationInput = {
@@ -11451,7 +11470,7 @@ export namespace Prisma {
     optionPrice?: IntFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     stock_unlimited?: BoolFieldUpdateOperationsInput | boolean
-    variantId?: StringFieldUpdateOperationsInput | string
+    variantId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CategoryCreateInput = {
@@ -12191,9 +12210,9 @@ export namespace Prisma {
     foodId?: SortOrder
   }
 
-  export type VariantScalarRelationFilter = {
-    is?: VariantWhereInput
-    isNot?: VariantWhereInput
+  export type VariantNullableScalarRelationFilter = {
+    is?: VariantWhereInput | null
+    isNot?: VariantWhereInput | null
   }
 
   export type ValueCountOrderByAggregateInput = {
@@ -12647,10 +12666,12 @@ export namespace Prisma {
     connect?: VariantWhereUniqueInput
   }
 
-  export type VariantUpdateOneRequiredWithoutValuesNestedInput = {
+  export type VariantUpdateOneWithoutValuesNestedInput = {
     create?: XOR<VariantCreateWithoutValuesInput, VariantUncheckedCreateWithoutValuesInput>
     connectOrCreate?: VariantCreateOrConnectWithoutValuesInput
     upsert?: VariantUpsertWithoutValuesInput
+    disconnect?: boolean
+    delete?: VariantWhereInput | boolean
     connect?: VariantWhereUniqueInput
     update?: XOR<XOR<VariantUpdateToOneWithWhereWithoutValuesInput, VariantUpdateWithoutValuesInput>, VariantUncheckedUpdateWithoutValuesInput>
   }
@@ -13330,7 +13351,7 @@ export namespace Prisma {
     optionPrice?: IntFilter<"Value"> | number
     stock?: IntFilter<"Value"> | number
     stock_unlimited?: BoolFilter<"Value"> | boolean
-    variantId?: StringFilter<"Value"> | string
+    variantId?: StringNullableFilter<"Value"> | string | null
   }
 
   export type VariantCreateWithoutValuesInput = {

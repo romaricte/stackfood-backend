@@ -71,8 +71,8 @@ label String
 optionPrice Int
 stock Int
 stock_unlimited Boolean
-variant Variant @relation(fields: [variantId], references: [variantId])
-variantId String @db.ObjectId
+variant Variant? @relation(fields: [variantId], references: [variantId])
+variantId String? @db.ObjectId
 }
 
 model Category {
