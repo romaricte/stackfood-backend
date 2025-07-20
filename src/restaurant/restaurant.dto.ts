@@ -1,7 +1,6 @@
 import { Prisma } from 'generated/prisma/client';
-import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsInt, IsOptional, IsString, IsMongoId } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
+import { IsBoolean, IsNumber, IsString } from 'class-validator';
 
 
 export const restaurantsArgs = Prisma.validator<Prisma.RestaurantDefaultArgs>()({
@@ -11,7 +10,6 @@ export const restaurantsArgs = Prisma.validator<Prisma.RestaurantDefaultArgs>()(
         email: true,
         logo: true,
         image: true,
-        status: true,
         longitude: true,
         latitude: true,
         address: true,
@@ -20,20 +18,16 @@ export const restaurantsArgs = Prisma.validator<Prisma.RestaurantDefaultArgs>()(
         comission: true,
         schedule_order: true,
         cover_photo: true,
-        schedules: true,
-        foods: true,
         delivery: true,
         free_delivery: true,
         active: true,
         off_day: true,
         delivery_time: true,
-        veg: true,
-        cuisine: true,
         createdAt: true,
         updatedAt: true
     }
 })
-const restaurantArgs = Prisma.validator<Prisma.RestaurantDefaultArgs>()({
+export const restaurantArgs = Prisma.validator<Prisma.RestaurantDefaultArgs>()({
     select: {
        ...restaurantsArgs.select,
         schedules: true,
@@ -42,5 +36,31 @@ const restaurantArgs = Prisma.validator<Prisma.RestaurantDefaultArgs>()({
       
     }
 })
-export type restaurantDto = Prisma.RestaurantGetPayload<typeof restaurantArgs>
-export type restaurantsDto = Prisma.RestaurantGetPayload<typeof restaurantsArgs>
+export type RestaurantDto = Prisma.RestaurantGetPayload<typeof restaurantArgs>
+export type RestaurantsDto = Prisma.RestaurantGetPayload<typeof restaurantsArgs>
+
+export class CreateRestaurantDto {
+    // @ApiProperty() @IsMongoId() @IsOptional() restaurantId: string;
+    @ApiProperty() @IsString() name: string;
+    @ApiProperty() @IsString() image: string;
+    @ApiProperty() @IsBoolean() delivery: boolean;
+    @ApiProperty() @IsBoolean() free_delivery: boolean;
+    @ApiProperty() @IsString() phone: string;
+    @ApiProperty() @IsString() email: string;
+    @ApiProperty() @IsString() logo: string;
+    @ApiProperty() @IsString() address: string;
+    @ApiProperty() @IsString() footer_text: string;
+    @ApiProperty() @IsNumber() minimum_order: number;
+    @ApiProperty() @IsNumber() comission: number;
+    @ApiProperty() @IsBoolean() schedule_order: boolean;
+    @ApiProperty() @IsString() cover_photo: string;
+    @ApiProperty() @IsString() delivery_time: string;
+    @ApiProperty() @IsString() off_day: string;
+    @ApiProperty() @IsBoolean() active: boolean;
+    @ApiProperty() @IsString() longitude: string;
+    @ApiProperty() @IsString() latitude: string;
+
+  }
+
+  export class UpdateRestaurantDto extends PartialType(CreateRestaurantDto) {
+      }    

@@ -122,7 +122,6 @@ model Restaurant {
   email          String
   logo           String
   image          String
-  status         Boolean     @default(true)
   longitude      String
   latitude       String
   address        String
@@ -138,7 +137,6 @@ model Restaurant {
   active         Boolean
   off_day        String
   delivery_time  String
-  veg            Boolean
   cuisine        Cuisine[]
   createdAt      DateTime    @default(now())
   updatedAt      DateTime    @updatedAt

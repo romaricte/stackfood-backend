@@ -207,7 +207,6 @@ exports.Prisma.RestaurantScalarFieldEnum = {
   email: 'email',
   logo: 'logo',
   image: 'image',
-  status: 'status',
   longitude: 'longitude',
   latitude: 'latitude',
   address: 'address',
@@ -221,7 +220,6 @@ exports.Prisma.RestaurantScalarFieldEnum = {
   active: 'active',
   off_day: 'off_day',
   delivery_time: 'delivery_time',
-  veg: 'veg',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

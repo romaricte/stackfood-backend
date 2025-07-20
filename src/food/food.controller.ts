@@ -35,7 +35,7 @@ export class FoodController {
     }
 
     @Public()
-    @Put(':foodId')
+    @Put('updateFood/:foodId')
     async updateFood(
         @Param('foodId') foodId: string,
         @Body() foodDto: UpdateFoodDto
