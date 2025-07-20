@@ -10261,7 +10261,6 @@ export namespace Prisma {
     email: string | null
     logo: string | null
     image: string | null
-    status: boolean | null
     longitude: string | null
     latitude: string | null
     address: string | null
@@ -10275,7 +10274,6 @@ export namespace Prisma {
     active: boolean | null
     off_day: string | null
     delivery_time: string | null
-    veg: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -10287,7 +10285,6 @@ export namespace Prisma {
     email: string | null
     logo: string | null
     image: string | null
-    status: boolean | null
     longitude: string | null
     latitude: string | null
     address: string | null
@@ -10301,7 +10298,6 @@ export namespace Prisma {
     active: boolean | null
     off_day: string | null
     delivery_time: string | null
-    veg: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -10313,7 +10309,6 @@ export namespace Prisma {
     email: number
     logo: number
     image: number
-    status: number
     longitude: number
     latitude: number
     address: number
@@ -10327,7 +10322,6 @@ export namespace Prisma {
     active: number
     off_day: number
     delivery_time: number
-    veg: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -10351,7 +10345,6 @@ export namespace Prisma {
     email?: true
     logo?: true
     image?: true
-    status?: true
     longitude?: true
     latitude?: true
     address?: true
@@ -10365,7 +10358,6 @@ export namespace Prisma {
     active?: true
     off_day?: true
     delivery_time?: true
-    veg?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -10377,7 +10369,6 @@ export namespace Prisma {
     email?: true
     logo?: true
     image?: true
-    status?: true
     longitude?: true
     latitude?: true
     address?: true
@@ -10391,7 +10382,6 @@ export namespace Prisma {
     active?: true
     off_day?: true
     delivery_time?: true
-    veg?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -10403,7 +10393,6 @@ export namespace Prisma {
     email?: true
     logo?: true
     image?: true
-    status?: true
     longitude?: true
     latitude?: true
     address?: true
@@ -10417,7 +10406,6 @@ export namespace Prisma {
     active?: true
     off_day?: true
     delivery_time?: true
-    veg?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -10516,7 +10504,6 @@ export namespace Prisma {
     email: string
     logo: string
     image: string
-    status: boolean
     longitude: string
     latitude: string
     address: string
@@ -10530,7 +10517,6 @@ export namespace Prisma {
     active: boolean
     off_day: string
     delivery_time: string
-    veg: boolean
     createdAt: Date
     updatedAt: Date
     _count: RestaurantCountAggregateOutputType | null
@@ -10561,7 +10547,6 @@ export namespace Prisma {
     email?: boolean
     logo?: boolean
     image?: boolean
-    status?: boolean
     longitude?: boolean
     latitude?: boolean
     address?: boolean
@@ -10575,7 +10560,6 @@ export namespace Prisma {
     active?: boolean
     off_day?: boolean
     delivery_time?: boolean
-    veg?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     schedules?: boolean | Restaurant$schedulesArgs<ExtArgs>
@@ -10593,7 +10577,6 @@ export namespace Prisma {
     email?: boolean
     logo?: boolean
     image?: boolean
-    status?: boolean
     longitude?: boolean
     latitude?: boolean
     address?: boolean
@@ -10607,12 +10590,11 @@ export namespace Prisma {
     active?: boolean
     off_day?: boolean
     delivery_time?: boolean
-    veg?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type RestaurantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"restaurantId" | "name" | "phone" | "email" | "logo" | "image" | "status" | "longitude" | "latitude" | "address" | "footer_text" | "minimum_order" | "comission" | "schedule_order" | "cover_photo" | "delivery" | "free_delivery" | "active" | "off_day" | "delivery_time" | "veg" | "createdAt" | "updatedAt", ExtArgs["result"]["restaurant"]>
+  export type RestaurantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"restaurantId" | "name" | "phone" | "email" | "logo" | "image" | "longitude" | "latitude" | "address" | "footer_text" | "minimum_order" | "comission" | "schedule_order" | "cover_photo" | "delivery" | "free_delivery" | "active" | "off_day" | "delivery_time" | "createdAt" | "updatedAt", ExtArgs["result"]["restaurant"]>
   export type RestaurantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     schedules?: boolean | Restaurant$schedulesArgs<ExtArgs>
     foods?: boolean | Restaurant$foodsArgs<ExtArgs>
@@ -10634,7 +10616,6 @@ export namespace Prisma {
       email: string
       logo: string
       image: string
-      status: boolean
       longitude: string
       latitude: string
       address: string
@@ -10648,7 +10629,6 @@ export namespace Prisma {
       active: boolean
       off_day: string
       delivery_time: string
-      veg: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["restaurant"]>
@@ -11052,7 +11032,6 @@ export namespace Prisma {
     readonly email: FieldRef<"Restaurant", 'String'>
     readonly logo: FieldRef<"Restaurant", 'String'>
     readonly image: FieldRef<"Restaurant", 'String'>
-    readonly status: FieldRef<"Restaurant", 'Boolean'>
     readonly longitude: FieldRef<"Restaurant", 'String'>
     readonly latitude: FieldRef<"Restaurant", 'String'>
     readonly address: FieldRef<"Restaurant", 'String'>
@@ -11066,7 +11045,6 @@ export namespace Prisma {
     readonly active: FieldRef<"Restaurant", 'Boolean'>
     readonly off_day: FieldRef<"Restaurant", 'String'>
     readonly delivery_time: FieldRef<"Restaurant", 'String'>
-    readonly veg: FieldRef<"Restaurant", 'Boolean'>
     readonly createdAt: FieldRef<"Restaurant", 'DateTime'>
     readonly updatedAt: FieldRef<"Restaurant", 'DateTime'>
   }
@@ -11651,7 +11629,6 @@ export namespace Prisma {
     email: 'email',
     logo: 'logo',
     image: 'image',
-    status: 'status',
     longitude: 'longitude',
     latitude: 'latitude',
     address: 'address',
@@ -11665,7 +11642,6 @@ export namespace Prisma {
     active: 'active',
     off_day: 'off_day',
     delivery_time: 'delivery_time',
-    veg: 'veg',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -12348,7 +12324,6 @@ export namespace Prisma {
     email?: StringFilter<"Restaurant"> | string
     logo?: StringFilter<"Restaurant"> | string
     image?: StringFilter<"Restaurant"> | string
-    status?: BoolFilter<"Restaurant"> | boolean
     longitude?: StringFilter<"Restaurant"> | string
     latitude?: StringFilter<"Restaurant"> | string
     address?: StringFilter<"Restaurant"> | string
@@ -12362,7 +12337,6 @@ export namespace Prisma {
     active?: BoolFilter<"Restaurant"> | boolean
     off_day?: StringFilter<"Restaurant"> | string
     delivery_time?: StringFilter<"Restaurant"> | string
-    veg?: BoolFilter<"Restaurant"> | boolean
     createdAt?: DateTimeFilter<"Restaurant"> | Date | string
     updatedAt?: DateTimeFilter<"Restaurant"> | Date | string
     schedules?: SchedulesListRelationFilter
@@ -12377,7 +12351,6 @@ export namespace Prisma {
     email?: SortOrder
     logo?: SortOrder
     image?: SortOrder
-    status?: SortOrder
     longitude?: SortOrder
     latitude?: SortOrder
     address?: SortOrder
@@ -12391,7 +12364,6 @@ export namespace Prisma {
     active?: SortOrder
     off_day?: SortOrder
     delivery_time?: SortOrder
-    veg?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     schedules?: schedulesOrderByRelationAggregateInput
@@ -12409,7 +12381,6 @@ export namespace Prisma {
     email?: StringFilter<"Restaurant"> | string
     logo?: StringFilter<"Restaurant"> | string
     image?: StringFilter<"Restaurant"> | string
-    status?: BoolFilter<"Restaurant"> | boolean
     longitude?: StringFilter<"Restaurant"> | string
     latitude?: StringFilter<"Restaurant"> | string
     address?: StringFilter<"Restaurant"> | string
@@ -12423,7 +12394,6 @@ export namespace Prisma {
     active?: BoolFilter<"Restaurant"> | boolean
     off_day?: StringFilter<"Restaurant"> | string
     delivery_time?: StringFilter<"Restaurant"> | string
-    veg?: BoolFilter<"Restaurant"> | boolean
     createdAt?: DateTimeFilter<"Restaurant"> | Date | string
     updatedAt?: DateTimeFilter<"Restaurant"> | Date | string
     schedules?: SchedulesListRelationFilter
@@ -12438,7 +12408,6 @@ export namespace Prisma {
     email?: SortOrder
     logo?: SortOrder
     image?: SortOrder
-    status?: SortOrder
     longitude?: SortOrder
     latitude?: SortOrder
     address?: SortOrder
@@ -12452,7 +12421,6 @@ export namespace Prisma {
     active?: SortOrder
     off_day?: SortOrder
     delivery_time?: SortOrder
-    veg?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: RestaurantCountOrderByAggregateInput
@@ -12472,7 +12440,6 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Restaurant"> | string
     logo?: StringWithAggregatesFilter<"Restaurant"> | string
     image?: StringWithAggregatesFilter<"Restaurant"> | string
-    status?: BoolWithAggregatesFilter<"Restaurant"> | boolean
     longitude?: StringWithAggregatesFilter<"Restaurant"> | string
     latitude?: StringWithAggregatesFilter<"Restaurant"> | string
     address?: StringWithAggregatesFilter<"Restaurant"> | string
@@ -12486,7 +12453,6 @@ export namespace Prisma {
     active?: BoolWithAggregatesFilter<"Restaurant"> | boolean
     off_day?: StringWithAggregatesFilter<"Restaurant"> | string
     delivery_time?: StringWithAggregatesFilter<"Restaurant"> | string
-    veg?: BoolWithAggregatesFilter<"Restaurant"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Restaurant"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Restaurant"> | Date | string
   }
@@ -13087,7 +13053,6 @@ export namespace Prisma {
     email: string
     logo: string
     image: string
-    status?: boolean
     longitude: string
     latitude: string
     address: string
@@ -13101,7 +13066,6 @@ export namespace Prisma {
     active: boolean
     off_day: string
     delivery_time: string
-    veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     schedules?: schedulesCreateNestedManyWithoutRestaurantInput
@@ -13116,7 +13080,6 @@ export namespace Prisma {
     email: string
     logo: string
     image: string
-    status?: boolean
     longitude: string
     latitude: string
     address: string
@@ -13130,7 +13093,6 @@ export namespace Prisma {
     active: boolean
     off_day: string
     delivery_time: string
-    veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     schedules?: schedulesUncheckedCreateNestedManyWithoutRestaurantInput
@@ -13144,7 +13106,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
     longitude?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
@@ -13158,7 +13119,6 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     off_day?: StringFieldUpdateOperationsInput | string
     delivery_time?: StringFieldUpdateOperationsInput | string
-    veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     schedules?: schedulesUpdateManyWithoutRestaurantNestedInput
@@ -13172,7 +13132,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
     longitude?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
@@ -13186,7 +13145,6 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     off_day?: StringFieldUpdateOperationsInput | string
     delivery_time?: StringFieldUpdateOperationsInput | string
-    veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     schedules?: schedulesUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -13201,7 +13159,6 @@ export namespace Prisma {
     email: string
     logo: string
     image: string
-    status?: boolean
     longitude: string
     latitude: string
     address: string
@@ -13215,7 +13172,6 @@ export namespace Prisma {
     active: boolean
     off_day: string
     delivery_time: string
-    veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13226,7 +13182,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
     longitude?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
@@ -13240,7 +13195,6 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     off_day?: StringFieldUpdateOperationsInput | string
     delivery_time?: StringFieldUpdateOperationsInput | string
-    veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13251,7 +13205,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
     longitude?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
@@ -13265,7 +13218,6 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     off_day?: StringFieldUpdateOperationsInput | string
     delivery_time?: StringFieldUpdateOperationsInput | string
-    veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13851,7 +13803,6 @@ export namespace Prisma {
     email?: SortOrder
     logo?: SortOrder
     image?: SortOrder
-    status?: SortOrder
     longitude?: SortOrder
     latitude?: SortOrder
     address?: SortOrder
@@ -13865,7 +13816,6 @@ export namespace Prisma {
     active?: SortOrder
     off_day?: SortOrder
     delivery_time?: SortOrder
-    veg?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13882,7 +13832,6 @@ export namespace Prisma {
     email?: SortOrder
     logo?: SortOrder
     image?: SortOrder
-    status?: SortOrder
     longitude?: SortOrder
     latitude?: SortOrder
     address?: SortOrder
@@ -13896,7 +13845,6 @@ export namespace Prisma {
     active?: SortOrder
     off_day?: SortOrder
     delivery_time?: SortOrder
-    veg?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13908,7 +13856,6 @@ export namespace Prisma {
     email?: SortOrder
     logo?: SortOrder
     image?: SortOrder
-    status?: SortOrder
     longitude?: SortOrder
     latitude?: SortOrder
     address?: SortOrder
@@ -13922,7 +13869,6 @@ export namespace Prisma {
     active?: SortOrder
     off_day?: SortOrder
     delivery_time?: SortOrder
-    veg?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -14694,7 +14640,6 @@ export namespace Prisma {
     email: string
     logo: string
     image: string
-    status?: boolean
     longitude: string
     latitude: string
     address: string
@@ -14708,7 +14653,6 @@ export namespace Prisma {
     active: boolean
     off_day: string
     delivery_time: string
-    veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     schedules?: schedulesCreateNestedManyWithoutRestaurantInput
@@ -14722,7 +14666,6 @@ export namespace Prisma {
     email: string
     logo: string
     image: string
-    status?: boolean
     longitude: string
     latitude: string
     address: string
@@ -14736,7 +14679,6 @@ export namespace Prisma {
     active: boolean
     off_day: string
     delivery_time: string
-    veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     schedules?: schedulesUncheckedCreateNestedManyWithoutRestaurantInput
@@ -14855,7 +14797,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
     longitude?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
@@ -14869,7 +14810,6 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     off_day?: StringFieldUpdateOperationsInput | string
     delivery_time?: StringFieldUpdateOperationsInput | string
-    veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     schedules?: schedulesUpdateManyWithoutRestaurantNestedInput
@@ -14882,7 +14822,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
     longitude?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
@@ -14896,7 +14835,6 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     off_day?: StringFieldUpdateOperationsInput | string
     delivery_time?: StringFieldUpdateOperationsInput | string
-    veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     schedules?: schedulesUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -15345,7 +15283,6 @@ export namespace Prisma {
     email: string
     logo: string
     image: string
-    status?: boolean
     longitude: string
     latitude: string
     address: string
@@ -15359,7 +15296,6 @@ export namespace Prisma {
     active: boolean
     off_day: string
     delivery_time: string
-    veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     schedules?: schedulesCreateNestedManyWithoutRestaurantInput
@@ -15373,7 +15309,6 @@ export namespace Prisma {
     email: string
     logo: string
     image: string
-    status?: boolean
     longitude: string
     latitude: string
     address: string
@@ -15387,7 +15322,6 @@ export namespace Prisma {
     active: boolean
     off_day: string
     delivery_time: string
-    veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     schedules?: schedulesUncheckedCreateNestedManyWithoutRestaurantInput
@@ -15459,7 +15393,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
     longitude?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
@@ -15473,7 +15406,6 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     off_day?: StringFieldUpdateOperationsInput | string
     delivery_time?: StringFieldUpdateOperationsInput | string
-    veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     schedules?: schedulesUpdateManyWithoutRestaurantNestedInput
@@ -15486,7 +15418,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
     longitude?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
@@ -15500,7 +15431,6 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     off_day?: StringFieldUpdateOperationsInput | string
     delivery_time?: StringFieldUpdateOperationsInput | string
-    veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     schedules?: schedulesUncheckedUpdateManyWithoutRestaurantNestedInput
@@ -15561,7 +15491,6 @@ export namespace Prisma {
     email: string
     logo: string
     image: string
-    status?: boolean
     longitude: string
     latitude: string
     address: string
@@ -15575,7 +15504,6 @@ export namespace Prisma {
     active: boolean
     off_day: string
     delivery_time: string
-    veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     foods?: FoodCreateNestedManyWithoutRestaurantInput
@@ -15589,7 +15517,6 @@ export namespace Prisma {
     email: string
     logo: string
     image: string
-    status?: boolean
     longitude: string
     latitude: string
     address: string
@@ -15603,7 +15530,6 @@ export namespace Prisma {
     active: boolean
     off_day: string
     delivery_time: string
-    veg: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     foods?: FoodUncheckedCreateNestedManyWithoutRestaurantInput
@@ -15632,7 +15558,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
     longitude?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
@@ -15646,7 +15571,6 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     off_day?: StringFieldUpdateOperationsInput | string
     delivery_time?: StringFieldUpdateOperationsInput | string
-    veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     foods?: FoodUpdateManyWithoutRestaurantNestedInput
@@ -15659,7 +15583,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    status?: BoolFieldUpdateOperationsInput | boolean
     longitude?: StringFieldUpdateOperationsInput | string
     latitude?: StringFieldUpdateOperationsInput | string
     address?: StringFieldUpdateOperationsInput | string
@@ -15673,7 +15596,6 @@ export namespace Prisma {
     active?: BoolFieldUpdateOperationsInput | boolean
     off_day?: StringFieldUpdateOperationsInput | string
     delivery_time?: StringFieldUpdateOperationsInput | string
-    veg?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     foods?: FoodUncheckedUpdateManyWithoutRestaurantNestedInput
